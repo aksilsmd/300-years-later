@@ -54,11 +54,20 @@ Le reste de l'onomastique ne bouge pas : nom de code **CENTURY TEMPS**, agence *
 **Immédiat, sans risque :** les nouveaux artefacts portent le titre — marque, favicon, logotype, carte
 sociale, charte graphique (`35_DESIGN_SYSTEM.md`), `docs/assets/`.
 
-**Après votre accord**, une seule opération, déjà documentée dans
-[`docs/guides/05_PERSONNALISER.md`](../guides/05_PERSONNALISER.md) §2 : demander à l'IA de remplacer le titre
-public partout où il est public — READMEs, landing, Remotion, `docs/design/70`, page Steam, presskit — sans
-toucher au nom de code ni aux identifiants techniques. Puis `python3 tools/privacy_scan.py` et les tests de la
-landing.
+**Après votre accord**, une seule commande, qui existe déjà et qui ne touche que ce qui est public :
+
+```bash
+python3 tools/apply_public_title.py --to "Afterloom"           # aperçu, ne modifie rien
+python3 tools/apply_public_title.py --to "Afterloom" --apply   # écrit les 55 occurrences
+python3 tools/repo_audit.py && python3 tools/privacy_scan.py && python3 -m pytest tests/web -q
+```
+
+Elle remplace le titre dans les READMEs, la landing, Remotion, la page Steam, le presskit, `llms.txt`, les
+skills et les tests. Elle ne touche **ni** le nom de code CENTURY TEMPS, **ni** la vallée Brumecombe, **ni**
+l'identifiant `300-years-later` et les URL qui en découlent, **ni** l'accroche française « 300 ans plus tard »,
+**ni** l'entité d'attribution « The 300 Years Later contributors » des deux licences — ce dernier point est une
+décision juridique distincte, à prendre d'un seul coup sur `LICENSE`, `LICENSE-CONTENT.md`, `CITATION.cff` et
+`.claude-plugin/`. Cet ADR lui-même garde l'ancien titre, puisqu'il consigne la décision.
 
 **Le nom du dépôt reste `300-years-later` jusqu'à ce que vous le renommiez.** Un renommage GitHub conserve les
 redirections, mais il casse le chemin du plugin

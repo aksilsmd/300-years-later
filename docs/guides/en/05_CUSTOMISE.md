@@ -9,9 +9,27 @@ Everything is designed to be changed. Licence: MIT code, CC BY 4.0 content (cred
 - **Per session:** add your instructions after the start prompt. They override the config; only the safety contract cannot be lifted.
 
 ## 2. Change the title
-1. Choose a title and run a trademark search (`legal/21_marque-pi.md`).
-2. Ask the AI: "Replace the public title "300 Years Later" with "<NEW TITLE>" everywhere it is public (READMEs, landing, Remotion, docs/design/70), without touching the codename CENTURY TEMPS or technical identifiers."
-3. Check: `python3 tools/privacy_scan.py` and the landing tests.
+The project carries three names on purpose: the **codename** (CENTURY TEMPS), the **public title**
+("300 Years Later" today) and the **repository slug** (`300-years-later`, which every URL is built from).
+To change only the second:
+
+1. Choose a title and run a trademark search (`legal/21_marque-pi.md`) — that is a human step.
+2. ```bash
+   python3 tools/apply_public_title.py --to "New Title"           # preview, file by file
+   python3 tools/apply_public_title.py --to "New Title" --apply   # write
+   ```
+3. Check: `python3 tools/repo_audit.py && python3 tools/privacy_scan.py && python3 -m pytest tests/web -q`
+
+The tool never touches the repository slug, the codename, the valley name, the French pitch line "300 ans plus
+tard", or the licence attribution entity; it prints what it left alone and why. **Renaming the repository
+itself is a separate decision** — GitHub keeps redirects, but it breaks the plugin path, the badges and every
+shared link. See [ADR 0021](../../adr/0021-titre-public-afterloom.md).
+
+## 2 bis. The repository's "About" box
+The description, website and topics at the top of the GitHub page are **not** in the code — they are repository
+settings. No agent can write them, and no `git push` changes them. Their source of truth is
+[`.github/about.yml`](../../../.github/about.yml); `bash tools/setup_repo.sh` applies it with your own token,
+and prints the text to paste if a write is refused.
 
 ## 3. Change the game without coding
 | You want to… | Edit | Check |

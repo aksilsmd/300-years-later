@@ -22,5 +22,29 @@ Tout est conçu pour être modifié. Licence : code MIT, contenus CC BY 4.0 (cr�
 | changer le look d'une époque | `docs/design/33_VISUAL_TARGETS.md` §2 puis demander à l'IA d'appliquer | revue visuelle |
 | ajouter un plan de trailer | `data/shotlist.json` | rendu + validation |
 
+## 2 bis. Changer le titre public du jeu
+
+Le projet porte trois noms distincts et c'est volontaire : le **nom de code** (CENTURY TEMPS), le **titre
+public** (« 300 Years Later » aujourd'hui) et l'**identifiant du dépôt** (`300-years-later`, qui apparaît dans
+toutes les URL). Pour ne changer que le deuxième :
+
+```bash
+python3 tools/apply_public_title.py --to "Mon Titre"           # aperçu fichier par fichier
+python3 tools/apply_public_title.py --to "Mon Titre" --apply   # écrit
+python3 tools/repo_audit.py && python3 tools/privacy_scan.py && python3 -m pytest tests/web -q
+```
+
+L'outil ne touche jamais l'identifiant du dépôt, le nom de code, le nom de la vallée, l'accroche « 300 ans plus
+tard » ni l'entité d'attribution des licences ; il affiche ce qu'il a laissé et pourquoi. **Renommer le dépôt
+lui-même est une autre affaire** : GitHub garde les redirections, mais cela casse le chemin du plugin, les
+badges et les liens déjà partagés — voir [ADR 0021](../adr/0021-titre-public-afterloom.md).
+
+## 2 ter. L'encart « About » du dépôt
+
+La description, le site et les mots-clés visibles en haut de la page GitHub ne sont **pas** dans le code : ce
+sont des réglages du dépôt. Aucune IA ne peut les écrire, et aucun `git push` ne les change. Leur source de
+vérité est [`.github/about.yml`](../../.github/about.yml) ; `bash tools/setup_repo.sh` les applique avec votre
+propre jeton, et affiche le texte à coller si une écriture est refusée.
+
 ## 3. Réutiliser le studio pour un autre jeu
 Les skills (`.claude/skills/`) sont génériques à 80 % : remplacez `docs/design/` par votre propre conception (en gardant la même structure de fichiers), adaptez `CLAUDE.md`, puis lancez `game-studio`. Gardez le contrat de sécurité, les portes de décision et le corpus juridique comme base.

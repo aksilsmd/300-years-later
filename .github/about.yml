@@ -1,0 +1,46 @@
+# EN — The single source of truth for the GitHub "About" box: description, homepage, topics, social
+#      preview. Nothing here can be changed by an agent: these are account-level repository settings.
+#      `tools/setup_repo.sh` reads this file and applies it; `tools/repo_audit.py` checks its shape.
+#      If you edit the About box by hand in the web interface, edit this file to match.
+# FR — Source unique de vérité pour l'encart « About » de GitHub : description, site, mots-clés, image
+#      de partage. Rien ici n'est modifiable par une IA : ce sont des réglages du dépôt, donc du compte.
+#      `tools/setup_repo.sh` lit ce fichier et l'applique ; `tools/repo_audit.py` en vérifie la forme.
+#      Si vous modifiez l'encart à la main dans l'interface, reportez-le ici.
+#
+# Format kept deliberately flat so both bash and the stdlib can read it: `key: value` on one line,
+# topics as `  - slug` lines. GitHub limits: description 350 characters, 20 topics, slugs in
+# [a-z0-9-] of 50 characters or less.
+
+description: Give this repo to Claude Code, Gemini or Codex and it runs a game studio — it installs the toolchain, writes an Unreal Engine 5.8 co-op game where four friends each live in a different century of the same valley, tests it, keeps it GDPR-compliant, renders the trailer and builds the landing page. 8 agent skills, FR/EN, MIT.
+
+# Short variant, for the places that truncate at 160 characters (search results, link previews).
+description_short: Give this repo to your coding agent and it runs a game studio — Unreal Engine 5.8, tests, GDPR, trailer, landing page. 8 skills, FR/EN, MIT.
+
+# `auto` = the README of this repository, until GitHub Pages is live. Then: the Pages URL.
+homepage: auto
+
+# 1280x640. Uploaded by hand: Settings -> General -> Social preview. The API has no endpoint for it.
+social_preview: docs/assets/social-card.png
+
+# Chosen for what people actually type into GitHub search, most specific first.
+topics:
+  - claude-code
+  - claude-skills
+  - agent-skills
+  - ai-agents
+  - autonomous-agents
+  - llm-agents
+  - ai-game-development
+  - unreal-engine
+  - unreal-engine-5
+  - game-development
+  - game-design
+  - gamedev
+  - game-studio
+  - coop-game
+  - multiplayer
+  - qa-automation
+  - gdpr
+  - developer-tools
+  - open-source
+  - framer-motion

@@ -26,6 +26,7 @@ REQUIRED = [
     "ROADMAP.md", "CHANGELOG.md", "LICENSE", "LICENSE-CONTENT.md", "THIRD_PARTY_LICENSES.md",
     "STUDIO_STATE.md", "DECISIONS.md", "QUESTIONS.md", "studio.config.yaml",
     ".github/CODEOWNERS", ".github/dependabot.yml", ".github/pull_request_template.md",
+    ".github/about.yml",
     "media/APPROVALS.md", "docs/README.md", "ARCHITECTURE.md", ".editorconfig",
     ".claude-plugin/plugin.json", ".claude-plugin/marketplace.json",
 ]
@@ -109,6 +110,36 @@ def check_versions(errors: list[str]) -> None:
             errors.append(f"gitleaks version drift: workflow v{m.group(1)} vs versions.env {d.group(1)}")
 
 
+def check_about(errors: list[str]) -> None:
+    """The GitHub About box must stay within GitHub's own limits, or tools/setup_repo.sh fails
+    halfway and the repository ends up half-configured."""
+    f = ROOT / ".github" / "about.yml"
+    if not f.is_file():
+        return
+    text = f.read_text(encoding="utf-8")
+    desc = re.search(r"^description: (.+)$", text, re.M)
+    if not desc:
+        errors.append(".github/about.yml: no `description:` line")
+    elif len(desc.group(1)) > 350:
+        errors.append(f".github/about.yml: description is {len(desc.group(1))} characters, GitHub allows 350")
+    short = re.search(r"^description_short: (.+)$", text, re.M)
+    if short and len(short.group(1)) > 160:
+        errors.append(f".github/about.yml: description_short is {len(short.group(1))} characters, keep it under 160")
+    topics = re.findall(r"^  - (\S+)$", text, re.M)
+    if not topics:
+        errors.append(".github/about.yml: no topics")
+    if len(topics) > 20:
+        errors.append(f".github/about.yml: {len(topics)} topics, GitHub allows 20")
+    if len(set(topics)) != len(topics):
+        errors.append(".github/about.yml: duplicate topic")
+    for t in topics:
+        if not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,49}", t):
+            errors.append(f".github/about.yml: invalid topic slug '{t}' (lowercase, digits, hyphens, ≤50)")
+    preview = re.search(r"^social_preview: (.+)$", text, re.M)
+    if preview and not (ROOT / preview.group(1).strip()).is_file():
+        errors.append(f".github/about.yml: social_preview points at a missing file: {preview.group(1).strip()}")
+
+
 def check_no_licensed_content(errors: list[str]) -> None:
     for pattern in ("*.uasset", "*.umap", "*.pak"):
         for p in walk(pattern.lstrip("*")):
@@ -119,14 +150,16 @@ def check_no_licensed_content(errors: list[str]) -> None:
 
 def main() -> int:
     errors: list[str] = []
-    for check in (check_required, check_links, check_actions, check_versions, check_no_licensed_content):
+    for check in (check_required, check_links, check_actions, check_versions, check_about,
+                  check_no_licensed_content):
         check(errors)
     if errors:
         print(f"✗ repository audit: {len(errors)} problem(s)")
         for e in errors:
             print("   -", e)
         return 1
-    print("✓ repository audit: required files, skills, internal links, pinned actions, versions — all clean")
+    print("✓ repository audit: required files, skills, internal links, pinned actions, versions, "
+          "About box — all clean")
     return 0
 
 
