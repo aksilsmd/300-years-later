@@ -17,3 +17,25 @@ Jeux coop et comédie, communauté bienveillante, public majoritairement adulte 
 
 ## Indicateurs
 Listes de souhaits par jour, conversion démo → liste de souhaits, taux de partage des clips, temps médian de démo, part des avis positifs.
+
+## Faire connaître le **kit** (distinct du jeu)
+> **EN —** The repository and the game need different channels. These are for the repository.
+
+Le dépôt se trouve par trois chemins, dans cet ordre d'efficacité réelle :
+
+1. **Les listes et les registres.** C'est le canal n°1 pour un dépôt de skills. Proposer l'entrée aux listes
+   « awesome » du domaine (awesome-claude-code, awesome-claude-skills, awesome-agent-skills) en suivant leur
+   procédure de contribution, et publier le plugin via `.claude-plugin/marketplace.json` (déjà en place :
+   `/plugin marketplace add aksilsmd/300-years-later`).
+2. **La recherche GitHub.** Elle pèse sur le nom, la description et les *topics* — pas sur le README. Les
+   trois doivent être remplis (`bash tools/setup_repo.sh`), avec des synonymes volontaires
+   (`agent-skills` **et** `ai-agents`, `unreal-engine` **et** `game-development`).
+3. **Le web et les modèles de langage.** Google indexe le README et la page GitHub Pages ; les modèles lisent
+   `llms.txt`, les balises JSON-LD de la landing et les READMEs. Les trois existent. Ce qui compte ensuite est
+   d'être **cité ailleurs** : un billet, un fil, une démonstration vidéo valent plus que n'importe quel
+   réglage de balise.
+
+Publications ponctuelles à préparer (textes FR + EN) : un fil « j'ai fait tourner un studio de jeu avec une
+IA, voici ce qui a marché et ce qui a échoué », un retour d'exécution complet dans `docs/runs/`, et une
+démonstration vidéo de deux minutes du parcours A → Z. Aucune de ces publications n'annonce le jeu : elles
+parlent du kit, avec la même honnêteté que le README (le jeu n'existe pas encore).

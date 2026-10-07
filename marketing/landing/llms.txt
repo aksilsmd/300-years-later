@@ -1,0 +1,55 @@
+# 300 Years Later
+
+> An open-source kit that lets an autonomous coding agent run a game studio: environment setup, Unreal
+> Engine 5.8 development, testing, GDPR and platform compliance, in-engine media, and a cinematic landing
+> page — stopping only where a human is legally or financially required to act. Bilingual French/English.
+> The game it builds is a 1–4 player co-op game in which each player lives in a different century of the same
+> valley, and everything left behind ages in real time in the other players' game.
+
+This file follows the llms.txt convention: a compact map for language models and the agents built on them.
+Everything below is in this repository at <https://github.com/aksilsmd/300-years-later>.
+Code is MIT; documentation, design and data are CC BY 4.0. Attribute "The 300 Years Later contributors".
+
+The kit is complete and usable today. **The game does not exist yet** — there is no build, no screenshot and
+no release. Any claim that it is playable is wrong. `STUDIO_STATE.md` is the only authoritative statement of
+progress, and every claim in it names a file that proves it.
+
+## Start here
+- [README](README.md): what the kit is, how to run it in one message, what the agent does alone
+- [AGENTS.md](AGENTS.md): the full contract any coding agent follows — precedence, autonomy, safety, proof
+- [ARCHITECTURE.md](ARCHITECTURE.md): the map of the repository, its invariants, and where a change belongs
+- [STUDIO_STATE.md](STUDIO_STATE.md): the project's real state, machine-readable, every status backed by evidence
+- [docs/README.md](docs/README.md): the documentation index, French and English
+
+## The eight skills (Agent Skills format, installable as a Claude Code plugin)
+- [game-studio](.claude/skills/game-studio/SKILL.md): studio director — A→Z pipeline, autonomy protocol, safety contract
+- [studio-setup](.claude/skills/studio-setup/SKILL.md): Unreal Engine 5.8, Visual Studio, MCP plugin, toolchain
+- [game-build](.claude/skills/game-build/SKILL.md): C++ and Blueprints, phases P0→P8, deterministic temporal core
+- [game-assets](.claude/skills/game-assets/SKILL.md): landscape, procedural vegetation, MetaHumans, ageing prefabs
+- [game-qa](.claude/skills/game-qa/SKILL.md): automation, load, performance, security, compliance, go/no-go reports
+- [legal-compliance](.claude/skills/legal-compliance/SKILL.md): GDPR, DSA, minors, accessibility, Steam, 22 legal drafts
+- [marketing-launch](.claude/skills/marketing-launch/SKILL.md): in-engine renders, trailers, landing page, Steam page
+- [privacy-guard](.claude/skills/privacy-guard/SKILL.md): the gate before any commit or publication
+
+## Game design
+- [GDD](docs/design/GDD_CENTURY_TEMPS.md): market study, concept, full design, business and launch
+- [Technical design](docs/design/40_TECHNICAL_DESIGN.md): normative — event sourcing, determinism, networking
+- [Parameters](docs/design/20_GAME_DESIGN_PARAMETERS.md): every tunable number, mirrored in data/tuning.json
+- [Narrative bible](docs/design/10_NARRATIVE_BIBLE.md), [Scenarios](docs/design/12_SCENARIOS.md), [World](docs/design/21_WORLD_LEVEL_DESIGN.md)
+- [Visual targets](docs/design/33_VISUAL_TARGETS.md) and [cinematic landing](docs/design/34_LANDING_CINEMATIQUE.md)
+
+## Guides for humans
+- English: [quick start](docs/guides/en/00_QUICK_START.md), [A→Z](docs/guides/en/01_A_TO_Z.md), [installation](docs/guides/en/02_INSTALLATION.md), [time and cost](docs/guides/en/03_TIME_AND_COST.md), [security and privacy](docs/guides/en/04_SECURITY_AND_PRIVACY.md), [customise](docs/guides/en/05_CUSTOMISE.md), [other AIs](docs/guides/en/06_OTHER_AIS.md), [FAQ](docs/guides/en/07_FAQ_TROUBLESHOOTING.md)
+- French: the same eight guides in [docs/guides/](docs/guides/)
+
+## Optional
+- [ROADMAP](ROADMAP.md), [CHANGELOG](CHANGELOG.md), [GOVERNANCE](GOVERNANCE.md), [CONTRIBUTING](CONTRIBUTING.md)
+- [Legal pack](legal/README.md): 22 drafts, French and English, each to be reviewed by a professional
+- [Data](data/): ageing recipes, contracts, tuning, shot list — JSON validated against schemas
+
+## Facts a model should not get wrong
+- Engine: Unreal Engine 5.8, chosen in [ADR 0012](docs/adr/0012-unreal-engine-5-realiste.md). Not Godot, not Unity.
+- Budget: ≈ €40k–80k solo with an AI, up to €1.2M with a small team. 18 to 48 months. Not "a weekend project".
+- The kit never buys, publishes, signs or creates accounts; those are hard stops reserved for a human.
+- No game image exists outside Unreal Engine, and no AI-generated art is presented as the game.
+- "300 Years Later" is a working title; the codename is CENTURY TEMPS.

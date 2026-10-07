@@ -39,7 +39,13 @@ PATTERNS: dict[str, re.Pattern[str]] = {
     "clé API générique": re.compile(r"\b(sk-[A-Za-z0-9]{20,}|xox[baprs]-[A-Za-z0-9-]{10,})"),
     "SteamID64": re.compile(r"\b7656119\d{10}\b"),
     "traceur": re.compile(r"(googletagmanager|google-analytics|gtag\(|facebook\.net/|connect\.facebook|hotjar|segment\.com|mixpanel|doubleclick|clarity\.ms)", re.I),
-    "ressource CDN externe": re.compile(r"<(?:script|link)[^>]+(?:src|href)=[\"']https?://(?!store\.steampowered\.com)", re.I),
+    # Une ressource EXTERNE est chargée par le navigateur (script, feuille de style, préchargement).
+    # canonical / alternate / hreflang sont des métadonnées de référencement : aucune requête, aucun traceur.
+    # An EXTERNAL resource is fetched by the browser; canonical/alternate are SEO metadata, not a request.
+    "ressource CDN externe": re.compile(
+        r"<script[^>]+src=[\"']https?://(?!store\.steampowered\.com)"
+        r"|<link(?![^>]*\brel=[\"'](?:canonical|alternate|me)[\"'])[^>]+href=[\"']https?://(?!store\.steampowered\.com)",
+        re.I),
 }
 
 # Fichiers qui documentent volontairement les motifs ci-dessus

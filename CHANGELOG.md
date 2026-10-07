@@ -9,6 +9,14 @@ public API. Dates are ISO 8601.
 ## [Unreleased]
 
 ### Added
+- **Discoverability**: `llms.txt` at the repository root and served by both landings (a compact map for
+  language models, including the facts a model must not get wrong about this project); canonical, Open Graph,
+  `hreflang`, `robots.txt`, `sitemap.xml` and JSON-LD `VideoGame` structured data on both landings — all
+  self-hosted, still zero trackers; a section in `marketing/launch-plan.md` on how the **kit** (as opposed to
+  the game) gets found.
+- **Player review** of the design dossier: [`docs/reviews/2026-10-07-revue-joueur.md`](docs/reviews/2026-10-07-revue-joueur.md)
+  — eight gaps ranked, one strategic contradiction, the questions the dossier leaves open and five minor
+  inconsistencies. Eleven entries filed in `docs/backlog.md` for the human to decide.
 - **[`ARCHITECTURE.md`](ARCHITECTURE.md)** — the repository's map in the matklad shape: bird's-eye view, entry
   points, codemap, and the invariants stated inline where they apply (determinism, authoritative host, no
   licensed content, no media outside the engine, no trackers). Named files, never line links.

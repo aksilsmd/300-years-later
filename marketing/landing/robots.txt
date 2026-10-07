@@ -1,0 +1,5 @@
+# EN — Everything is public and indexable. No crawler is tracked; this site has no analytics.
+# FR — Tout est public et indexable. Aucun traceur, aucune analyse d'audience.
+User-agent: *
+Allow: /
+Sitemap: https://aksilsmd.github.io/300-years-later/sitemap.xml
