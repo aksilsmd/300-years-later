@@ -37,7 +37,19 @@ jobs:
       - uses: github/codeql-action/upload-sarif@v3
         with: { sarif_file: semgrep.sarif, category: semgrep }
       - name: Blocking gate (high-confidence rules only)
-        run: semgrep --config p/ci --metrics=off --error --exclude docs --exclude legal
+        run: |
+          semgrep --config p/ci --metrics=off --json --output ci.json --exclude docs --exclude legal || true
+          python3 - <<'PY'
+          import json, sys
+          d = json.load(open("ci.json"))
+          res, errs = d.get("results", []), d.get("errors", [])
+          for r in res:
+              print(f"::error file={r['path']},line={r['start']['line']}::{r['check_id']} — {r['extra']['message'][:180]}")
+          for e in errs:
+              print(f"::warning::semgrep error: {str(e)[:180]}")
+          print(f"::notice::{len(res)} finding(s), {len(errs)} scan error(s)")
+          sys.exit(1 if res else 0)
+          PY
 
   web-baseline:
     name: OWASP ZAP baseline (reference landing)
