@@ -56,3 +56,6 @@ Thumbs.db
 # Réglages locaux de Claude Code (propres à une machine, jamais partagés)
 # Claude Code per-machine settings — never shared
 .claude/settings.local.json
+
+# Artefacts du livre (régénérés par tools/build_book_pdf.py et build_book_reader.py)
+book/build/

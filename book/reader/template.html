@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="fr" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le Livre des Traces — liseuse</title>
+<meta name="description" content="Liseuse du roman fondateur d'Afterloom. Pages tournées comme dans un livre.">
+<!-- Aucune ressource distante : ni police, ni script, ni feuille de style externe (AGENTS.md §4.3). -->
+<style>
+/* =========================================================== jetons (design-system/tokens.css) */
+:root{
+  --paper:#E9E7E0; --paper-sunk:#E3E1D9; --ink:#15191A; --ink-soft:#6E7169;
+  --rule:rgba(21,25,26,.28); --rule-faint:rgba(21,25,26,.12); --signal:#8C2F22;
+  --era-0:#76875A; --era-1:#8A6B1E; --era-2:#4E5257; --era-3:#1C6F62;
+  --bed-0:#DFE2D2; --bed-1:#E3DCC4; --bed-2:#D9DADB; --bed-3:#CFDED9;
+  --desk:#CFCCC3;                       /* la table sur laquelle le livre est posé */
+  --serif:"Source Serif 4","Liberation Serif",Georgia,"Times New Roman",serif;
+  --sans:Inter,"Helvetica Neue",-apple-system,system-ui,"Segoe UI",Arial,sans-serif;
+  --mono:"DejaVu Sans Mono","Liberation Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --turn:900ms; --ease:cubic-bezier(.22,1,.36,1);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#1A1D1E; --paper-sunk:#15191A; --ink:#E6E4DC; --ink-soft:#9A9C94;
+    --rule:rgba(230,228,220,.26); --rule-faint:rgba(230,228,220,.10);
+    --bed-0:#242A20; --bed-1:#2A2619; --bed-2:#212426; --bed-3:#1B2A27; --desk:#0E1011;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#1A1D1E; --paper-sunk:#15191A; --ink:#E6E4DC; --ink-soft:#9A9C94;
+  --rule:rgba(230,228,220,.26); --rule-faint:rgba(230,228,220,.10);
+  --bed-0:#242A20; --bed-1:#2A2619; --bed-2:#212426; --bed-3:#1B2A27; --desk:#0E1011;
+}
+@media (prefers-reduced-motion:reduce){ :root{ --turn:1ms; } }
+
+*{box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  margin:0; background:var(--desk); color:var(--ink);
+  font-family:var(--sans); overflow:hidden;
+  display:grid; grid-template-rows:auto 1fr auto;
+  -webkit-tap-highlight-color:transparent;
+}
+
+/* =========================================================== barres */
+.bar{display:flex; align-items:center; gap:14px; padding:12px 18px; font-family:var(--mono); font-size:11px;
+     letter-spacing:.07em; color:var(--ink-soft); text-transform:uppercase;}
+.bar .grow{flex:1;}
+.bar b{font-family:var(--sans); font-weight:800; font-size:13px; letter-spacing:-.02em;
+       text-transform:none; color:var(--ink);}
+button{font:inherit; color:inherit; background:none; border:1px solid var(--rule-faint);
+       padding:6px 11px; cursor:pointer; letter-spacing:.07em; text-transform:uppercase;}
+button:hover{border-color:var(--rule); background:var(--paper-sunk);}
+button:focus-visible, [tabindex]:focus-visible{outline:2px solid var(--signal); outline-offset:2px;}
+button[aria-pressed="true"]{border-color:var(--ink); color:var(--ink);}
+
+/* =========================================================== la scène */
+.stage{position:relative; display:grid; place-items:center; min-height:0; padding:0 clamp(8px,4vw,56px);}
+.book{position:relative; perspective:2600px; perspective-origin:50% 44%;}
+.book .plate{position:relative; display:flex; filter:drop-shadow(0 22px 46px rgba(0,0,0,.30));
+             transition:transform var(--turn) var(--ease);}
+/* Livre fermé : il n'y a rien à gauche de la couverture, et le volume se recentre sur la scène.
+   Idem à la toute fin, où il ne reste que la page de gauche. */
+.plate.closed{transform:translateX(calc(var(--half) * -1));}
+.plate.ended{transform:translateX(var(--half));}
+.plate.closed .page.left,.plate.ended .page.right{opacity:0;}
+.page{transition:opacity var(--turn) var(--ease);}
+.page{background:var(--paper); position:relative; overflow:hidden;}
+
+/* le dos : une ombre portée vers l'intérieur, pas un dégradé décoratif */
+.page.left::after,.page.right::after{content:""; position:absolute; top:0; bottom:0; width:26px; pointer-events:none;}
+.page.left::after{right:0; background:linear-gradient(to right,transparent,rgba(21,25,26,.13));}
+.page.right::after{left:0; background:linear-gradient(to left,transparent,rgba(21,25,26,.13));}
+:root[data-theme="dark"] .page.left::after,:root[data-theme="dark"] .page.right::after{opacity:.55;}
+
+/* =========================================================== le feuillet qui tourne */
+.leaf{position:absolute; top:0; right:0; height:100%; transform-origin:left center;
+      transform-style:preserve-3d; transition:transform var(--turn) var(--ease); will-change:transform;}
+.leaf.flat{transition:none;}
+.leaf.turned{transform:rotateY(-180deg);}
+.face{position:absolute; inset:0; backface-visibility:hidden; background:var(--paper); overflow:hidden;}
+.face.verso{transform:rotateY(180deg);}
+/* l'ombre que la page projette sur celle d'en dessous pendant la rotation */
+.face .shade{position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity var(--turn) var(--ease);}
+.face.recto .shade{background:linear-gradient(to right,rgba(21,25,26,.28),transparent 42%);}
+.face.verso .shade{background:linear-gradient(to left,rgba(21,25,26,.28),transparent 42%);}
+.leaf.moving .face .shade{opacity:1;}
+
+/* =========================================================== contenu d'une page */
+.sheet{position:absolute; inset:0; padding:var(--pad); display:flex; flex-direction:column;}
+.sheet .flow{flex:1; min-height:0; font-family:var(--serif); text-align:justify; hyphens:auto;
+             font-size:var(--fs); line-height:1.62; overflow:hidden;}
+.sheet .flow p{margin:0; text-indent:1.35em;}
+.sheet .flow p.opener{text-indent:0;}
+.sheet .flow p.opener::first-line{font-variant:small-caps; letter-spacing:.02em;}
+.sheet .flow p.dinkus{text-indent:0; text-align:center; margin:.9em 0; color:var(--ink-soft); letter-spacing:.45em;}
+.sheet .folio{font-family:var(--mono); font-size:10px; color:var(--ink-soft); padding-top:10px;
+              display:flex; justify-content:space-between; letter-spacing:.08em;}
+.page.left .folio{flex-direction:row;}
+.chead{margin:0 0 1.4em;}
+.chead .k{font-family:var(--mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft);}
+.chead h2{font-family:var(--sans); font-weight:800; letter-spacing:-.03em; margin:.35em 0 0;
+          font-size:calc(var(--fs) * 1.5);}
+.chead.veille h2{font-family:var(--serif); font-style:italic; font-weight:600;}
+
+/* couverture, intérieure, fin */
+.cover{position:absolute; inset:0; display:flex;}
+.cover .core{width:28%; display:flex; flex-direction:column;}
+.cover .core i{flex:1; display:block; position:relative;}
+.cover .core i::after{content:""; position:absolute; left:34%; top:50%; transform:translate(-50%,-50%);
+  border-radius:50%; background:var(--d); width:var(--r); height:var(--r);}
+.cover .field{flex:1; padding:clamp(18px,4%,34px); display:flex; flex-direction:column;}
+.cover h1{font-family:var(--sans); font-weight:900; text-transform:uppercase; letter-spacing:-.035em;
+          font-size:clamp(22px,3.1vw,40px); line-height:.98; margin:.4em 0 .35em;}
+.cover .sub{font-family:var(--serif); font-style:italic; color:var(--ink-soft); margin:0;}
+.cover .partline{margin-top:auto; border-top:1px solid var(--rule); padding-top:12px;}
+.cover .partline b{display:block; font-family:var(--sans); font-weight:800; font-size:clamp(14px,1.5vw,20px);
+                   letter-spacing:-.02em; margin-top:4px;}
+.k{font-family:var(--mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft);}
+.plain{padding:var(--pad); font-size:var(--fs); line-height:1.6;}
+.plain h3{font-family:var(--sans); font-size:calc(var(--fs)*1.05); text-transform:uppercase;
+          letter-spacing:.1em; margin:0 0 .9em;}
+.plain p{margin:0 0 1em; color:var(--ink-soft); font-family:var(--serif);}
+.plain .note{border-left:3px solid var(--signal); padding-left:14px; color:var(--ink);}
+
+/* =========================================================== jauge stratigraphique */
+.gauge{position:fixed; left:0; top:0; bottom:0; width:12px; display:flex; flex-direction:column; z-index:5;}
+.gauge i{flex:1; background:var(--bed); position:relative;}
+.gauge .head{position:absolute; left:0; right:0; height:2px; background:var(--ink); transition:top var(--turn) var(--ease);}
+@media (max-width:760px){ .gauge{display:none;} }
+
+/* =========================================================== sommaire */
+dialog{border:none; padding:0; background:var(--paper); color:var(--ink); max-width:min(560px,92vw);
+       box-shadow:0 30px 70px rgba(0,0,0,.4);}
+dialog::backdrop{background:rgba(10,12,12,.62);}
+.toc{padding:26px 28px 22px;}
+.toc h3{font-family:var(--sans); font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+        margin:0 0 16px; padding-bottom:10px; border-bottom:1px solid var(--rule);}
+.toc ol{list-style:none; margin:0; padding:0;}
+.toc li{margin:0 0 2px;}
+.toc a{display:flex; gap:14px; align-items:baseline; padding:7px 8px; text-decoration:none; color:inherit;}
+.toc a:hover{background:var(--paper-sunk);}
+.toc .n{font-family:var(--mono); font-size:10px; color:var(--ink-soft); width:22px;}
+.toc .t{flex:1; font-family:var(--serif);}
+.toc .v{font-family:var(--mono); font-size:10px; color:var(--ink-soft);}
+
+.hint{font-family:var(--mono); font-size:10px; letter-spacing:.08em; color:var(--ink-soft); text-transform:uppercase;}
+@media (max-width:760px){
+  .bar{padding:10px 12px; gap:10px;}
+  #part{display:none;}                      /* le bandeau tiendrait sur deux lignes */
+  footer .hint:first-child{display:none;}   /* « attrapez le coin » : on le fait au doigt, pas besoin de le lire */
+}
+#measure{position:absolute; left:-10000px; top:0; visibility:hidden;}
+.nav{position:absolute; top:0; bottom:0; width:16%; cursor:pointer; z-index:3; background:none; border:0;}
+.nav.prev{left:-4%;} .nav.next{right:-4%;}
+.nav:disabled{cursor:default;}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <b>Le Livre des Traces</b>
+  <span class="hint" id="part">Partie I · Ce qui tombe</span>
+  <span class="grow"></span>
+  <button id="btn-toc" aria-haspopup="dialog">Sommaire</button>
+  <button id="btn-theme" aria-pressed="false">Nuit</button>
+</header>
+
+<main class="stage">
+  <div class="gauge" aria-hidden="true" id="gauge"></div>
+  <div class="book" id="book">
+    <div class="plate" id="plate"></div>
+    <button class="nav prev" id="prev" aria-label="Page précédente"></button>
+    <button class="nav next" id="next" aria-label="Page suivante"></button>
+  </div>
+</main>
+
+<footer class="bar">
+  <span class="hint">← → pour tourner · attrapez le coin et tirez</span>
+  <span class="grow"></span>
+  <span class="hint" id="counter">—</span>
+</footer>
+
+<dialog id="toc"><div class="toc">
+  <h3>Sommaire</h3>
+  <ol id="toc-list"></ol>
+</div></dialog>
+
+<div id="measure"></div>
+
+<script>
+/* eslint-disable */
+const BOOK = /*__BOOK_DATA__*/ null;
+
+/* ------------------------------------------------------------------ mise en page
+   Le livre est paginé à l'exécution : on remplit une page de mesure bloc par bloc, et quand elle
+   déborde on coupe. Un paragraphe trop long pour une page est coupé au mot, par dichotomie, comme
+   dans un vrai livre — sans quoi il faudrait des pages de hauteur variable. */
+const el = s => document.querySelector(s);
+const plate = el('#plate'), measure = el('#measure');
+let pages = [], leaves = [], current = 0, geo = null;
+
+function geometry(){
+  const stage = el('.stage').getBoundingClientRect();
+  const single = window.innerWidth < 820;
+  // Format du livre : 148×210 mm, soit un rapport de 1,419. Deux pages côte à côte sinon une.
+  const ratio = 210/148;
+  let h = Math.min(stage.height - 24, 860);
+  let w = h / ratio;
+  const maxW = (stage.width - 24) / (single ? 1 : 2);
+  if (w > maxW){ w = maxW; h = w * ratio; }
+  const fs = Math.max(13, Math.min(18.5, w * 0.042));
+  return { w:Math.floor(w), h:Math.floor(h), fs, pad:Math.round(w*0.105), single };
+}
+
+function sheetShell(){
+  const d = document.createElement('div');
+  d.className = 'sheet';
+  // Le folio porte du texte dès la mesure : un folio vide se replie et la page mesurée serait plus
+  // haute que la page rendue, ce qui fait déborder le texte d'une ligne ou deux à l'affichage.
+  d.innerHTML = '<div class="flow"></div>'
+    + `<div class="folio"><span>${BOOK.shortTitle}</span><span>000</span></div>`;
+  return d;
+}
+
+function paginate(){
+  measure.style.width = geo.w + 'px';
+  measure.style.height = geo.h + 'px';
+  measure.style.setProperty('--pad', geo.pad + 'px');
+  measure.style.setProperty('--fs', geo.fs + 'px');
+  measure.innerHTML = '';
+  const shell = sheetShell();
+  measure.appendChild(shell);
+  const flow = shell.querySelector('.flow');
+  const limit = () => flow.clientHeight;
+
+  const out = [];
+  let buf = [];                      // blocs HTML de la page en cours
+  const flush = (chapter) => { if (buf.length) { out.push({chapter, html: buf.join('')}); buf = []; } };
+
+  for (const ch of BOOK.chapters){
+    flow.innerHTML = '';
+    buf = [];
+    const head = `<div class="chead${ch.kind === 'veille' ? ' veille' : ''}">`
+      + `<div class="k">${ch.label} · ${ch.voice} · ${ch.place}</div><h2>${ch.title}</h2></div>`;
+    flow.insertAdjacentHTML('beforeend', head);
+    buf.push(head);
+
+    for (const b of ch.blocks){
+      flow.insertAdjacentHTML('beforeend', b);
+      if (flow.scrollHeight <= limit()){ buf.push(b); continue; }
+
+      const node = flow.lastElementChild;
+      if (b.indexOf('class="dinkus"') > -1 || buf.length === 0){
+        // un bloc indivisible qui ne rentre pas : il ouvre la page suivante
+        flow.removeChild(node);
+        flush(ch.n);
+        flow.innerHTML = b;
+        buf.push(b);
+        continue;
+      }
+      // couper le paragraphe au mot
+      const cls = node.className ? ` class="${node.className}"` : '';
+      const words = node.textContent.split(' ');
+      flow.removeChild(node);
+      const probe = document.createElement('p');
+      if (node.className) probe.className = node.className;
+      flow.appendChild(probe);
+      let lo = 0, hi = words.length, fit = 0;
+      while (lo <= hi){
+        const mid = (lo + hi) >> 1;
+        probe.textContent = words.slice(0, mid).join(' ');
+        if (flow.scrollHeight <= limit()){ fit = mid; lo = mid + 1; } else hi = mid - 1;
+      }
+      flow.removeChild(probe);
+      if (fit > 0){
+        buf.push(`<p${cls}>${esc(words.slice(0, fit).join(' '))}</p>`);
+      }
+      flush(ch.n);
+      let rest = words.slice(fit);
+      // la suite, page après page
+      while (rest.length){
+        flow.innerHTML = '';
+        const p2 = document.createElement('p');
+        flow.appendChild(p2);
+        let a = 0, z = rest.length, ok = rest.length;
+        while (a <= z){
+          const mid = (a + z) >> 1;
+          p2.textContent = rest.slice(0, mid).join(' ');
+          if (flow.scrollHeight <= limit()){ ok = mid; a = mid + 1; } else z = mid - 1;
+        }
+        buf.push(`<p>${esc(rest.slice(0, ok).join(' '))}</p>`);
+        rest = rest.slice(ok);
+        if (rest.length) flush(ch.n);
+      }
+      flow.innerHTML = buf.join('');
+    }
+    flush(ch.n);
+  }
+  measure.innerHTML = '';
+  return out;
+}
+
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+/* ------------------------------------------------------------------ construction du livre */
+function coverFace(){
+  const beds = [0,1,2,3].map((i,k) =>
+    `<i style="background:var(--bed-${i});--d:var(--era-${i});--r:${[6,12,20,32][k]}px"></i>`).join('');
+  return `<div class="cover"><div class="core">${beds}</div><div class="field">
+      <span class="k">${BOOK.coverNote}</span>
+      <h1>${BOOK.title}</h1><p class="sub">${BOOK.subtitle}</p>
+      <div class="partline"><span class="k">${BOOK.partKey}</span><b>${BOOK.partTitle}</b></div>
+    </div></div>`;
+}
+function colophonFace(){
+  return `<div class="plain"><h3>${BOOK.colophonTitle}</h3>
+    <p class="note">${BOOK.state}</p><p>${BOOK.rights}</p></div>`;
+}
+function endFace(){
+  return `<div class="plain"><h3>Fin de la Partie I</h3><p class="note">${BOOK.next}</p></div>`;
+}
+
+function pageFace(p, index){
+  const s = sheetShell();
+  s.querySelector('.flow').innerHTML = p.html;
+  const f = s.querySelector('.folio');
+  f.children[0].textContent = BOOK.shortTitle;
+  f.children[1].textContent = index;
+  return s.outerHTML;
+}
+
+function build(){
+  geo = geometry();
+  const b = el('#book');
+  b.style.setProperty('--pad', geo.pad + 'px');
+  b.style.setProperty('--fs', geo.fs + 'px');
+  b.style.setProperty('--half', (geo.w / 2) + 'px');
+  pages = paginate();
+
+  // faces : couverture, intérieur de couverture, puis les pages, puis la fin
+  const faces = [coverFace(), colophonFace()];
+  pages.forEach((p, i) => faces.push(pageFace(p, i + 1)));
+  faces.push(endFace());
+  if (faces.length % 2) faces.push('<div class="sheet"></div>');
+
+  plate.innerHTML = '';
+  plate.style.width = (geo.single ? geo.w : geo.w * 2) + 'px';
+  plate.style.height = geo.h + 'px';
+
+  // le dessous : page gauche et page droite fixes, recouvertes par les feuillets
+  const under = document.createElement('div');
+  under.style.cssText = `display:flex;width:100%;height:100%`;
+  under.innerHTML = `<div class="page left" style="width:${geo.single?0:geo.w}px;height:${geo.h}px"></div>`
+                  + `<div class="page right" style="width:${geo.w}px;height:${geo.h}px"></div>`;
+  plate.appendChild(under);
+
+  leaves = [];
+  const n = faces.length / 2;
+  for (let i = 0; i < n; i++){
+    const leaf = document.createElement('div');
+    leaf.className = 'leaf flat';
+    // Le feuillet occupe la page de DROITE et pivote autour de son bord gauche, qui est la reliure.
+    // Tourné de -180°, il vient donc se poser exactement sur la page de gauche.
+    leaf.style.width = geo.w + 'px';
+    leaf.style.right = '0';
+    leaf.innerHTML = `<div class="face recto">${faces[i*2]}<div class="shade"></div></div>`
+                   + `<div class="face verso">${faces[i*2+1]}<div class="shade"></div></div>`;
+    plate.appendChild(leaf);
+    leaves.push(leaf);
+  }
+
+  current = Math.min(current, leaves.length);
+  apply(true);
+  buildToc();
+}
+
+function apply(instant){
+  leaves.forEach((leaf, i) => {
+    if (instant) leaf.classList.add('flat');
+    leaf.classList.toggle('turned', i < current);
+    leaf.style.zIndex = i < current ? String(i + 1) : String(leaves.length - i + 1);
+  });
+  if (instant) requestAnimationFrame(() => leaves.forEach(l => l.classList.remove('flat')));
+  plate.classList.toggle('closed', !geo.single && current === 0);
+  plate.classList.toggle('ended', !geo.single && current >= leaves.length);
+  el('#prev').disabled = current === 0;
+  el('#next').disabled = current >= leaves.length;
+  // Un feuillet tourné découvre deux faces : la verso du feuillet i-1 et la recto du feuillet i.
+  // Les deux premières faces sont la couverture et son intérieur, d'où le décalage de 2.
+  const left = current * 2 - 2, right = left + 1;
+  const inRange = n => n >= 1 && n <= pages.length;
+  el('#counter').textContent =
+      current === 0 ? 'Couverture'
+    : current >= leaves.length ? 'Fin de la Partie I'
+    : geo.single ? (inRange(right) ? `${right} / ${pages.length}` : '—')
+    : (inRange(left) && inRange(right) ? `${left}–${right} / ${pages.length}`
+       : inRange(right) ? `${right} / ${pages.length}` : '—');
+  const head = el('#gauge .head');
+  if (head) head.style.top = (100 * current / Math.max(1, leaves.length)) + '%';
+}
+
+function go(to){
+  const target = Math.max(0, Math.min(leaves.length, to));
+  if (target === current) return;
+  const moving = target > current ? leaves[current] : leaves[target];
+  if (moving){
+    moving.classList.add('moving');
+    setTimeout(() => moving.classList.remove('moving'), 950);
+  }
+  current = target;
+  apply(false);
+}
+
+/* ------------------------------------------------------------------ interactions */
+el('#next').addEventListener('click', () => go(current + 1));
+el('#prev').addEventListener('click', () => go(current - 1));
+addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); go(current + 1); }
+  if (e.key === 'ArrowLeft'  || e.key === 'PageUp')  { e.preventDefault(); go(current - 1); }
+  if (e.key === 'Home') go(0);
+  if (e.key === 'End') go(leaves.length);
+});
+
+/* attraper le coin et tirer : on suit le doigt, on lâche au-delà d'un tiers de la largeur */
+let drag = null;
+plate.addEventListener('pointerdown', e => {
+  if (e.target.closest('button')) return;
+  const r = plate.getBoundingClientRect();
+  const fromRight = e.clientX > r.left + r.width * 0.62;
+  const fromLeft  = e.clientX < r.left + r.width * 0.38;
+  if (!fromRight && !fromLeft) return;
+  const idx = fromRight ? current : current - 1;
+  if (idx < 0 || idx >= leaves.length) return;
+  drag = { idx, x0:e.clientX, w:r.width, fwd:fromRight, leaf:leaves[idx], moved:false };
+  drag.leaf.classList.add('flat','moving');
+  drag.leaf.style.zIndex = String(leaves.length + 5);
+  plate.setPointerCapture(e.pointerId);
+});
+plate.addEventListener('pointermove', e => {
+  if (!drag) return;
+  const dx = e.clientX - drag.x0;
+  if (Math.abs(dx) > 4) drag.moved = true;
+  const span = drag.w * (geo.single ? 1 : 0.5);
+  let t = drag.fwd ? Math.min(1, Math.max(0, -dx / span)) : 1 - Math.min(1, Math.max(0, dx / span));
+  drag.leaf.style.transform = `rotateY(${-180 * t}deg)`;
+});
+function endDrag(e){
+  if (!drag) return;
+  const { fwd, moved, leaf, x0, w } = drag;
+  const span = w * (geo.single ? 1 : 0.5);
+  const t = fwd ? (x0 - e.clientX) / span            // 0 = à plat, 1 = tournée
+                : 1 - (e.clientX - x0) / span;        // part de 1, revient vers 0
+  drag = null;
+  leaf.classList.remove('flat', 'moving');
+  leaf.style.transform = '';
+
+  if (!moved){ go(current + (fwd ? 1 : -1)); return; }  // un simple clic sur le bord
+  const commit = fwd ? t > 0.34 : t < 0.66;
+  if (commit) go(fwd ? current + 1 : current - 1);
+  else apply(false);                                    // relâché trop tôt : la page retombe
+}
+plate.addEventListener('pointerup', endDrag);
+plate.addEventListener('pointercancel', endDrag);
+
+/* sommaire */
+const dlg = el('#toc');
+el('#btn-toc').addEventListener('click', () => dlg.showModal());
+dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+function buildToc(){
+  const list = el('#toc-list');
+  list.innerHTML = '';
+  BOOK.chapters.forEach(ch => {
+    const first = pages.findIndex(p => p.chapter === ch.n);
+    const leafIndex = first < 0 ? 0 : Math.floor((first + 2) / 2);
+    const li = document.createElement('li');
+    li.innerHTML = `<a href="#"><span class="n">${String(ch.n).padStart(2,'0')}</span>`
+      + `<span class="t">${ch.title}</span><span class="v">${ch.voice}</span></a>`;
+    li.querySelector('a').addEventListener('click', ev => {
+      ev.preventDefault(); dlg.close(); go(leafIndex);
+    });
+    list.appendChild(li);
+  });
+}
+
+/* thème */
+const themeBtn = el('#btn-theme');
+themeBtn.addEventListener('click', () => {
+  const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  document.documentElement.setAttribute('data-theme', dark ? 'light' : 'dark');
+  themeBtn.setAttribute('aria-pressed', String(!dark));
+  themeBtn.textContent = dark ? 'Nuit' : 'Jour';
+});
+
+/* jauge */
+(function gauge(){
+  const g = el('#gauge');
+  g.innerHTML = [0,1,2,3].map(i => `<i style="--bed:var(--bed-${i})"></i>`).join('')
+              + '<span class="head"></span>';
+})();
+
+/* construction + reconstruction sur redimensionnement */
+let t;
+addEventListener('resize', () => { clearTimeout(t); t = setTimeout(build, 180); });
+build();
+</script>
+</body>
+</html>

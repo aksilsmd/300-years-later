@@ -98,6 +98,8 @@ when the repository is in a state that must not be published:
 | `doctor.py` | nothing — it reports the environment (`--strict` makes optional tools fatal) |
 | `build_guide_pdf.py` | — builds the FR and EN PDF guides from real captures |
 | `render_brand_assets.py` | — renders `docs/assets/*.png` from `design-system/tokens.json`; `--check` refuses an image that no longer matches the tokens or the title |
+| `build_book_pdf.py` | — typesets `book/<lang>/*.md` as a 148×210 mm PDF: cover, front matter, folios |
+| `build_book_reader.py` | — builds the self-contained web reader; fails if the page gains a remote reference |
 | `apply_public_title.py` | — renames the public title across git-tracked files, never the repository slug, the codename or the licence attribution entity |
 | `setup_repo.sh`, `publish.sh` | — the human-only GitHub operations, driven by `.github/about.yml` |
 
