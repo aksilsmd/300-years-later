@@ -36,6 +36,8 @@ Read in this order; in a conflict, the technical design wins (see [`CLAUDE.md`](
 - [`adr/`](adr/) — architecture decision records. Start with [ADR 0012](adr/0012-unreal-engine-5-realiste.md) (Unreal Engine 5.8 and realism) and [ADR 0002](adr/0002-event-sourcing.md) (event sourcing).
 - [`diagrams/`](diagrams/) — the journey, skill orchestration, the temporal model, data flow, the security model.
 - [`backlog.md`](backlog.md) — proposals waiting for a human decision.
+- [`../STUDIO_STATE.md`](../STUDIO_STATE.md) — where the project actually stands, with a status **and a proof file**
+  per system; `python3 tools/validate_state.py` refuses a claim that has no evidence.
 
 ## Elsewhere in the repository
 [`../legal/`](../legal/) legal drafts · [`../data/`](../data/) recipes, contracts, tuning, shot list ·

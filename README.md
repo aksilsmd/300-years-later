@@ -120,6 +120,8 @@ python3 tools/validate_data.py          # game data is coherent
 python3 tools/privacy_scan.py           # no personal data, no secret, no tracker
 python3 tools/license_audit.py          # third-party licences
 python3 tools/check_media_approvals.py  # no unapproved media is referenced
+python3 tools/validate_state.py         # the project's claimed state is backed by evidence
+python3 tools/repo_audit.py             # structure, links, actions pinned to SHAs
 ```
 
 ## 🗺️ Repository map

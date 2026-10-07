@@ -51,8 +51,11 @@ python3 tools/validate_data.py          # data
 python3 tools/privacy_scan.py           # privacy (before every commit)
 python3 tools/license_audit.py          # licences
 python3 tools/check_media_approvals.py  # landing/video media approved
+python3 tools/validate_state.py         # STUDIO_STATE.md claims are backed by evidence
+python3 tools/repo_audit.py             # structure, internal links, pinned actions, versions
 "%UE_ROOT%\Engine\Binaries\Win64\UnrealEditor-Cmd.exe" game\TemporalValley.uproject -ExecCmds="Automation RunTests TemporalCore;Quit" -unattended -nullrhi -log
 ```
 
 ## Method
-Plan → tests → code → proof by commands → `STUDIO_STATE.md` + `CHANGELOG.md` + `DECISIONS.md` → tagged commit → continue. Conventional Commits. Out of scope → `docs/backlog.md`.
+Plan → tests → code → proof by commands → `STUDIO_STATE.md` (status **and** evidence) + `CHANGELOG.md` +
+`DECISIONS.md` → tagged commit → continue. Never claim a status you cannot prove: `validate_state.py` enforces it. Conventional Commits. Out of scope → `docs/backlog.md`.

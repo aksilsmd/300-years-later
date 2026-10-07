@@ -1,6 +1,26 @@
 # Journal des modifications
 Format : Keep a Changelog · Versionnage sémantique.
 
+## [0.4.2] — 2026-10-07
+### Added
+- **Evidence-backed project state**: `STUDIO_STATE.md` now carries a machine-readable `yaml state` block
+  (status vocabulary `planned → … → released` plus an `evidence` path per system) enforced by
+  `tools/validate_state.py` in CI and pre-commit. An agent can no longer declare a system `implemented`,
+  `tested` or `validated` without a file that proves it. The `game-studio` skill states the rule.
+- `tools/repo_audit.py`: structural audit — required files, skills with front matter, internal links,
+  every GitHub Action pinned to a commit SHA, no floating container tag, no `latest` in `tools/versions.env`,
+  no licensed Unreal content. Wired into CI and the pre-commit hook.
+- `.github/CODEOWNERS`; `marketing/README.md` stating which landing is production and which is the tested
+  reference, and the rule that forbids them diverging silently.
+### Changed
+- `tools/doctor.py` separates a missing **core** tool (exit 1) from a missing optional one (reported, exit 0),
+  with `--strict` for CI and release checks.
+- npm dependencies declared as exact versions instead of ranges, pending committed lockfiles.
+### Security
+- gitleaks container pinned to `v8.30.1` instead of `latest`; `K6_VERSION` and `GITLEAKS_VERSION` pinned in
+  `tools/versions.env`, and the audit fails if the workflow and the declared version drift apart.
+- The semgrep gate now also fails on fatal scan errors instead of only on findings.
+
 ## [0.4.1] — 2026-10-07
 ### Added
 - Community files in both languages: issue forms (bug, feature, run report), PR checklist, `SUPPORT.md`,

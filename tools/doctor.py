@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
-"""Diagnostic de l'environnement du studio. Lecture seule, aucun appel réseau.
-Affiche ce qui est installé, ce qui manque, et la commande pour l'installer.
-"""
+"""Studio environment diagnosis / Diagnostic de l'environnement du studio.
+
+Read-only, no network call. Shows what is installed, what is missing, and how to install it.
+
+Exit code: 0 when every tool marked "tout"/core is present (optional tools may be missing — that is
+normal and is reported, not an error), 1 when a core tool is missing. `--strict` also fails when a
+tool needed by a specific skill is missing, which is what a CI or a release check wants.
+""" 
 from __future__ import annotations
 
 import platform
@@ -54,18 +59,34 @@ def find_unreal() -> str | None:
 
 
 def main() -> int:
+    strict = "--strict" in sys.argv
     print(f"Système : {platform.system()} {platform.release()} — Python {sys.version.split()[0]}\n")
     missing_required = 0
+    missing_optional: list[str] = []
     for cmd, arg, role, needed, how in TOOLS:
         v = version_of(cmd, arg)
         mark = "✓" if v else "✗"
         print(f" {mark} {cmd:<9} {role:<28} [{needed}] {v or 'MANQUANT → ' + how}")
-        if not v and needed == "tout":
-            missing_required += 1
+        if not v:
+            if needed == "tout":
+                missing_required += 1
+            else:
+                missing_optional.append(f"{cmd} ({needed})")
     ue = find_unreal()
     print(f" {'✓' if ue else '✗'} {'unreal':<9} {'Unreal Engine 5.8':<28} [game-build] {ue or 'MANQUANT → Epic Games Launcher (voir studio-setup)'}")
+    if not ue:
+        missing_optional.append("unreal (game-build)")
     print("\nLes outils manquants sont installés par le skill « studio-setup ».")
-    return 1 if missing_required else 0
+    print("Missing tools are installed by the « studio-setup » skill.\n")
+    if missing_required:
+        print(f"✗ {missing_required} core tool(s) missing — the kit itself cannot run / outil(s) de base manquant(s)")
+        return 1
+    if missing_optional:
+        print(f"✓ core environment OK — {len(missing_optional)} optional tool(s) missing: {', '.join(missing_optional)}")
+        print("  Each is only needed by the skill shown in brackets / chacun n'est requis que par le skill indiqué.")
+        return 1 if strict else 0
+    print("✓ complete environment / environnement complet")
+    return 0
 
 
 if __name__ == "__main__":

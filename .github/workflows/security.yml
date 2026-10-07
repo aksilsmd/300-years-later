@@ -18,7 +18,7 @@ jobs:
         with: { fetch-depth: 0 }
       - name: gitleaks
         run: |
-          docker run --rm -v "$PWD:/repo" zricethezav/gitleaks:latest \
+          docker run --rm -v "$PWD:/repo" zricethezav/gitleaks:v8.30.1 \
             detect --source=/repo --no-banner --redact --exit-code 1
 
   sast:
@@ -45,10 +45,11 @@ jobs:
           res, errs = d.get("results", []), d.get("errors", [])
           for r in res:
               print(f"::error file={r['path']},line={r['start']['line']}::{r['check_id']} — {r['extra']['message'][:180]}")
+          fatal = [e for e in errs if str(e.get("level", "")).lower() in {"error", "fatal"}]
           for e in errs:
               print(f"::warning::semgrep error: {str(e)[:180]}")
-          print(f"::notice::{len(res)} finding(s), {len(errs)} scan error(s)")
-          sys.exit(1 if res else 0)
+          print(f"::notice::{len(res)} finding(s), {len(errs)} scan error(s), {len(fatal)} fatal")
+          sys.exit(1 if res or fatal else 0)
           PY
 
   web-baseline:

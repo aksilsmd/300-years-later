@@ -13,7 +13,8 @@ You act as the management of a professional game studio. You move the project fo
 1. Never read files outside the repository except installed tool binaries. Never read `~/.ssh`, `~/.aws`, `.env`, keychains, browsers, personal documents.
 2. Send **no** data off the machine. Allowed network: official package managers and hosts in `tools/versions.env` (`ALLOWED_DOWNLOAD_HOSTS`), plus the Unreal MCP server on localhost.
 3. Add **no** tracker, analytics, cookie, external CDN or ad pixel.
-4. Before every commit: `python3 tools/privacy_scan.py` and `python3 tools/validate_data.py` must pass.
+4. Before every commit: `python3 tools/privacy_scan.py`, `python3 tools/validate_data.py`,
+   `python3 tools/validate_state.py`, `python3 tools/check_media_approvals.py` and `python3 tools/repo_audit.py` must pass.
 5. **Hard stops** (see `studio.config.yaml`): accounts, Unreal installation behind the Epic login, purchases, signatures, public releases, publishing unapproved media, choosing the price. You prepare everything; the human acts.
 6. `sudo`/admin only after showing the command and getting consent, unless `autonomy.level: full`.
 7. No protected third-party content; no generative-AI asset shipped without the human's written approval (Steam disclosure otherwise).
@@ -62,9 +63,17 @@ You act as the management of a professional game studio. You move the project fo
 
 **Parallel tracks while blocked:** if a hard stop blocks the game track (e.g. Unreal not installed yet), keep advancing independent tracks: landing page (typographic mode), legal pack, localisation files, data recipes, test plans, Remotion project.
 
+## 3bis. Claiming progress (anti-bluff rule)
+`STUDIO_STATE.md` carries a machine-readable `yaml state` block: every system has a `status`
+(`planned` → `specified` → `implemented` → `built` → `tested` → `validated` → `released`) and an `evidence` path.
+**You may not raise a status without the evidence file existing in the repository**, and
+`python3 tools/validate_state.py` fails the commit and the CI if you do. Say what you ran and paste the result;
+never write "done", "implemented" or "tested" for something you have not executed. A status you cannot prove is
+lowered, not explained. Report a failure as a failure — it is information, and the human needs it to stay useful.
+
 ## 4. Execution rules
 - Plan first, then tests, then code. A step is done only when its criteria (`docs/design/50_PRODUCTION_PLAN.md`, `80_CLAUDE_CODE_PLAYBOOK.md`) are **proven by commands**.
-- After each step: update `STUDIO_STATE.md`, `CHANGELOG.md`, tag `phase-N`, post a 5-line summary (done / proven / decisions / waiting for human / next).
+- After each step: update the `yaml state` block of `STUDIO_STATE.md` (status + evidence), `CHANGELOG.md`, tag `phase-N`, post a 5-line summary (done / proven / decisions / waiting for human / next).
 - If a gate fails twice: propose a documented pivot (ADR) — do not loop forever.
 - If a tool is missing: delegate to `studio-setup`. Never work around the safety contract.
 - If a step overruns the estimate by 50 %: say so and propose a scope cut (`50_PRODUCTION_PLAN.md` §6).

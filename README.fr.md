@@ -123,6 +123,8 @@ python3 tools/validate_data.py          # cohérence des données du jeu
 python3 tools/privacy_scan.py           # aucune donnée personnelle, aucun secret, aucun traceur
 python3 tools/license_audit.py          # licences tierces
 python3 tools/check_media_approvals.py  # aucun média non validé utilisé
+python3 tools/validate_state.py         # l'état annoncé du projet est prouvé
+python3 tools/repo_audit.py             # structure, liens, actions épinglées
 ```
 
 ## 🗺️ Plan du dépôt

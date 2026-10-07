@@ -1,0 +1,13 @@
+# EN — Every pull request requests a review from the maintainer. Add more owners as the project grows.
+# FR — Chaque pull request demande une relecture au mainteneur. Ajoutez des propriétaires si le projet grandit.
+*                       @aksilsmd
+
+# Load-bearing areas: never merged without the maintainer, whatever else changes.
+# Zones critiques : jamais fusionnées sans le mainteneur.
+/.claude/               @aksilsmd
+/.github/               @aksilsmd
+/tools/                 @aksilsmd
+/legal/                 @aksilsmd
+/docs/design/           @aksilsmd
+/docs/adr/              @aksilsmd
+/STUDIO_STATE.md        @aksilsmd
