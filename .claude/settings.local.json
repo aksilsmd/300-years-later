@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -)",
+      "Bash(git add *)",
+      "Bash(git -c user.name=\"300 Years Later\" -c user.email=\"300yl@users.noreply.github.com\" commit -q -F -)"
+    ]
+  }
+}

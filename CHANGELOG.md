@@ -1,6 +1,17 @@
 # Journal des modifications
 Format : Keep a Changelog · Versionnage sémantique.
 
+## [0.4.1] — 2026-10-07
+### Added
+- Repository presentation: banner (`docs/assets/banner.png`), badges, English + French READMEs rewritten,
+  `docs/README.md` documentation index, `ROADMAP.md`, `SUPPORT.md`, `GOVERNANCE.md`, `CITATION.cff`.
+- `.github`: Dependabot (actions + npm), issue template chooser, structured run-report form, `.gitattributes`
+  for correct language statistics.
+- `tools/setup_repo.sh`: one command for the repository description, topics, features and Pages.
+### Fixed
+- CI: gitleaks runs from its official container instead of the licensed action; `npm audit` scoped to shipped
+  dependencies; the Unreal workflow no longer fails when no self-hosted runner exists; semgrep telemetry off.
+
 ## [0.4.0] — 2026-10-07
 ### Added / Ajouté
 - **Bilingual, autonomous studio**: `studio.config.yaml` (autonomy `guided`/`autonomous`/`full`, hard stops, defaults, `extra_instructions`), `DECISIONS.md`, `QUESTIONS.md`; precedence user message > config > defaults, safety contract above all.

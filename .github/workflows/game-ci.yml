@@ -1,22 +1,44 @@
-name: Jeu Unreal (runner Windows auto-hébergé)
-# Nécessite un runner Windows auto-hébergé avec Unreal Engine 5.8, Visual Studio 2022 et la variable UE_ROOT.
-# S'active automatiquement dès que le projet existe dans game/.
+name: Game (Unreal)
+# EN — Runs only once game/ holds an Unreal project AND a self-hosted Windows runner
+#      labelled [self-hosted, windows, unreal] with UE_ROOT is registered.
+# FR — Ne s'exécute que lorsque game/ contient un projet Unreal ET qu'un runner Windows
+#      auto-hébergé [self-hosted, windows, unreal] avec UE_ROOT est enregistré.
 on:
   push: { branches: [main], paths: ["game/**", "data/**"] }
   pull_request: { paths: ["game/**", "data/**"] }
+  workflow_dispatch:
 permissions:
   contents: read
+
 jobs:
+  detect:
+    name: Is there an Unreal project yet?
+    runs-on: ubuntu-latest
+    outputs:
+      ready: ${{ steps.check.outputs.ready }}
+    steps:
+      - uses: actions/checkout@v5
+      - id: check
+        run: |
+          if ls game/*.uproject >/dev/null 2>&1; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "No .uproject yet — the game is built in phase P0. Skipping." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
   build-and-test:
-    if: ${{ hashFiles('game/*.uproject') != '' }}
+    name: Build editor and run Automation tests
+    needs: detect
+    if: needs.detect.outputs.ready == 'true'
     runs-on: [self-hosted, windows, unreal]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with: { lfs: false }
-      - name: Compiler l'éditeur
+      - name: Build the editor
         shell: cmd
         run: '"%UE_ROOT%\Engine\Build\BatchFiles\Build.bat" TemporalValleyEditor Win64 Development -Project="%CD%\game\TemporalValley.uproject" -WaitMutex'
-      - name: Tests Automation (cœur temporel)
+      - name: Automation tests (temporal core)
         shell: cmd
         run: '"%UE_ROOT%\Engine\Binaries\Win64\UnrealEditor-Cmd.exe" "%CD%\game\TemporalValley.uproject" -ExecCmds="Automation RunTests TemporalCore;Quit" -unattended -nullrhi -nosplash -log -ReportExportPath="%CD%\build\automation"'
       - uses: actions/upload-artifact@v4

@@ -1,33 +1,52 @@
-name: CI — données, confidentialité, landing
+name: CI
+# EN — Data, privacy, licences, media approvals, landing tests, builds.
+# FR — Données, confidentialité, licences, validation des médias, tests de la landing, builds.
 on:
   push: { branches: [main] }
   pull_request:
+  workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  checks:
+  kit:
+    name: Kit checks (data, privacy, licences, media)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with: { python-version: "3.12" }
-      - run: pip install jsonschema pytest playwright robotframework robotframework-browser
-      - name: Données de jeu
+      - run: pip install jsonschema
+      - name: Game data (schemas, recipes, contracts)
         run: python3 tools/validate_data.py
-      - name: Confidentialité (données personnelles, secrets, traceurs)
+      - name: Privacy (personal data, secrets, trackers)
         run: python3 tools/privacy_scan.py
       - name: Licences
         run: python3 tools/license_audit.py
-      - name: Médias de la landing validés (media/APPROVALS.md)
+      - name: Landing media approved in media/APPROVALS.md
         run: python3 tools/check_media_approvals.py
-      - name: Aucun contenu Unreal sous licence dans le dépôt public
+      - name: No licensed Unreal content in the public repo
         run: |
-          if git ls-files | grep -Ei '\.(uasset|umap|pak)$|^game/Content/'; then echo "Contenu binaire Unreal interdit dans le dépôt public"; exit 1; fi
-      - name: Tests Playwright de la landing de référence
+          if git ls-files | grep -Ei '\.(uasset|umap|pak)$|^game/Content/'; then
+            echo "::error::Unreal binary content must stay in the private repo"; exit 1
+          fi
+
+  landing:
+    name: Landing page (Playwright + Robot Framework)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with: { python-version: "3.12" }
+      - run: pip install pytest playwright robotframework robotframework-browser
+      - name: Playwright tests (reference landing)
         run: |
           python -m playwright install --with-deps chromium
           python -m pytest tests/web -q
-      - name: Tests Robot Framework
+      - name: Robot Framework end-to-end tests
         run: |
           rfbrowser init chromium
           robot --outputdir results tests/robot
@@ -35,24 +54,27 @@ jobs:
         if: always()
         with: { name: robot-results, path: results }
 
-  landing-react:
+  build-landing:
+    name: Build React landing
     runs-on: ubuntu-latest
     defaults: { run: { working-directory: marketing/landing-react } }
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
       - run: if [ -f package-lock.json ]; then npm ci; else npm install; fi
       - run: npm run build
-      - run: npm audit --audit-level=high
+      - name: Audit shipped dependencies
+        run: npm audit --omit=dev --audit-level=high
       - uses: actions/upload-artifact@v4
         with: { name: landing-dist, path: marketing/landing-react/dist }
 
-  video-typecheck:
+  build-video:
+    name: Typecheck Remotion project
     runs-on: ubuntu-latest
     defaults: { run: { working-directory: marketing/video } }
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
       - run: if [ -f package-lock.json ]; then npm ci; else npm install; fi

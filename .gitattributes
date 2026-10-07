@@ -1,0 +1,13 @@
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.pdf binary
+*.ico binary
+*.woff2 binary
+
+# Language statistics: this repository is a documentation + skills kit, not a TS app.
+docs/**            linguist-documentation
+legal/**           linguist-documentation
+*.md               linguist-documentation
+marketing/landing-react/** linguist-language=TypeScript
+data/**            linguist-generated=false

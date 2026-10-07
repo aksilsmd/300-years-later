@@ -1,0 +1,35 @@
+name: 🚀 Run report / Retour d'exécution
+description: Tell us how far your AI got with the kit — the most useful feedback we can receive.
+title: "[run] <AI> reached step <X>"
+labels: ["run-report"]
+body:
+  - type: markdown
+    attributes:
+      value: "EN — Share what worked and where it stopped. FR — Dites ce qui a marché et où ça s'est arrêté."
+  - type: input
+    id: agent
+    attributes: { label: "AI / agent and version", placeholder: "Claude Code 2.x, Gemini CLI, Kimi…" }
+    validations: { required: true }
+  - type: dropdown
+    id: step
+    attributes:
+      label: Furthest step reached
+      options: ["A Diagnosis", "B Setup", "C Customisation", "D P0 Foundations", "E P1 Prototype", "F P2 Multiplayer", "G P3 Game loop", "H P4 World", "Later / Plus loin"]
+    validations: { required: true }
+  - type: textarea
+    id: what
+    attributes: { label: "What worked / Ce qui a marché" }
+    validations: { required: true }
+  - type: textarea
+    id: blocked
+    attributes: { label: "Where it got stuck, and the exact message / Où ça a bloqué, message exact" }
+  - type: input
+    id: hardware
+    attributes: { label: "Machine (OS, CPU, GPU, RAM)", placeholder: "Windows 11, 12 cores, RTX 4070, 32 GB" }
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy
+      options:
+        - label: "I removed any personal data from logs I pasted / J'ai retiré mes données personnelles des logs collés"
+          required: true

@@ -1,5 +1,6 @@
-name: Publier la landing (manuel)
-# Déclenché uniquement à la main, après validation humaine des textes et des médias.
+name: Deploy landing (manual)
+# EN — Manual only, after the human approved the copy and the media.
+# FR — Déclenché uniquement à la main, après validation humaine des textes et des médias.
 on: workflow_dispatch
 permissions:
   contents: read
@@ -10,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: { name: github-pages, url: "${{ steps.d.outputs.page_url }}" }
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
       - working-directory: marketing/landing-react
@@ -18,6 +19,7 @@ jobs:
           if [ -f package-lock.json ]; then npm ci; else npm install; fi
           npm run build
       - run: python3 tools/privacy_scan.py
+      - run: python3 tools/check_media_approvals.py
       - uses: actions/upload-pages-artifact@v3
         with: { path: marketing/landing-react/dist }
       - id: d

@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+title: "300 Years Later — an open-source AI game studio kit"
+message: "If you use this kit, please cite it."
+type: software
+authors:
+  - name: "The 300 Years Later contributors"
+repository-code: "https://github.com/aksilsmd/300-years-later"
+abstract: >-
+  A bilingual (FR/EN) open-source kit that lets an autonomous coding agent run a game studio:
+  setup, Unreal Engine 5.8 development, testing, GDPR and platform compliance, in-engine media,
+  and a cinematic landing page — with explicit hard stops where a human must act.
+keywords:
+  - unreal-engine
+  - ai-agents
+  - game-development
+  - agent-skills
+  - gdpr
+license: MIT
+version: "0.4.0"
+date-released: "2026-10-07"

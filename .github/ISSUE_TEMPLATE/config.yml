@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Questions and ideas / Questions et idées
+    url: https://github.com/aksilsmd/300-years-later/discussions
+    about: Ask how to run the kit, share a run, propose a direction.
+  - name: 📘 Documentation
+    url: https://github.com/aksilsmd/300-years-later/tree/main/docs
+    about: Guides (EN/FR), design dossier, diagrams, PDF guide.
+  - name: 🔒 Report a security or privacy issue
+    url: https://github.com/aksilsmd/300-years-later/blob/main/SECURITY.md
+    about: Please do not open a public issue for vulnerabilities.
