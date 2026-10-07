@@ -4,5 +4,6 @@
 set -e
 python3 tools/privacy_scan.py --staged
 python3 tools/validate_data.py
+python3 tools/validate_skills.py
 python3 tools/validate_state.py
 python3 tools/check_media_approvals.py

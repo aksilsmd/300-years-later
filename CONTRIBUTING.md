@@ -3,7 +3,7 @@
 **EN —** Thanks for being here. **FR —** Merci d'être là. Répondez dans la langue que vous préférez : les deux sont lues.
 
 ## The most useful contribution
-A **[run report](https://github.com/aksilsmd/300-years-later/issues/new?template=run_report.yml)**: which agent you
+A **[run report](https://github.com/aksilsmd/300-years-later/issues/new?template=01-run-report.yml)**: which agent you
 used, how far it got, exactly where it stopped. Real friction from a real machine beats any amount of speculation,
 and it is what shapes [the roadmap](ROADMAP.md).
 

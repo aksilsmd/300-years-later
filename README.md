@@ -15,7 +15,7 @@ autonomously, from A to Z, stopping only where a human legally has to act.
 [![Content: CC BY 4.0](https://img.shields.io/badge/content-CC%20BY%204.0-lightgrey.svg)](LICENSE-CONTENT.md)
 [![Works with Claude Code · Gemini · Codex · Kimi](https://img.shields.io/badge/works%20with-Claude%20Code%20·%20Gemini%20·%20Codex%20·%20Kimi-6b4c2a)](AGENTS.md)
 
-[Quick start](#-quick-start) · [What the AI does alone](#-what-the-ai-does-alone-and-what-needs-you) · [The skills](#-the-eight-skills) · [Docs](docs/) · [Roadmap](ROADMAP.md) · [🇫🇷 Français](README.fr.md)
+[Quick start](#-quick-start) · [What it does alone](#-what-the-ai-does-alone-and-what-needs-you) · [Skills](#-the-eight-skills) · [Architecture](ARCHITECTURE.md) · [Docs](docs/) · [Roadmap](ROADMAP.md) · [🇫🇷 Français](README.fr.md)
 
 </div>
 
@@ -54,6 +54,13 @@ autonomy:
   max_questions_per_session: 3
 extra_instructions: |
   English first. No voice chat. Steam Deck verified is a priority.
+```
+
+**Just want the eight skills, in your own project?** They install as a Claude Code plugin:
+
+```
+/plugin marketplace add aksilsmd/300-years-later
+/plugin install 300-years-later@300-years-later
 ```
 
 New here? → **[5-minute quick start](docs/guides/en/00_QUICK_START.md)** · **[A→Z guide](docs/guides/en/01_A_TO_Z.md)** · **[PDF guide](docs/guide/)**
@@ -115,34 +122,22 @@ email and employer out of every commit, and `tools/privacy_scan.py` blocks the c
 The kit never buys, publishes or signs anything.
 
 ```bash
-python3 tools/doctor.py                 # what is installed, what is missing
-python3 tools/validate_data.py          # game data is coherent
-python3 tools/privacy_scan.py           # no personal data, no secret, no tracker
-python3 tools/license_audit.py          # third-party licences
-python3 tools/check_media_approvals.py  # no unapproved media is referenced
-python3 tools/validate_state.py         # the project's claimed state is backed by evidence
-python3 tools/repo_audit.py             # structure, links, actions pinned to SHAs
+python3 tools/doctor.py            # what is installed, what is missing
+python3 tools/repo_audit.py        # structure, links, actions pinned to SHAs, no floating versions
+python3 tools/validate_skills.py   # the skills against the Agent Skills specification
+python3 tools/validate_state.py    # every claim in STUDIO_STATE.md is backed by a file that exists
+python3 tools/privacy_scan.py      # no personal data, no secret, no tracker
+python3 tools/validate_data.py && python3 tools/license_audit.py && python3 tools/check_media_approvals.py
 ```
 
-## 🗺️ Repository map
-
-```
-studio.config.yaml   your settings for the AI          DECISIONS.md   what it decided alone
-AGENTS.md            instructions for any agent        QUESTIONS.md   what it needs from you
-CLAUDE.md            instructions for Claude Code      STUDIO_STATE.md  where the project stands
-.claude/skills/      the eight skills                  .claude/settings.json  permissions + plugins
-docs/design/         the game design dossier           docs/guides/   human guides (FR, en/)
-docs/adr/            architecture decisions            docs/diagrams/ diagrams
-data/                recipes, contracts, tuning, shot list
-legal/               22 legal drafts (FR + EN)         media/         approval registry
-marketing/           landing (React + reference), Remotion video, Steam page, presskit
-tests/               Playwright · Robot Framework · k6 tools/         diagnosis and gates
-game/                created in phase P0 — Content/ lives in a PRIVATE repo
-```
+## 🗺️ Where things are
+[`ARCHITECTURE.md`](ARCHITECTURE.md) is the map: what lives where, the invariants that hold everywhere, and
+where a change belongs. It is the document that saves a newcomer the most time — read it before your first
+contribution, and before asking an agent to touch anything structural.
 
 ## 🤝 Contributing
 
-The single most useful contribution is a **[run report](https://github.com/aksilsmd/300-years-later/issues/new?template=run_report.yml)**:
+The single most useful contribution is a **[run report](https://github.com/aksilsmd/300-years-later/issues/new?template=01-run-report.yml)**:
 which agent you used, how far it got, where it stopped. Also welcome: ageing recipes, Chronicle phrases,
 translations, guide fixes. See [`CONTRIBUTING.md`](CONTRIBUTING.md) and [`ROADMAP.md`](ROADMAP.md).
 

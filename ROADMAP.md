@@ -38,6 +38,6 @@
 - Any telemetry, analytics or account requirement in the kit
 
 ## How to influence this list
-Open a [run report](https://github.com/aksilsmd/300-years-later/issues/new?template=run_report.yml) — real friction
+Open a [run report](https://github.com/aksilsmd/300-years-later/issues/new?template=01-run-report.yml) — real friction
 beats speculation. Feature ideas go to Discussions or an issue; out-of-scope proposals are recorded in
 [`docs/backlog.md`](docs/backlog.md) and decided by the maintainer.

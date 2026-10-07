@@ -14,8 +14,8 @@
 
 ## 2. Then / Ensuite
 - **A question, an idea, a run you want to share** → [Discussions](https://github.com/aksilsmd/300-years-later/discussions)
-- **Something is broken in the kit** → [Bug report](https://github.com/aksilsmd/300-years-later/issues/new?template=bug_report.md)
-- **Your run stopped somewhere** → [Run report](https://github.com/aksilsmd/300-years-later/issues/new?template=run_report.yml) — the most useful thing you can send
+- **Something is broken in the kit** → [Bug report](https://github.com/aksilsmd/300-years-later/issues/new?template=02-bug-report.yml)
+- **Your run stopped somewhere** → [Run report](https://github.com/aksilsmd/300-years-later/issues/new?template=01-run-report.yml) — the most useful thing you can send
 - **A security or privacy problem** → do **not** open a public issue, follow [`SECURITY.md`](SECURITY.md)
 
 ## 3. What this project cannot do for you

@@ -1,0 +1,21 @@
+{
+  "name": "300-years-later",
+  "displayName": "300 Years Later — AI game studio",
+  "version": "0.4.2",
+  "description": "Runs a game studio: setup, Unreal Engine 5.8 development, tests, GDPR and platform compliance, in-engine media, a cinematic landing page — autonomously, stopping only where a human must act. Bilingual FR/EN.",
+  "author": { "name": "The 300 Years Later contributors" },
+  "homepage": "https://github.com/aksilsmd/300-years-later#readme",
+  "repository": "https://github.com/aksilsmd/300-years-later",
+  "license": "MIT",
+  "keywords": ["game-development", "unreal-engine", "agent-skills", "gdpr", "qa"],
+  "skills": [
+    "./.claude/skills/game-studio",
+    "./.claude/skills/studio-setup",
+    "./.claude/skills/game-build",
+    "./.claude/skills/game-assets",
+    "./.claude/skills/game-qa",
+    "./.claude/skills/legal-compliance",
+    "./.claude/skills/marketing-launch",
+    "./.claude/skills/privacy-guard"
+  ]
+}

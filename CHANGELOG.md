@@ -1,5 +1,42 @@
-# Journal des modifications
-Format : Keep a Changelog · Versionnage sémantique.
+# Changelog / Journal des modifications
+
+All notable changes to this kit are recorded here. The format follows
+[Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.1.0/) — only the six headings *Added, Changed,
+Deprecated, Removed, Fixed, Security* — and the versioning follows [Semantic Versioning](https://semver.org).
+The kit is deliberately in **`0.y.z`**: the game it builds does not exist yet, so nothing here is a stable
+public API. Dates are ISO 8601.
+
+## [Unreleased]
+
+### Added
+- **[`ARCHITECTURE.md`](ARCHITECTURE.md)** — the repository's map in the matklad shape: bird's-eye view, entry
+  points, codemap, and the invariants stated inline where they apply (determinism, authoritative host, no
+  licensed content, no media outside the engine, no trackers). Named files, never line links.
+- **Installable as a Claude Code plugin**: `.claude-plugin/plugin.json` + `marketplace.json`, so the eight
+  skills can be added to any project with `/plugin marketplace add aksilsmd/300-years-later`.
+  Verified with `claude plugin validate`.
+- `tools/validate_skills.py`: the skills checked against the Agent Skills specification — closed frontmatter
+  field set (so they still load on claude.ai and the Skills API), name rules and directory match, description
+  length and third person, the 500-line progressive-disclosure budget, link targets, and this project's
+  bilingual `FR —` rule. In CI and pre-commit.
+- `tests/skills/`: a 56-query bilingual trigger corpus (should-trigger and deliberate near-misses) with
+  `run_trigger_eval.sh`, so a change to a skill's description can be measured instead of guessed.
+- `.editorconfig`, `.github/release.yml` (categorised release notes with no third-party action), numbered
+  issue forms so the chooser order is deliberate.
+
+### Changed
+- **`AGENTS.md` is now the single contract** for every agent — the open standard other tools read — and
+  `CLAUDE.md` is a short pointer that imports it, following the convention in ruff, next.js, rust and node.
+  No more drift between two near-identical files.
+- READMEs: architecture link in the nav, plugin install path, repository map replaced by a pointer to
+  `ARCHITECTURE.md`, tighter command block.
+- `CHANGELOG.md` conforms to Keep a Changelog 1.1.0 — the six canonical headings, an `[Unreleased]` section,
+  and an explicit statement that the kit stays on `0.y.z` until there is a shippable game.
+
+### Security
+- `tools/repo_audit.py` now also refuses: untrusted `${{ github.event.* }}` interpolation inside a workflow
+  step, `pull_request_target` combined with a checkout, and any workflow without a top-level `permissions:`
+  block.
 
 ## [0.4.2] — 2026-10-07
 ### Added

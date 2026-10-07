@@ -15,7 +15,7 @@ en autonomie, de A à Z, avec un arrêt uniquement là où un humain doit légal
 [![Contenus : CC BY 4.0](https://img.shields.io/badge/contenus-CC%20BY%204.0-lightgrey.svg)](LICENSE-CONTENT.md)
 [![Compatible Claude Code · Gemini · Codex · Kimi](https://img.shields.io/badge/compatible-Claude%20Code%20·%20Gemini%20·%20Codex%20·%20Kimi-6b4c2a)](AGENTS.md)
 
-[Démarrer](#-démarrer) · [Ce que l'IA fait seule](#-ce-que-lia-fait-seule-et-ce-qui-vous-revient) · [Les skills](#-les-huit-skills) · [Docs](docs/) · [Feuille de route](ROADMAP.md) · [🇬🇧 English](README.md)
+[Démarrer](#-démarrer) · [Ce qu'elle fait seule](#-ce-que-lia-fait-seule-et-ce-qui-vous-revient) · [Skills](#-les-huit-skills) · [Architecture](ARCHITECTURE.md) · [Docs](docs/) · [Feuille de route](ROADMAP.md) · [🇬🇧 English](README.md)
 
 </div>
 
@@ -55,6 +55,13 @@ autonomy:
   max_questions_per_session: 3
 extra_instructions: |
   Français d'abord. Pas de chat vocal. Steam Deck vérifié prioritaire.
+```
+
+**Vous ne voulez que les huit skills, dans votre propre projet ?** Ils s'installent comme plugin Claude Code :
+
+```
+/plugin marketplace add aksilsmd/300-years-later
+/plugin install 300-years-later@300-years-later
 ```
 
 Vous débutez ? → **[Démarrage en 5 minutes](docs/guides/00_DEMARRAGE_RAPIDE.md)** · **[Guide A→Z](docs/guides/01_GUIDE_A_Z.md)** · **[Guide PDF](docs/guide/)**
@@ -118,34 +125,22 @@ e-mail et employeur hors de chaque commit, et `tools/privacy_scan.py` bloque le 
 Le kit n'achète, ne publie et ne signe jamais rien.
 
 ```bash
-python3 tools/doctor.py                 # ce qui est installé, ce qui manque
-python3 tools/validate_data.py          # cohérence des données du jeu
-python3 tools/privacy_scan.py           # aucune donnée personnelle, aucun secret, aucun traceur
-python3 tools/license_audit.py          # licences tierces
-python3 tools/check_media_approvals.py  # aucun média non validé utilisé
-python3 tools/validate_state.py         # l'état annoncé du projet est prouvé
-python3 tools/repo_audit.py             # structure, liens, actions épinglées
+python3 tools/doctor.py            # ce qui est installé, ce qui manque
+python3 tools/repo_audit.py        # structure, liens, actions épinglées, aucune version flottante
+python3 tools/validate_skills.py   # les skills face à la spécification Agent Skills
+python3 tools/validate_state.py    # chaque affirmation de STUDIO_STATE.md est prouvée par un fichier
+python3 tools/privacy_scan.py      # aucune donnée personnelle, aucun secret, aucun traceur
+python3 tools/validate_data.py && python3 tools/license_audit.py && python3 tools/check_media_approvals.py
 ```
 
-## 🗺️ Plan du dépôt
-
-```
-studio.config.yaml   vos réglages pour l'IA            DECISIONS.md   ce qu'elle a décidé seule
-AGENTS.md            instructions pour toute IA        QUESTIONS.md   ce qu'elle attend de vous
-CLAUDE.md            instructions pour Claude Code     STUDIO_STATE.md  où en est le projet
-.claude/skills/      les huit skills                   .claude/settings.json  permissions + plugins
-docs/design/         le dossier de conception          docs/guides/   guides humains (FR, en/)
-docs/adr/            décisions d'architecture          docs/diagrams/ schémas
-data/                recettes, contrats, réglages, liste des plans
-legal/               22 brouillons juridiques (FR + EN) media/        registre de validation
-marketing/           landing (React + référence), vidéo Remotion, page Steam, presskit
-tests/               Playwright · Robot Framework · k6 tools/         diagnostic et contrôles
-game/                créé en phase P0 — Content/ dans un dépôt PRIVÉ
-```
+## 🗺️ Où se trouve quoi
+[`ARCHITECTURE.md`](ARCHITECTURE.md) est la carte : ce qui vit où, les invariants qui tiennent partout, et où
+une modification doit aller. C'est le document qui fait gagner le plus de temps à un nouveau venu — à lire
+avant votre première contribution, et avant de demander à une IA de toucher à quoi que ce soit de structurel.
 
 ## 🤝 Contribuer
 
-La contribution la plus utile est un **[retour d'exécution](https://github.com/aksilsmd/300-years-later/issues/new?template=run_report.yml)** :
+La contribution la plus utile est un **[retour d'exécution](https://github.com/aksilsmd/300-years-later/issues/new?template=01-run-report.yml)** :
 quelle IA, jusqu'où elle est allée, où elle a bloqué. Sont aussi bienvenus : recettes de vieillissement,
 phrases de Chronique, traductions, corrections des guides. Voir [`CONTRIBUTING.md`](CONTRIBUTING.md) et [`ROADMAP.md`](ROADMAP.md).
 

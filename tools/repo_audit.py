@@ -26,7 +26,8 @@ REQUIRED = [
     "ROADMAP.md", "CHANGELOG.md", "LICENSE", "LICENSE-CONTENT.md", "THIRD_PARTY_LICENSES.md",
     "STUDIO_STATE.md", "DECISIONS.md", "QUESTIONS.md", "studio.config.yaml",
     ".github/CODEOWNERS", ".github/dependabot.yml", ".github/pull_request_template.md",
-    "media/APPROVALS.md", "docs/README.md",
+    "media/APPROVALS.md", "docs/README.md", "ARCHITECTURE.md", ".editorconfig",
+    ".claude-plugin/plugin.json", ".claude-plugin/marketplace.json",
 ]
 SKILLS = ["game-studio", "studio-setup", "game-build", "game-assets", "game-qa",
           "legal-compliance", "marketing-launch", "privacy-guard"]
@@ -75,6 +76,16 @@ def check_actions(errors: list[str]) -> None:
                 errors.append(f"{wf.relative_to(ROOT)}: action not pinned to a commit SHA → {ref}")
         for m in re.finditer(r"(docker run[^\n]*?|image:\s*)([\w./-]+:latest)", text):
             errors.append(f"{wf.relative_to(ROOT)}: container pinned to a floating tag → {m.group(2)}")
+        # Script injection: untrusted event data interpolated straight into a shell step.
+        for m in re.finditer(r"\$\{\{\s*(github\.event[\w.\[\]'\"]*|github\.head_ref)\s*\}\}", text):
+            errors.append(f"{wf.relative_to(ROOT)}: untrusted interpolation in a workflow → {m.group(1)} "
+                          f"(pass it through env: instead)")
+        if re.search(r"^on:.*pull_request_target", text, re.M | re.S) and "actions/checkout" in text:
+            errors.append(f"{wf.relative_to(ROOT)}: pull_request_target with a checkout runs untrusted code "
+                          f"with write permissions")
+        if not re.search(r"^permissions:", text, re.M):
+            errors.append(f"{wf.relative_to(ROOT)}: no top-level 'permissions:' block "
+                          f"(declare the least privilege the workflow needs)")
 
 
 def check_versions(errors: list[str]) -> None:

@@ -22,6 +22,8 @@ jobs:
       - run: pip install jsonschema
       - name: Repository structure, links, pinned actions
         run: python3 tools/repo_audit.py
+      - name: Skills against the Agent Skills specification
+        run: python3 tools/validate_skills.py
       - name: Project state is backed by evidence
         run: python3 tools/validate_state.py
       - name: Game data (schemas, recipes, contracts)

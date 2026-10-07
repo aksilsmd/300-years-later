@@ -9,6 +9,6 @@ This is the project's most valuable data — it decides [the roadmap](../../ROAD
 | *(none yet — be the first)* | | | | |
 
 ## Add yours
-1. Open a [run report issue](https://github.com/aksilsmd/300-years-later/issues/new?template=run_report.yml).
+1. Open a [run report issue](https://github.com/aksilsmd/300-years-later/issues/new?template=01-run-report.yml).
 2. If you want it archived here, open a PR adding `YYYY-MM-DD-<agent>.md` with your notes and a row above.
 3. Strip personal data first: paths containing your name, handles, tokens. `python3 tools/privacy_scan.py` helps.

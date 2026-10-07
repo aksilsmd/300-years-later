@@ -1,0 +1,22 @@
+# EN — Categorises GitHub's auto-generated release notes. No third-party action needed.
+# FR — Classe les notes de version générées par GitHub. Aucune action tierce nécessaire.
+changelog:
+  exclude:
+    labels: [ignore-for-release]
+  categories:
+    - title: 🚀 Skills and studio
+      labels: [skills, studio]
+    - title: 🎮 Game design and data
+      labels: [design, data]
+    - title: ⚖️ Legal and compliance
+      labels: [legal, compliance]
+    - title: 🌐 Landing page and media
+      labels: [landing, media]
+    - title: 🔒 Security and privacy
+      labels: [security, privacy]
+    - title: 📘 Documentation
+      labels: [documentation]
+    - title: 🧰 Tooling and CI
+      labels: [tooling, ci, dependencies]
+    - title: Other changes
+      labels: ["*"]

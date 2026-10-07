@@ -1,0 +1,119 @@
+{
+  "_doc": "EN — Trigger corpus for the eight skills. Each entry lists realistic queries that SHOULD select the skill and near-miss queries that should NOT. Run with tests/skills/run_trigger_eval.sh (needs Claude Code; costs tokens, so it is not in CI). Threshold: a skill passes when it triggers on >= 75% of should[] and on 0% of should_not[]. FR — Corpus de déclenchement des huit skills : requêtes réalistes qui doivent, et ne doivent pas, les activer.",
+  "_method": "Negatives are deliberate near-misses, not unrelated questions: an unrelated query tests nothing. Queries are casual and bilingual on purpose — this kit answers in the user's language.",
+  "threshold": { "should_trigger_rate": 0.75, "should_not_trigger_rate": 0.0, "runs_per_query": 3 },
+  "skills": [
+    {
+      "name": "game-studio",
+      "should": [
+        "Lance le studio et dis-moi par où on commence.",
+        "Where are we on the project? What is left before the prototype?",
+        "ok continue le projet, j'ai 2h devant moi",
+        "Take this repo and run the whole thing end to end, ask me only when you really have to."
+      ],
+      "should_not": [
+        "What does event sourcing mean in general?",
+        "Écris-moi un mail pour un artiste 3D freelance.",
+        "Explain the difference between Unreal and Unity for a hobby project."
+      ]
+    },
+    {
+      "name": "studio-setup",
+      "should": [
+        "J'ai un PC neuf sous Windows 11, installe ce qu'il faut pour bosser sur le jeu.",
+        "doctor.py says dotnet and git-lfs are missing, fix my environment",
+        "Comment je branche Claude Code sur l'éditeur Unreal ?",
+        "set up the toolchain, I already have Visual Studio 2022"
+      ],
+      "should_not": [
+        "Install the npm dependencies of the landing page and build it.",
+        "Quelle carte graphique acheter pour 1500 € ?",
+        "My Unreal build fails with a C++ linker error, what is wrong with my code?"
+      ]
+    },
+    {
+      "name": "game-build",
+      "should": [
+        "Code la phase P1 : la graine plantée en l'an 0 doit donner un arbre en l'an 300.",
+        "implement the ageing propagation in TemporalCore, tests first",
+        "On attaque le multijoueur, 4 joueurs, 4 époques.",
+        "Write the Automation Spec for the recipe resolution and make it pass."
+      ],
+      "should_not": [
+        "Explique-moi ce que fait le skill game-qa.",
+        "Build the React landing page with the scroll animation.",
+        "Quels assets Fab faut-il acheter pour l'époque industrielle ?"
+      ]
+    },
+    {
+      "name": "game-assets",
+      "should": [
+        "Construis la vallée : paysage, végétation procédurale, les 4 époques.",
+        "I need the MetaHuman presets for the four players, diverse and respectful",
+        "Prépare la liste d'achats Fab avec les licences et les coûts.",
+        "Set up the ageing prefabs so a planted seed becomes an oak three centuries later."
+      ],
+      "should_not": [
+        "Rends les plans S01 à S04 pour la page Steam.",
+        "Add a new ageing recipe to data/recipes/.",
+        "How much does a 3D creature artist cost per day in France?"
+      ]
+    },
+    {
+      "name": "game-qa",
+      "should": [
+        "Lance tous les tests avant la porte G1 et donne-moi un go/no-go.",
+        "run the load test: 8 sessions, 4 bots each, and tell me if the host holds",
+        "Teste la conformité RGPD et l'accessibilité du build.",
+        "Je veux un audit de sécurité complet du dépôt avant publication."
+      ],
+      "should_not": [
+        "Écris les CGU et la politique de confidentialité.",
+        "Fix the failing CI job on the landing build.",
+        "Comment fonctionne Gauntlet dans Unreal, en général ?"
+      ]
+    },
+    {
+      "name": "legal-compliance",
+      "should": [
+        "Mets à jour les CGU et l'AIPD d'après ce que le jeu fait vraiment.",
+        "Prepare the packet for the lawyer before we release.",
+        "On touche à des mineurs en ligne : qu'est-ce qu'il faut respecter ?",
+        "Answer the Steam content survey, including the AI section."
+      ],
+      "should_not": [
+        "Teste que la télémétrie est bien désactivée par défaut.",
+        "Combien coûte un dépôt de marque à l'EUIPO ?",
+        "Write the privacy section of the landing page footer markup."
+      ]
+    },
+    {
+      "name": "marketing-launch",
+      "should": [
+        "Fais la landing page cinématique avec la vidéo en fond.",
+        "Render the trailer shots in Unreal and cut the 60-second announcement.",
+        "Prépare la page Steam et le presskit.",
+        "On lance dans 3 mois, construis le plan de lancement et les clips verticaux."
+      ],
+      "should_not": [
+        "Vérifie que la landing passe Lighthouse et les tests Robot Framework.",
+        "Génère-moi une image du jeu pour voir à quoi il ressemblera.",
+        "Combien de wishlists faut-il avant un Next Fest ?"
+      ]
+    },
+    {
+      "name": "privacy-guard",
+      "should": [
+        "Je veux publier le dépôt, vérifie qu'il n'y a rien de personnel dedans.",
+        "check this before I commit",
+        "On pousse sur GitHub ? Fais le contrôle d'abord.",
+        "Are we leaking anything — secrets, trackers, my email?"
+      ],
+      "should_not": [
+        "Écris la politique de confidentialité du jeu.",
+        "Explique-moi le RGPD en deux phrases.",
+        "Set up branch protection on main."
+      ]
+    }
+  ]
+}
