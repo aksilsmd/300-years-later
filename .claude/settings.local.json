@@ -6,7 +6,8 @@
       "Bash(git -c user.name=\"300 Years Later\" -c user.email=\"300yl@users.noreply.github.com\" commit -q -F -)",
       "Bash(git -c 'user.name=300 Years Later' -c user.email=300yl@users.noreply.github.com commit -q -m 'ci\\(security\\): report semgrep findings as SARIF, block only on p/ci rules *)",
       "Bash(gh run *)",
-      "Bash(git -c 'user.name=300 Years Later' -c user.email=300yl@users.noreply.github.com commit -q -m 'fix\\(tools\\): run the guide'\\\\''s capture commands without a shell *)"
+      "Bash(git -c 'user.name=300 Years Later' -c user.email=300yl@users.noreply.github.com commit -q -m 'fix\\(tools\\): run the guide'\\\\''s capture commands without a shell *)",
+      "Bash(git -c 'user.name=300 Years Later' -c user.email=300yl@users.noreply.github.com commit -q -m 'docs: bilingual community files, issue forms and PR checklist *)"
     ]
   }
 }

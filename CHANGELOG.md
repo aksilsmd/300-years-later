@@ -3,12 +3,20 @@ Format : Keep a Changelog · Versionnage sémantique.
 
 ## [0.4.1] — 2026-10-07
 ### Added
+- Community files in both languages: issue forms (bug, feature, run report), PR checklist, `SUPPORT.md`,
+  `GOVERNANCE.md`, `ROADMAP.md`, `CITATION.cff`, `docs/runs/` for real run reports; English sections added to
+  `SECURITY.md` (including private vulnerability reporting) and `CODE_OF_CONDUCT.md`.
 - Repository presentation: banner (`docs/assets/banner.png`), badges, English + French READMEs rewritten,
   `docs/README.md` documentation index, `ROADMAP.md`, `SUPPORT.md`, `GOVERNANCE.md`, `CITATION.cff`.
 - `.github`: Dependabot (actions + npm), issue template chooser, structured run-report form, `.gitattributes`
   for correct language statistics.
 - `tools/setup_repo.sh`: one command for the repository description, topics, features and Pages.
+### Security
+- Every GitHub Action pinned to a commit SHA (mutable tags can be repointed), Dependabot cooldown of 7 days,
+  semgrep results published as SARIF in the Security tab with a blocking `p/ci` gate, guide captures no longer
+  run through a shell.
 ### Fixed
+- PR checklist referenced Godot tools (`gdlint`) left over from before ADR 0012.
 - CI: gitleaks runs from its official container instead of the licensed action; `npm audit` scoped to shipped
   dependencies; the Unreal workflow no longer fails when no self-hosted runner exists; semgrep telemetry off.
 

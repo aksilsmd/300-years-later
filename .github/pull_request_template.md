@@ -1,20 +1,26 @@
-## Quoi et pourquoi
-Ticket : #
-Référence design : docs/XX §Y
+## What and why / Quoi et pourquoi
+Closes #
+Design reference / Référence design : docs/…
 
-## Definition of Done
-- [ ] Tests ajoutés/à jour et verts (Automation Spec / Functional Tests / Gauntlet)
-- [ ] Aucun fichier de `Content/` ni asset Epic/Fab/MetaHuman dans ce dépôt public
-- [ ] `gdlint` / `gdformat --check` verts
-- [ ] `tools/validate_data.py` et `tools/license_audit.py` verts
-- [ ] Aucune valeur de gameplay en dur (tout dans `data/`)
-- [ ] Déterminisme respecté (pas de randi/randf/heure/float non quantifié dans le cœur temporel)
-- [ ] Chaînes joueur localisables (`FText`, tables de chaînes) + clés FR/EN ajoutées
-- [ ] Aucune donnée personnelle collectée, stockée ou journalisée
-- [ ] `CHANGELOG.md` et `docs/architecture.md` (ou ADR) à jour
-- [ ] Build jouée 5 minutes sans régression
+## Checks / Contrôles
+- [ ] `python3 tools/validate_data.py` green
+- [ ] `python3 tools/privacy_scan.py` green — **no personal data**, no secret, no tracker
+- [ ] `python3 tools/license_audit.py` green
+- [ ] `python3 tools/check_media_approvals.py` green — no unapproved media referenced
+- [ ] No `game/Content/` file and no Epic/Fab/MetaHuman asset in this public repository
+- [ ] Tests added or updated and passing (Automation Spec / Functional Tests / Gauntlet, or `tests/`)
+- [ ] No hard-coded gameplay value (everything in `data/`)
+- [ ] Determinism respected (no `FMath::Rand`, system time or `float` in `TemporalCore`)
+- [ ] Player-facing strings localisable (`FText`, string tables) with FR + EN keys
+- [ ] No personal data collected, stored or logged
+- [ ] `CHANGELOG.md` and, if structural, an ADR in `docs/adr/` updated
+- [ ] Design documents untouched (propose changes in `docs/backlog.md` instead)
 
-## Comment tester (pour l'humain)
+## How to test / Comment tester
 1.
 
-## Risques / points d'attention
+## Provenance
+- [ ] Written by a human
+- [ ] Written by an AI — which one, and what I verified myself:
+
+## Risks / Risques

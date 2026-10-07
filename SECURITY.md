@@ -1,4 +1,16 @@
-# Sécurité et protection des données
+# Security / Sécurité
+
+> **EN — Reporting a vulnerability.** Do **not** open a public issue. Use GitHub's
+> [private vulnerability reporting](https://github.com/aksilsmd/300-years-later/security/advisories/new)
+> (Security tab → Report a vulnerability). Expect an acknowledgement within 7 days and a fix or a public
+> advisory within 90 days. In scope: the kit's tools and workflows, the skills' safety contract, the landing
+> page, anything that could leak a user's personal data. Out of scope: the game (it does not exist yet),
+> third-party services, and the `legal/` drafts.
+>
+> **EN — What the kit guarantees:** nothing is read outside the repository, no data leaves the machine, no
+> tracker or external CDN, no purchase, publication or signature without a human, every commit gated by
+> `tools/privacy_scan.py`. The French text below details each guarantee and how to verify it yourself.
+
 
 Ce dépôt donne beaucoup d'autonomie à une IA (installation d'outils, écriture de code, tests, génération de médias). Voici le **contrat de sécurité** que chaque skill applique, et comment le vérifier vous-même.
 

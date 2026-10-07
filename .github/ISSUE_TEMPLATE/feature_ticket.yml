@@ -1,0 +1,29 @@
+name: ✨ Feature / Fonctionnalité
+description: A ready-to-build task, or an idea for the kit or the game.
+labels: ["type:feature"]
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: Player or user goal / Objectif
+      placeholder: "As a player I want … so that …"
+    validations: { required: true }
+  - type: input
+    id: ref
+    attributes: { label: "Design reference / Référence design", placeholder: "docs/design/20 §4" }
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria / Critères d'acceptation
+      render: gherkin
+      value: "Scenario:\n  Given\n  When\n  Then"
+    validations: { required: true }
+  - type: input
+    id: data
+    attributes: { label: "Data or tuning touched / Données concernées", placeholder: "data/recipes/…" }
+  - type: input
+    id: size
+    attributes: { label: "Estimated size / Taille estimée", placeholder: "≤ 1 agent day" }
+  - type: textarea
+    id: out
+    attributes: { label: "Out of scope / Hors périmètre" }
