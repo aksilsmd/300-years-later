@@ -16,6 +16,7 @@ from __future__ import annotations
 import argparse
 import html
 import re
+import shlex
 import subprocess
 import sys
 from datetime import date
@@ -68,7 +69,9 @@ T = {
 
 
 def run(cmd: str) -> str:
-    out = subprocess.run(cmd, shell=True, cwd=ROOT, capture_output=True, text=True, timeout=300)
+    """Runs one of the fixed commands of TERMINAL_CMDS (no shell, no user input)."""
+    out = subprocess.run(shlex.split(cmd), shell=False, cwd=ROOT,  # noqa: S603
+                         capture_output=True, text=True, timeout=300)
     text = (out.stdout + out.stderr).strip()
     text = text.replace(str(Path.home()), "~")  # aucun chemin personnel dans les captures
     return text
