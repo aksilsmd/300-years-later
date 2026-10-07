@@ -10,6 +10,13 @@
 | `video/` | Remotion project: titles, subtitles and assembly over **approved Unreal renders only** (`media/APPROVALS.md`). Never a substitute image. | tooling |
 | `steam/`, `presskit/`, `launch-plan.md` | Store page copy, press kit, launch calendar. Public copy is proposed by the AI and approved by the human. | drafts |
 
+## Reproducibility / Reproductibilité
+Dependencies are declared as **exact versions**, not ranges: without a committed `package-lock.json`, a range
+resolves differently on every machine and on every CI run. The lockfiles are the real fix and are generated the
+first time someone runs `npm install` with network access — commit them, and CI switches to `npm ci` on its own
+(the workflow already tests for them). Exact versions must point at a **current** release: pinning `4.0.0` when the
+project is at `4.0.534` pins three years of missing fixes.
+
 ## The rule about divergence
 The two landings share **content and structure**, not code. When the copy, the sections or the legal links change,
 **both** are updated in the same commit. The React one may have motion the reference one does not; the reference one
