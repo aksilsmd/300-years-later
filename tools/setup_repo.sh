@@ -39,6 +39,13 @@ gh api -X POST "repos/${REPO}/pages" -f "build_type=workflow" >/dev/null 2>&1 \
   || gh api -X PUT "repos/${REPO}/pages" -f "build_type=workflow" >/dev/null 2>&1 \
   || echo "   Pages already configured, or enable it in Settings → Pages → Source: GitHub Actions."
 
+VERSION="$(grep -m1 -oE '## \[[0-9]+\.[0-9]+\.[0-9]+\]' CHANGELOG.md | tr -d '#[] ')"
+if [ -n "$VERSION" ] && ! gh release view "v$VERSION" >/dev/null 2>&1; then
+  echo "→ Release v$VERSION"
+  gh release create "v$VERSION" --title "v$VERSION" \
+    --notes "$(awk "/^## \\[$VERSION\\]/{f=1;next} /^## \\[/{f=0} f" CHANGELOG.md)" || true
+fi
+
 cat <<'EOF'
 
 ✓ Done. Two things only you can do, in the web interface:
