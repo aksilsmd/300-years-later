@@ -1,7 +1,15 @@
 # FAQ et dépannage
 
+🇬🇧 [English version](en/07_FAQ_TROUBLESHOOTING.md)
+
 **Le dépôt contient-il des images du jeu ?**
 Non, volontairement. Le jeu n'existe pas encore : toutes les images seront rendues dans Unreal Engine selon `docs/design/33_VISUAL_TARGETS.md` et `data/shotlist.json`, puis validées par un humain. Les schémas du dépôt expliquent le fonctionnement, ils ne montrent pas le jeu.
+
+**L'IA fait-elle vraiment tout toute seule ?**
+Presque tout : installation, code, tests, rendus, landing, documents. Elle s'arrête seulement là où la loi, les licences ou votre argent l'exigent : créer vos comptes, installer Unreal depuis le launcher (connexion Epic), acheter, signer, publier, valider les médias, fixer le prix. Elle prépare tout pour que ce soit l'affaire de quelques clics, et continue les autres chantiers pendant ce temps. Un jeu de cette ambition demande aussi des humains (playtesteurs, artistes pour les créatures, compositeur, juriste).
+
+**Puis-je ajouter mes propres consignes ?**
+Oui : dans votre message (prioritaire) ou dans `extra_instructions` de `studio.config.yaml`. Seul le contrat de sécurité ne peut pas être levé.
 
 **L'IA peut-elle faire un jeu du niveau de GTA ?**
 Non. Ces productions mobilisent des centaines de personnes et des budgets de centaines de millions. Le kit vise un jeu indépendant réaliste de très haute qualité, avec des professionnels pour l'art organique (créatures, jeu d'acteur, musique). Voir `docs/guides/03_TEMPS_ET_COUTS.md`.

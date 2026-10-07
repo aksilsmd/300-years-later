@@ -6,6 +6,8 @@ import { Strata } from "./components/Strata";
 import { Ledger } from "./components/Ledger";
 import { Gallery } from "./components/Gallery";
 import { Footer } from "./components/Footer";
+import { EraSequence } from "./components/EraSequence";
+import { ERA_FRAMES } from "./media";
 
 export type Era = 0 | 1 | 2 | 3;
 
@@ -24,6 +26,7 @@ export default function App() {
       <Header lang={lang} setLang={setLang} t={t} />
       <main id="contenu">
         <Hero lang={lang} t={t} era={era} setEra={setEra} />
+        {ERA_FRAMES && <EraSequence frames={ERA_FRAMES} lang={lang} t={t} setEra={setEra} />}
         <Strata t={t} setEra={setEra} />
         <section className="coop" aria-labelledby="coop-title">
           <h2 id="coop-title">{t.coopTitle}</h2>

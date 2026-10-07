@@ -1,5 +1,7 @@
 # Installation du poste de studio
 
+🇬🇧 [English version](en/02_INSTALLATION.md)
+
 ## 1. Matériel
 | | Minimum pratique | Recommandé |
 |---|---|---|
@@ -27,7 +29,7 @@ powershell -ExecutionPolicy Bypass -File .claude/skills/studio-setup/scripts/ins
 | Robot Framework, k6, gitleaks, semgrep | tests et sécurité |
 
 ## 3. Brancher Claude Code sur Unreal (plugin officiel Epic)
-1. Dans Claude Code : `/plugin install unreal-engine-skills-for-claude-code@claude-plugins-official`
+1. Le plugin est déjà déclaré dans `.claude/settings.json` (`enabledPlugins`) : Claude Code propose de l'installer à l'ouverture du dossier. Sinon : `/plugin install unreal-engine-skills-for-claude-code@claude-plugins-official` (et `frontend-design@claude-plugins-official` pour la landing).
 2. Dans l'éditeur Unreal : *Edit › Plugins*, activer **Model Context Protocol** et **AllToolsets**, redémarrer.
 3. Console de l'éditeur : `ModelContextProtocol.StartServer`
 4. Sous Windows, Git Bash (installé avec Git) doit être sur le `PATH`.

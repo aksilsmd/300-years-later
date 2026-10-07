@@ -3,6 +3,7 @@ import { animate, motion, useReducedMotion } from "framer-motion";
 import type { Era } from "../App";
 import { ERA_NAMES, type Content, type Lang } from "../content";
 import { HERO_VIDEO } from "../media";
+import { CinematicHero } from "./CinematicHero";
 
 type Props = { lang: Lang; t: Content; era: Era; setEra: (e: Era) => void };
 
@@ -44,10 +45,8 @@ export function Hero({ lang, t, era, setEra }: Props) {
   }, [reduce, setEra]);
 
   return (
-    <section className="hero" aria-labelledby="hero-title">
-      {HERO_VIDEO && (
-        <video className="hero-video" src={HERO_VIDEO.src} autoPlay={!reduce} muted loop playsInline aria-label={HERO_VIDEO.alt[lang]} />
-      )}
+    <section className={HERO_VIDEO ? "hero hero--cine" : "hero"} aria-labelledby="hero-title">
+      {HERO_VIDEO && <CinematicHero video={HERO_VIDEO} lang={lang} t={t} />}
       <p className="hero-era" aria-live="polite">{ERA_NAMES[lang][era]}</p>
       <h1 id="hero-title" className="year" aria-label={lang === "fr" ? "An 0 à an 900" : "Year 0 to year 900"}>
         <span className="year-prefix">{t.yearPrefix}</span>

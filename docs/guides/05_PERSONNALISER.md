@@ -1,6 +1,12 @@
 # Personnaliser le projet (ou en faire votre propre jeu)
 
+🇬🇧 [English version](en/05_CUSTOMISE.md)
+
 Tout est conçu pour être modifié. Licence : code MIT, contenus CC BY 4.0 (créditez « The 300 Years Later contributors »). Le titre et la marque ne sont pas couverts par la licence.
+
+## 0. Dire à l'IA ce que vous voulez
+- **Une fois pour toutes :** `extra_instructions` dans `studio.config.yaml` (ex. « anglais d'abord, Steam Deck vérifié prioritaire, pas de chat vocal »).
+- **Pour une session :** ajoutez vos consignes après le prompt de démarrage. Elles l'emportent sur le fichier ; seul le contrat de sécurité ne peut pas être levé.
 
 ## 1. Changer le titre
 1. Choisissez un titre et faites la recherche de marque (`legal/21_marque-pi.md`).

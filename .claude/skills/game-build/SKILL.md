@@ -1,49 +1,51 @@
 ---
 name: game-build
-description: Développe le jeu « 300 Years Later » dans Unreal Engine 5.8 (C++ + Blueprints + Python d'éditeur, piloté via le plugin MCP officiel d'Epic) phase par phase (P0 → P8), en TDD, selon le TDD normatif docs/design/40 et data/tuning.json. Utiliser pour toute tâche de développement du jeu dans game/.
+description: Develops "300 Years Later" in Unreal Engine 5.8 (C++, Blueprints, editor Python, driven through Epic's official MCP plugin) phase by phase (P0 → P8), tests first, following the normative technical design docs/design/40 and data/tuning.json. Use for any game development task in game/ ("code", "implement", "phase", "développe", "code la phase").
 ---
 
-# Skill : game-build
+# Skill: game-build
 
-## Avant de coder
-1. Lis `CLAUDE.md`, `docs/design/40_TECHNICAL_DESIGN.md` (v2), `docs/adr/0012`, `docs/design/20_GAME_DESIGN_PARAMETERS.md`, puis le prompt de la phase dans `docs/design/80_CLAUDE_CODE_PLAYBOOK.md` §4.
-2. `python3 tools/doctor.py` : Unreal 5.8, dotnet, git-lfs requis ; éditeur ouvert avec le serveur MCP démarré pour les tâches d'éditeur.
-3. **Mode plan** : fichiers C++/assets touchés, tests écrits d'abord, critères d'acceptation, risques.
-4. Commit propre avant toute série d'actions MCP (l'IA a un accès large à l'éditeur).
+> **FR —** Développe le jeu dans Unreal Engine 5.8, phase par phase, tests d'abord. Répond dans la langue de l'utilisateur.
 
-## Répartition des outils
-| Besoin | Outil |
+## Before coding
+1. Read `CLAUDE.md`, `docs/design/40_TECHNICAL_DESIGN.md`, `docs/adr/0012-*`, `docs/design/20_GAME_DESIGN_PARAMETERS.md`, then the phase prompt in `docs/design/80_CLAUDE_CODE_PLAYBOOK.md` §4.
+2. `python3 tools/doctor.py`: Unreal 5.8, dotnet, git-lfs required; editor open with the MCP server for editor work.
+3. Plan: files touched, tests written first, acceptance criteria, risks. In `autonomous` mode, do not wait for approval of the plan — log it in `DECISIONS.md` and proceed.
+4. Commit before each batch of MCP actions.
+
+## Tool split
+| Need | Tool |
 |---|---|
-| Cœur temporel déterministe | C++ pur dans `Source/TemporalCore` + Automation Spec |
-| Gameplay, réseau, UI | C++ (`Source/TemporalValley`) + Blueprints minces pour l'assemblage |
-| Placement d'acteurs, PCG, matériaux, Niagara, Sequencer | plugin MCP (toolsets d'Epic) ou Python d'éditeur (`game/Scripts/`) |
-| Données de jeu | `data/` (JSON validés) — jamais de valeurs en dur |
+| Deterministic temporal core | pure C++ in `Source/TemporalCore` + Automation Spec |
+| Gameplay, networking, UI | C++ in `Source/TemporalValley` + thin Blueprints |
+| Actors, PCG, materials, Niagara, Sequencer | Epic MCP toolsets or editor Python (`game/Scripts/`) |
+| Game data | `data/` (validated JSON) — no hard-coded values |
 
-## Phases et preuves exigées
-| Phase | Preuves (commandes ou artefacts) |
+## Phases and required evidence
+| Phase | Evidence |
 |---|---|
-| P0 | compilation Development Editor OK ; Automation Spec vides verts en `-nullrhi` ; CI Windows verte ; ADR 0013-0020 |
-| P1 | Automation Spec TemporalCore verts + golden ; vidéo de capture 30 s graine → arbre (pour l'humain, pas pour publication) |
-| P2 | Gauntlet 1+3 clients : hash identiques après 200 actions ; Functional Test de rejet |
-| P3 | un test par cas limite (`docs/design/12` §4) ; partie complète jouée par bots |
-| P4 | `validate_data.py` ; 10 graines sans échec PCG ; rapport Insights sur 3 profils |
-| P5 | test aller-retour capsule ; test « aucune donnée personnelle » |
-| P6 | test statique + exécution « aucun audio sur disque » |
-| P7 | rapports `legal-compliance` et `game-qa` verts |
-| P8 | BuildCookRun Shipping ; rapport G6 |
+| P0 | Development Editor build OK; empty Automation Specs green with `-nullrhi`; Windows CI green; ADR 0013-0020 |
+| P1 | TemporalCore specs + golden test green; 30 s capture seed → tree (internal, not for publication) |
+| P2 | Gauntlet 1+3 clients: identical hashes after 200 actions; out-of-range rejection test |
+| P3 | one test per edge case (`docs/design/12` §4); full bot match |
+| P4 | `validate_data.py`; 10 seeds without PCG failure; Insights report on 3 profiles |
+| P5 | capsule round-trip test; "no personal data" test |
+| P6 | static + runtime "no audio on disk" test |
+| P7 | `legal-compliance` and `game-qa` reports green |
+| P8 | BuildCookRun Shipping; G6 report |
 
-## Commandes de référence (Windows)
+## Reference commands (Windows)
 ```bat
 "%UE_ROOT%\Engine\Build\BatchFiles\Build.bat" TemporalValleyEditor Win64 Development -Project="%CD%\game\TemporalValley.uproject"
 "%UE_ROOT%\Engine\Binaries\Win64\UnrealEditor-Cmd.exe" "%CD%\game\TemporalValley.uproject" -ExecCmds="Automation RunTests TemporalCore;Quit" -unattended -nullrhi -nosplash -log
 "%UE_ROOT%\Engine\Build\BatchFiles\RunUAT.bat" BuildCookRun -project="%CD%\game\TemporalValley.uproject" -platform=Win64 -clientconfig=Shipping -build -cook -stage -pak -archive -archivedirectory="%CD%\build"
 ```
 
-## Règles spécifiques Unreal
-- `Content/` vit dans le dépôt **privé** ; ne jamais l'ajouter au dépôt public ; vérifier `git status` avant chaque commit.
-- Pas d'asset Fab/Megascans/MetaHuman ajouté sans que l'humain l'ait acquis et sans ligne dans `THIRD_PARTY_LICENSES.md`.
-- Pas de `FMath::Rand`, `FPlatformTime`, `float` dans `TemporalCore` (revue + test).
-- Toute chaîne joueur via `FText` / tables de chaînes localisables.
+## Unreal-specific rules
+- `Content/` lives in the **private** repo; check `git status` before every commit of the public repo.
+- No Fab/Megascans/MetaHuman asset added unless acquired by the human and recorded in `THIRD_PARTY_LICENSES.md`. Until then use free Epic content or blockout.
+- No `FMath::Rand`, `FPlatformTime` or `float` in `TemporalCore` (review + test).
+- Player-facing strings via `FText` / string tables (FR + EN at minimum).
 
-## Fin de phase
-Preuves dans `docs/qa/phase-N.md`, `STUDIO_STATE.md` et `CHANGELOG.md` à jour, tag `phase-N`, **arrêt** et script de playtest.
+## End of phase
+Evidence in `docs/qa/phase-N.md`; `STUDIO_STATE.md`, `CHANGELOG.md`, `DECISIONS.md` updated; tag `phase-N`; queue the human playtest in `QUESTIONS.md` (non-blocking in autonomous mode) and continue.

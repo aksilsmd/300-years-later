@@ -1,26 +1,44 @@
-# AGENTS.md — instructions pour toute IA de code
+# AGENTS.md — instructions for any coding AI / instructions pour toute IA de code
 
-Ce dépôt est un **studio de jeu vidéo piloté par IA** pour un jeu coop **3D réaliste sous Unreal Engine 5.8**. Il fonctionne nativement avec Claude Code (skills dans `.claude/skills/`) et avec d'autres agents (Codex, Gemini CLI, Cursor, Copilot, Aider…) qui lisent ce fichier.
+> **FR —** Ce dépôt est un studio de jeu vidéo piloté par IA. Lisez ce fichier, puis `.claude/skills/game-studio/SKILL.md`, puis `studio.config.yaml`, et travaillez en autonomie de A à Z. Répondez dans la langue de l'utilisateur. Le résumé français de chaque skill figure en tête de fichier (« FR — »).
 
-## Si votre outil ne charge pas les « skills »
-Les skills sont de simples fichiers Markdown. Lisez-les comme des procédures, dans cet ordre :
-1. `.claude/skills/game-studio/SKILL.md` — **point d'entrée** (parcours A → Z, contrat de sécurité).
-2. `.claude/skills/studio-setup/SKILL.md` — installation des outils.
-3. `.claude/skills/game-build/SKILL.md` — code du jeu par phases.
-4. `.claude/skills/game-assets/SKILL.md` — modèles 3D, shaders, sons.
-5. `.claude/skills/game-qa/SKILL.md` — tests, charge, sécurité, conformité.
-6. `.claude/skills/legal-compliance/SKILL.md` — RGPD, licences, Steam.
-7. `.claude/skills/marketing-launch/SKILL.md` — médias, trailer, landing page, lancement.
-8. `.claude/skills/privacy-guard/SKILL.md` — avant tout commit ou publication.
+This repository is an **AI-driven game studio** for a **realistic 3D co-op game in Unreal Engine 5.8**. It works natively with Claude Code (skills in `.claude/skills/`, plugins in `.claude/settings.json`) and with any other agent (Gemini CLI, Kimi, Codex, Cursor, Copilot, Aider, Windsurf…) that reads this file.
 
-Puis appliquez les règles de `CLAUDE.md` (elles valent pour tous les agents). Si votre agent ne peut pas piloter l'éditeur Unreal via MCP, utilisez le Python d'éditeur (`UnrealEditor-Cmd.exe -run=pythonscript -script=...`) et la compilation en ligne de commande.
+## 1. Start
+1. Read `studio.config.yaml` (autonomy, languages, defaults, `extra_instructions`), then the user's message. **User message > config > defaults. Safety contract > everything.**
+2. Read `STUDIO_STATE.md`, `DECISIONS.md`, `QUESTIONS.md`.
+3. Apply `.claude/skills/game-studio/SKILL.md` (A→Z pipeline, autonomy protocol, safety contract §0).
 
-## Règles absolues (résumé)
-- Ne lisez aucun fichier hors du dépôt ; aucun secret ; aucune donnée envoyée hors de la machine.
-- Aucun traceur, cookie ou CDN externe.
-- Aucun achat, compte, publication ou signature sans l'humain.
-- Aucune image de jeu produite hors du moteur ; aucun asset Epic/Fab/MetaHuman dans un dépôt public.
-- `python3 tools/privacy_scan.py && python3 tools/validate_data.py` avant chaque commit.
+## 2. If your tool does not load "skills"
+Skills are plain Markdown procedures. Read them in this order when the step needs them:
+1. `.claude/skills/game-studio/SKILL.md` — **entry point**
+2. `.claude/skills/studio-setup/SKILL.md` — tools, plugins, Unreal
+3. `.claude/skills/game-build/SKILL.md` — game code by phases
+4. `.claude/skills/game-assets/SKILL.md` — world, assets, MetaHumans, sound
+5. `.claude/skills/game-qa/SKILL.md` — tests, load, security, compliance
+6. `.claude/skills/legal-compliance/SKILL.md` — GDPR, licences, Steam, legal pack
+7. `.claude/skills/marketing-launch/SKILL.md` — renders, trailer, cinematic landing, launch
+8. `.claude/skills/privacy-guard/SKILL.md` — before any commit or publication
 
-## Prompt de démarrage universel
-> Lis AGENTS.md puis `.claude/skills/game-studio/SKILL.md`. Applique le contrat de sécurité. Fais l'étape A (diagnostic) et présente-moi le plan de l'étape B. N'installe rien avant mon accord.
+Then apply `CLAUDE.md` (valid for every agent).
+
+**Without the Unreal MCP plugin:** drive the editor with editor Python (`UnrealEditor-Cmd.exe <project> -run=pythonscript -script=game/Scripts/<file>.py`) and build from the command line (`Build.bat`, `RunUAT.bat`). **Without the frontend-design skill:** follow `docs/design/34_LANDING_CINEMATIQUE.md` and `30_ART_BIBLE.md` strictly. **Without a permission system:** treat the `deny` and `ask` lists in `.claude/settings.json` as rules you must respect yourself.
+
+## 3. Autonomy (default `autonomous`)
+- Decide when a sensible default exists; log it in `DECISIONS.md`.
+- Ask at most 3 questions per session, batched, each with your recommended answer; write them in `QUESTIONS.md` and continue on another track.
+- Stop only at **hard stops**: creating accounts, installing Unreal behind the Epic login, purchases, signatures, publishing, publishing unapproved media, choosing the price. Prepare everything so the human only clicks.
+- Never take an irreversible decision alone.
+
+## 4. Absolute rules (summary)
+- Read no file outside the repository; no secrets; no data sent off the machine.
+- No tracker, cookie or external CDN.
+- No game image produced outside the engine; no AI-generated image presented as the game; no Epic/Fab/MetaHuman asset in a public repo.
+- `python3 tools/privacy_scan.py && python3 tools/validate_data.py` before every commit.
+
+## 5. Universal start prompt / Prompt de démarrage universel
+**EN**
+> Read AGENTS.md, then apply the game-studio skill. Work autonomously from A to Z following studio.config.yaml; only come to me at hard stops, batching your questions with your recommendation. Reply in English. Extra instructions: …
+
+**FR**
+> Lis AGENTS.md puis applique le skill game-studio. Travaille en autonomie de A à Z selon studio.config.yaml ; ne me sollicite qu'aux arrêts obligatoires, en regroupant tes questions avec ta recommandation. Réponds-moi en français. Instructions en plus : …

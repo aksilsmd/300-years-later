@@ -1,5 +1,7 @@
 # Sécurité et confidentialité : comment le kit vous protège
 
+🇬🇧 [English version](en/04_SECURITY_AND_PRIVACY.md)
+
 ![Modèle de sécurité](../diagrams/05_modele_securite.svg)
 
 ## 1. Ce que l'IA peut faire seule

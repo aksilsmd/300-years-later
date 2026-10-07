@@ -10,7 +10,7 @@ Un grand studio ne « code pas un jeu » : il traverse des **portes de décision
 |---|---|---|---|
 | **G0 Concept** | Quelle idée, pour qui, pourquoi maintenant ? | Pitch, étude de marché, originalité | `GDD_CENTURY_TEMPS.md` (v1) + audit `01_AUDIT_V1.md` |
 | **G1 Greenlight** | Vaut-elle l'investissement ? | Critères de go/no-go, budget, risques | `GDD` §7, `52_RISK_REGISTER.md` |
-| **G2 Pré-production** | Sait-on exactement quoi construire ? | Bible narrative, scripts, scénarios, design détaillé, monde, art réaliste, **cahier de rendu**, audio, UX, TDD Unreal, données, plan de prod, plan QA, cadre juridique | `10` à `60` (dont `33_VISUAL_TARGETS.md`) + `data/` + `../../legal/` |
+| **G2 Pré-production** | Sait-on exactement quoi construire ? | Bible narrative, scripts, scénarios, design détaillé, monde, art réaliste, **cahier de rendu**, audio, UX, TDD Unreal, données, plan de prod, plan QA, cadre juridique | `10` à `60` (dont `33_VISUAL_TARGETS.md` et `34_LANDING_CINEMATIQUE.md`) + `data/` + `../../legal/` |
 | **G3 Tranche verticale (First Playable)** | Est-ce amusant, en ligne, avec la qualité cible ? | Build jouable à 4, playtest mesuré | `50_PRODUCTION_PLAN.md` §4, `51_QA_TEST_PLAN.md` |
 | **G4 Alpha** (features complètes) → **G5 Beta** (contenu complet) → **G6 Release Candidate** → **G7 Gold** | Le jeu est-il complet, stable, conforme ? | Builds, rapports de tests, checklists | `50`, `51`, `60` |
 | **Lancement** | Comment être trouvé et acheté ? | Page Steam, trailer, créateurs, communauté | `70_MARKETING_GTM.md` |
@@ -20,7 +20,7 @@ Un grand studio ne « code pas un jeu » : il traverse des **portes de décision
 ## 2. Ordre de lecture
 **Pour l'humain (Product Owner)** : `01_AUDIT_V1.md` → `GDD` → `10_NARRATIVE_BIBLE.md` → `12_SCENARIOS.md` → `50_PRODUCTION_PLAN.md` → `60_LEGAL_COMPLIANCE.md` → `80_CLAUDE_CODE_PLAYBOOK.md`.
 
-**Pour Claude Code** (ordre imposé dans `CLAUDE.md`) : `CLAUDE.md` → `GDD` → `40_TECHNICAL_DESIGN.md` → `20_GAME_DESIGN_PARAMETERS.md` → `21_WORLD_LEVEL_DESIGN.md` → `data/` → `10`/`11`/`12` → `30`/`33`/`31`/`32` → `50`/`51` → `80`.
+**Pour Claude Code** (ordre imposé dans `CLAUDE.md`) : `CLAUDE.md` → `GDD` → `40_TECHNICAL_DESIGN.md` → `20_GAME_DESIGN_PARAMETERS.md` → `21_WORLD_LEVEL_DESIGN.md` → `data/` → `10`/`11`/`12` → `30`/`33`/`34`/`31`/`32` → `50`/`51` → `80`.
 
 **Guides humains :** `../guides/` · **Juridique :** `../../legal/` · **Décisions :** `../adr/` (dont ADR 0012 : Unreal Engine 5.8 et réalisme).
 

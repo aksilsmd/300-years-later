@@ -15,6 +15,7 @@ export type Content = {
   coopTitle: string; coop: string[];
   ledgerTitle: string; ledgerHead: string[]; ledger: [string, string, string, string][]; ledgerNote: string;
   museumQuote: string; museumBy: string; museumText: string; galleryTitle: string;
+  eraSeqTitle: string; eraSeqHint: string; renderedLabel: string; pause: string; play: string;
   modesTitle: string; modes: [string, string][]; faqTitle: string; faq: [string, string][];
   finalTitle: string; steamNote: string; foot1: string; footLinks: [string, string][]; foot2: string;
 };
@@ -57,6 +58,11 @@ export const CONTENT: Record<Lang, Content> = {
     museumBy: "ARCHIVE, guide du Musée de Tout, à la fin de chaque partie",
     museumText: "Chaque partie se termine par la visite d'un musée construit à partir de ce que vous avez fait. Il est toujours faux, et c'est le meilleur moment de la soirée.",
     galleryTitle: "Images du jeu",
+    eraSeqTitle: "La même colline, quatre siècles",
+    eraSeqHint: "Fais défiler : le temps passe.",
+    renderedLabel: "Rendu dans le moteur du jeu",
+    pause: "Mettre la vidéo en pause",
+    play: "Lire la vidéo",
     modesTitle: "Façons de jouer",
     modes: [
       ["Contrat, de 2 à 4 joueurs", "Le cœur du jeu : trois manches, une rotation des époques, un musée."],
@@ -116,6 +122,11 @@ export const CONTENT: Record<Lang, Content> = {
     museumBy: "ARCHIVE, guide of the Museum of Everything, at the end of every game",
     museumText: "Every game ends with a tour of a museum built from what you did. It is always wrong, and it is the best moment of the night.",
     galleryTitle: "Game images",
+    eraSeqTitle: "The same hill, four centuries",
+    eraSeqHint: "Scroll: time passes.",
+    renderedLabel: "Rendered in the game engine",
+    pause: "Pause video",
+    play: "Play video",
     modesTitle: "Ways to play",
     modes: [
       ["Contract, 2 to 4 players", "The core game: three rounds, rotating eras, one museum."],

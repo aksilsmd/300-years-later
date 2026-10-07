@@ -1,11 +1,13 @@
 # Guide de A à Z
 
+🇬🇧 [English version](en/01_A_TO_Z.md)
+
 Ce guide décrit le parcours complet, du dépôt cloné au jeu en accès anticipé, tel que le pilote le skill `game-studio`. Pour chaque étape : **qui** fait quoi, **ce que vous devez vérifier**, et **la durée indicative** (scénario « studio réduit » de [03_TEMPS_ET_COUTS.md](03_TEMPS_ET_COUTS.md)).
 
 ![Parcours A → Z](../diagrams/01_parcours_a_z.svg)
 
 ## Légende des rôles
-- **IA** : Claude Code (ou un autre agent) appliquant les skills.
+- **IA** : Claude Code (ou un autre agent) appliquant les skills, en mode `autonomous` par défaut (`studio.config.yaml`).
 - **Vous** : le porteur du projet, qui décide, achète, valide et publie.
 - **Pro** : un professionnel externe (juriste, artiste, compositeur…).
 
@@ -14,12 +16,12 @@ Ce guide décrit le parcours complet, du dépôt cloné au jeu en accès anticip
 **Vous** lisez le rapport. Si le PC est insuffisant, l'IA peut quand même avancer la conception, la landing page et le juridique.
 
 ## B. Installation — 1 à 3 jours (téléchargements longs)
-**IA** affiche le plan d'installation (`install_windows.ps1 -Plan`), puis l'exécute après votre accord.
+**IA** affiche le plan d'installation (`install_windows.ps1 -Plan`), puis l'exécute après un accord global unique (sans demander en mode `full`). Le plugin Epic et `frontend-design` sont déjà déclarés dans `.claude/settings.json`.
 **Vous** créez le compte Epic, installez Unreal Engine 5.8 depuis l'Epic Games Launcher, installez le plugin officiel Epic dans Claude Code, activez le serveur MCP dans l'éditeur. Détails : [02_INSTALLATION.md](02_INSTALLATION.md).
 **Vérification** : `doctor.py` tout vert ; l'IA liste les acteurs de la carte ouverte via MCP.
 
 ## C. Personnalisation — 1 jour
-**Vous** choisissez le titre public, la langue principale, les plateformes visées ([05_PERSONNALISER.md](05_PERSONNALISER.md)). **Pro** (ou vous) : recherche d'antériorité de la marque (`legal/21_marque-pi.md`).
+**IA** lit `studio.config.yaml` ; **vous** n'intervenez que si le fichier est vide ou si vous voulez changer le titre public, les langues, les plateformes ([05_PERSONNALISER.md](05_PERSONNALISER.md)). **Pro** (ou vous) : recherche d'antériorité de la marque (`legal/21_marque-pi.md`).
 **Vérification** : `STUDIO_STATE.md` à jour.
 
 ## D. Fondations (P0) — 2-3 semaines
@@ -29,7 +31,7 @@ Ce guide décrit le parcours complet, du dépôt cloné au jeu en accès anticip
 
 ## E. Prototype du fun (P1) — 4-8 semaines · **Porte G1**
 **IA** code le cœur temporel (tests d'abord) puis un prototype jouable : planter une graine en l'an 0 fait pousser un arbre en l'an 300.
-**Vous** organisez un playtest avec 5 personnes (kit fourni : `legal/14_playtest-consentement.md`, grille dans `docs/design/51`).
+**IA** fait jouer des bots et s'auto-évalue sur les piliers de design, puis place dans `QUESTIONS.md` un playtest humain (non bloquant en mode autonome). **Vous** organisez ce playtest avec 5 personnes (kit fourni : `legal/14_playtest-consentement.md`, grille dans `docs/design/51`).
 **Décision** : si personne ne rit ni ne s'étonne en 10 minutes, on itère ; deux échecs = pivot.
 
 ## F. Multijoueur (P2) — 6-10 semaines · Porte G2
@@ -68,7 +70,7 @@ Build démo, succès, classements, Cloud, profilage, build Shipping. Questionnai
 **Vous** validez chaque image dans `media/APPROVALS.md`. Aucune image non validée n'est publiée.
 
 ## N. Landing page — 1-2 semaines, puis mises à jour
-**IA** personnalise `marketing/landing-react/`, lance les tests (Robot Framework, Lighthouse, k6, OWASP ZAP).
+**IA** construit la landing **cinématique** (`docs/design/34_LANDING_CINEMATIQUE.md`) : mode typographique animé tant qu'aucun rendu n'est validé, puis bascule automatique vers le héros vidéo et la séquence des 4 époques au défilement dès que les plans L00–L04 sont validés ; elle lance les tests (Robot Framework, Lighthouse, k6, OWASP ZAP).
 **Vous** validez les textes et déclenchez la publication (workflow manuel `pages.yml`).
 
 ## O. Lancement — 4-8 semaines
@@ -78,4 +80,6 @@ Steam Next Fest, programme créateurs (`legal/12_politique-createurs.md`), commu
 Correctifs sous 72 h pour les problèmes graves, mises à jour régulières, saisons (`docs/design/71_LIVE_OPS.md`).
 
 ---
+**Pendant les arrêts obligatoires**, l'IA prépare tout (liste de clics, fichiers) et continue les chantiers indépendants (landing, juridique, données, Remotion).
+
 **Rappel :** l'IA ne fait jamais seule un achat, une publication, une signature, ni ne choisit le nom ou le prix. Voir [04_SECURITE_ET_CONFIDENTIALITE.md](04_SECURITE_ET_CONFIDENTIALITE.md).

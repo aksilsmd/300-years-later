@@ -6,4 +6,4 @@ Aucun média de jeu n'est publié (landing, Steam, presse, guide PDF, réseaux) 
 |---|---|---|---|---|---|---|---|---|
 | *(aucun média à ce jour)* | | | | | | | | |
 
-Statuts : `à valider` · `à refaire` · `validé` · `retiré`.
+Statuts / statuses : `à valider` (pending) · `à refaire` (redo) · `validé` (approved) · `retiré` (withdrawn). Vérification : `python3 tools/check_media_approvals.py`.

@@ -1,13 +1,15 @@
 ---
 name: privacy-guard
-description: Garde-fou de confidentialité et de sécurité appliqué avant tout commit, export, publication ou partage — recherche de données personnelles, secrets, traceurs et ressources externes ; vérifie l'identité Git anonyme. Utiliser avant « commit », « push », « publie », « partage », « exporte ».
+description: Privacy and security gate applied before any commit, export, publication or sharing — scans for personal data, secrets, trackers and external resources, checks the anonymous Git identity and licensed content. Use before "commit", "push", "publish", "share", "export", "publie", "partage".
 ---
 
-# Skill : privacy-guard
+# Skill: privacy-guard
 
-1. `python3 tools/privacy_scan.py` (utilise la liste locale `~/.config/300yl/denylist.txt` si elle existe). Si l'humain n'en a pas, propose-lui d'en créer une **hors du dépôt** avec ses identifiants ; ne lui demande pas de te les dicter dans le dépôt.
-2. Si `gitleaks` est installé : `gitleaks detect --no-banner --redact`.
-3. Vérifie l'identité Git : `git config user.email` doit être une adresse `@users.noreply.github.com` ou une adresse dédiée au projet. Sinon, **alerte** avant tout push.
-4. Vérifie les métadonnées des médias : `exiftool -all= -overwrite_original media/**/*` si disponible (supprime GPS, appareil, auteur) ; les PNG générés par le kit n'en contiennent pas.
-5. Vérifie qu'aucun fichier ignoré sensible n'est indexé : `git ls-files | grep -Ei '(^|/)\.env(\.|$)|secret|denylist|\.pem$|\.key$|steam_appid'` doit être vide.
-6. Rapport en 3 lignes : ✓/✗ par contrôle. Au moindre ✗ : **ne publie pas**, explique et propose la correction.
+> **FR —** Contrôle de confidentialité et de sécurité avant tout commit ou publication. Répond dans la langue de l'utilisateur.
+
+1. `python3 tools/privacy_scan.py` (uses the local deny-list `~/.config/300yl/denylist.txt` if present). If the human has none, suggest creating one **outside the repo** with their identifiers; never ask them to type those identifiers into the repo.
+2. If installed: `gitleaks detect --no-banner --redact`.
+3. Git identity: `git config user.email` must be a `@users.noreply.github.com` address or a dedicated project address. Otherwise **warn** before any push.
+4. Media metadata: `exiftool -all= -overwrite_original` on files to publish (removes GPS, device, author).
+5. No sensitive file indexed: `git ls-files | grep -Ei '(^|/)\.env(\.|$)|secret|denylist|\.pem$|\.key$|steam_appid'` must be empty; no `game/Content/`, `.uasset`, `.umap`, `.pak` in a public repo.
+6. Report in 3 lines (✓/✗ per check). Any ✗: **do not publish**, explain and propose the fix. This skill is never bypassed, whatever the autonomy level.

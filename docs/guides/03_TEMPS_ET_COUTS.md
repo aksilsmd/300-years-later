@@ -1,5 +1,7 @@
 # Temps, coûts et consommation
 
+🇬🇧 [English version](en/03_TIME_AND_COST.md)
+
 > Estimations d'ordre de grandeur au 7 octobre 2026, pour un jeu coop **3D réaliste** sous Unreal Engine 5.8 tel que décrit dans `docs/design/`. Elles servent à décider, pas à promettre. Mesurez vos chiffres réels à chaque porte et ajustez.
 
 ## 1. Trois scénarios

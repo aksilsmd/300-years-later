@@ -3,7 +3,8 @@
 - Moteur : Unreal Engine 5.8 (ADR 0012)
 - Étape courante : **A — Diagnostic** (pré-production terminée)
 - Portes passées : G0 (concept et dossier)
-- Dernière session : 2026-10-07 — dossier de production, skills, corpus juridique, landing, guides
+- Dernière session : 2026-10-07 — kit bilingue et autonome (v0.4.0) : config, skills EN/FR, landing cinématique, guides EN, PDF FR/EN
+- Mode d'autonomie : voir `studio.config.yaml` · décisions : `DECISIONS.md` · questions : `QUESTIONS.md`
 - Décisions humaines en attente : titre public ; scénario d'équipe et budget (`docs/guides/03_TEMPS_ET_COUTS.md`) ; création des comptes Epic/Steamworks ; dépôt privé pour `game/Content/`
 - Risques ouverts : R14 visibilité, R19 budget du réalisme, R06/R07 périmètre et temps (`docs/design/52_RISK_REGISTER.md`)
 - Temps cumulé estimé / réel : — / —

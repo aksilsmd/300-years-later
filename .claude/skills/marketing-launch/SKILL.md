@@ -1,42 +1,61 @@
 ---
 name: marketing-launch
-description: Lancement et marketing du jeu comme un grand éditeur — rendu des visuels et du trailer DANS Unreal Engine (Movie Render Graph, Sequencer, captures haute résolution) à partir de data/shotlist.json, motion design Remotion, landing page React + Vite + TypeScript + Framer Motion sans traceur, tests Robot Framework/Lighthouse/k6, presskit, page Steam, plan créateurs. Utiliser pour « landing page », « trailer », « vidéo », « captures », « marketing », « lancement ».
+description: Launch and marketing like a major publisher — game visuals and trailers rendered INSIDE Unreal Engine (Movie Render Graph, Sequencer, high-res shots) from data/shotlist.json, Remotion titling, a modern cinematic landing page (React + Vite + TypeScript + Framer Motion, scroll-driven era sequence, video hero) with zero trackers, Robot Framework / Lighthouse / k6 tests, presskit, Steam page and creator plan. Use for "landing page", "trailer", "video", "screenshots", "marketing", "launch", "lancement", "vidéo".
 ---
 
-# Skill : marketing-launch
+# Skill: marketing-launch
 
-## 0. Règles d'honnêteté et de sécurité
-- **Toutes les images et vidéos du jeu sont rendues dans Unreal Engine** selon `docs/design/33_VISUAL_TARGETS.md` et `data/shotlist.json`. Aucune image d'IA générative, aucun montage trompeur, aucune cinématique présentée comme du gameplay.
-- Avant que des rendus validés existent, la landing page et les documents n'affichent **aucune** image de jeu (typographie, couleurs et textes seulement).
-- Chaque média publié est listé dans `media/APPROVALS.md` avec validation humaine.
-- Zéro traceur, cookie, CDN ; polices et médias auto-hébergés ; `tools/privacy_scan.py` vert.
-- Textes publics, prix, date : proposés par toi, validés par l'humain. Publication : par l'humain.
+> **FR —** Lancement et marketing : rendus et trailers faits dans Unreal, landing page moderne et cinématique (React + Framer Motion), presskit, page Steam. Aucune image générée ni trompeuse. Répond dans la langue de l'utilisateur ; tous les textes publics existent en FR et en EN.
 
-## 1. Rendus depuis le moteur
-1. Ouvre la carte indiquée par chaque plan, applique l'époque (Data Layers / Level Instances + préréglage d'éclairage).
-2. Place la caméra (CineCameraActor) d'après `camera` (position, cible, focale, ouverture) via le plugin MCP ou `game/Scripts/render_shots.py`.
-3. **Fixes** : capture haute résolution (`HighResShot` ou Movie Render Graph une image) en 3840×2160, EXR 16 bits → PNG.
-4. **Séquences** : Level Sequence + Movie Render Graph (anti-crénelage temporel 16, flou de mouvement, 24 i/s), sortie ProRes ou image par image puis `ffmpeg`.
-5. Contrôle automatique (résolution, pixels NaN, métadonnées supprimées), puis ajout à `media/APPROVALS.md` avec statut « à valider ».
-6. Versions verticales 9:16 (S12) en respectant les zones de sécurité TikTok/Shorts.
+## 0. Honesty and safety rules (never bypassed)
+- **Every game image and video is rendered in Unreal Engine** from `docs/design/33_VISUAL_TARGETS.md` and `data/shotlist.json`. No generative-AI images, no misleading edits, no cinematic presented as gameplay ("Pre-rendered in engine" label on non-gameplay shots).
+- Until approved renders exist, the landing page shows **no game image**: it runs in *typographic mode* (type, colour, motion). It switches to *cinematic mode* automatically when media are approved (§3.3).
+- Every published media file is listed in `media/APPROVALS.md` with a human approval. You may add rows with status `pending`; only the human sets `approved`.
+- Zero tracker, cookie, CDN or third-party font; fonts and media self-hosted; `python3 tools/privacy_scan.py` green.
+- Public copy, price and date: you propose (FR + EN), the human validates. Publishing and deployment: the human (hard stop).
+
+## 1. Rendering from the engine
+1. Open the map of each shot, apply its era (Level Instance + lighting preset).
+2. Place a `CineCameraActor` from the shot's `camera` block (position, target, focal length, aperture) through the Epic MCP plugin or `game/Scripts/render_shots.py`.
+3. **Stills:** Movie Render Graph single frame (or `HighResShot`) at 3840×2160, EXR 16-bit → PNG/AVIF/WebP.
+4. **Sequences:** Level Sequence + Movie Render Graph (temporal AA 16 samples, motion blur, 24 fps) → image sequence → `ffmpeg` to H.264 MP4 + VP9/AV1 WebM, plus a poster frame.
+5. Automatic check (resolution, NaN pixels, metadata stripped with `exiftool -all=`), then add a `pending` row in `media/APPROVALS.md`.
+6. Landing shots **L01–L04** (`data/shotlist.json`): the *same* hill and camera rendered in the 4 eras, identical framing, so the landing can cross-fade between them. Also render `L00` (6–10 s seamless loop for the hero).
+7. Vertical 9:16 versions (S12) respecting TikTok/Shorts safe zones.
 
 ## 2. Trailers
-| Trailer | Contenu | Outils |
+| Trailer | Content | Tools |
 |---|---|---|
-| Annonce 60 s | storyboard `docs/design/70` §4 | Sequencer + Movie Render Graph, titrages Remotion |
-| Gameplay 90 s | séquences jouées réellement, HUD visible | capture en jeu (`-MovieSceneCaptureType` ou capture OBS par l'humain) |
-| Teaser vertical 15 s | S02 → S03 → logo | Remotion `TrailerVertical` sur les rendus |
-Le projet Remotion (`marketing/video/`) assemble les rendus validés, ajoute titres, sous-titres FR/EN et musique fournie par le compositeur : `npm ci && npx remotion render Trailer out/trailer.mp4`.
+| Announcement 60 s | storyboard `docs/design/70` §4 | Sequencer + Movie Render Graph, Remotion titling |
+| Gameplay 90 s | real played sequences, HUD visible | in-game capture (human OBS capture if needed) |
+| Vertical teaser 15 s | S02 → S03 → logo | Remotion `TrailerVertical` on the renders |
+
+`marketing/video/` (Remotion) assembles **approved** renders only, adds titles, FR/EN subtitles and the composer's music: `npm ci && npx remotion render Trailer out/trailer.mp4`. Missing shots show an explicit "shot to render in Unreal" card — never a substitute image. Check the Remotion licence tier (company licence above its size threshold) → human decision.
 
 ## 3. Landing page
-- **Production** : `marketing/landing-react/` (React 18, Vite, TypeScript, Framer Motion). Contenu dans `src/content.ts`, médias dans `public/media/` (uniquement des fichiers listés « validé » dans `media/APPROVALS.md`).
-- **Référence sans dépendance** : `marketing/landing/` (HTML/CSS/JS) — sert de maquette fonctionnelle et de repli.
-- Sections : héros (vidéo trailer en boucle muette quand elle existe, sinon titre animé), promesse, « comment ça marche » (frise des 4 époques animée au défilement), époques, modes, galerie (rendus validés), FAQ, créateurs/presse, appel à l'action Steam, pied de page légal (liens vers `legal/`).
-- Exigences : `prefers-reduced-motion`, contraste AA, clavier, `lang`, Open Graph local, < 300 Ko hors médias, vidéo < 6 Mo, aucun cookie.
-- Tests : `robot --outputdir results tests/robot`, Lighthouse, `k6 run tests/load/landing_smoke.js`.
-- Déploiement (après accord) : workflow `pages.yml` ou hébergeur statique européen.
 
-## 4. Page Steam, presskit, plan de lancement
-- `marketing/steam/page.md`, `marketing/presskit/index.md` (fiche, descriptions, 8 rendus validés, logo, trailer, contact projet dédié).
-- `marketing/launch-plan.md` : calendrier `docs/design/70` §5 adapté, 12 idées de clips « avant/après », critères de sélection de créateurs (l'humain fait la recherche), checklist Next Fest, KPI.
-- Capsules Steam : dimensions `docs/design/30`/`70` ; la capsule principale est commandée à un illustrateur ou composée à partir du rendu S01 validé.
+### 3.1 Design quality (mandatory)
+Before writing or changing any landing UI, **load the `frontend-design` skill** if your environment has it (Claude Code: `/plugin install frontend-design@claude-plugins-official`; other agents: read its SKILL.md if available). Follow `docs/design/34_LANDING_CINEMATIQUE.md` (normative for the landing) and `docs/design/30_ART_BIBLE.md` (palette, type). Target: a modern AAA game site (full-bleed video, bold type, scroll storytelling), not a template.
+
+### 3.2 Stack
+- **Production:** `marketing/landing-react/` — React 18, Vite, TypeScript, Framer Motion. Copy in `src/content.ts` (FR + EN), media declared in `src/media.ts`, files in `public/media/`.
+- **Reference without dependencies:** `marketing/landing/` (HTML/CSS/JS) — functional mock-up and fallback.
+
+### 3.3 Typographic → cinematic switch
+`src/media.ts` is the only switch. It stays empty until media are approved. Then:
+1. Copy approved files to `public/media/` (`hero-loop.webm/.mp4`, `hero-poster.avif`, `era-0..3.avif`, gallery stills, trailer).
+2. Fill `HERO_VIDEO`, `ERA_FRAMES` (L01–L04) and `GALLERY` in `src/media.ts`, each entry with `approvalId` matching `media/APPROVALS.md`.
+3. Components switch on their own: `CinematicHero` (muted looping video, poster first, pause button), `EraSequence` (scroll-scrubbed cross-fade of the 4 era frames with `useScroll`/`useTransform`, sticky stage, year counter), `Gallery`.
+4. `python3 tools/check_media_approvals.py` must pass (every referenced file approved).
+
+### 3.4 Requirements
+`prefers-reduced-motion` (no scrub, no autoplay: static frames + play button) · mobile (video replaced by poster below 768 px or on Save-Data) · AA contrast · keyboard · `lang` + FR/EN toggle · local Open Graph · JS < 300 kB gz excluding media · hero video < 6 MB · LCP < 2.5 s on 4G · CLS < 0.05 · no cookie.
+
+### 3.5 Tests and deployment
+`robot --outputdir results tests/robot` · `python3 -m pytest tests/web` · Lighthouse (≥ 90/95/95/90) · `k6 run tests/load/landing_smoke.js`. Deployment (hard stop, after human approval): `pages.yml` workflow or a European static host.
+
+## 4. Steam page, presskit, launch plan
+- `marketing/steam/page.md`, `marketing/presskit/index.md` (fact sheet, FR/EN descriptions, 8 approved renders, logo, trailer, dedicated project contact).
+- `marketing/launch-plan.md`: calendar from `docs/design/70` §5, 12 "before/after" clip ideas, creator selection criteria (the human does the outreach; French law 2023-451 on influencer disclosure), Next Fest checklist, KPIs.
+- Steam capsules: sizes in `docs/design/30`/`70`; the main capsule is commissioned to an illustrator or composed from approved render S01.
+- Steam AI disclosure: answer from `legal/steam-content-survey.md`.

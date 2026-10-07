@@ -1,0 +1,55 @@
+# ─────────────────────────────────────────────────────────────────────────────
+#  studio.config.yaml — the single file you edit before handing the repo to an AI
+#  studio.config.yaml — le seul fichier à modifier avant de confier le dépôt à une IA
+#
+#  EN: The AI reads this file first. Anything you also write in your prompt overrides it.
+#  FR : L'IA lit ce fichier en premier. Ce que vous écrivez dans votre prompt est prioritaire.
+# ─────────────────────────────────────────────────────────────────────────────
+
+project:
+  public_title: "300 Years Later"     # EN: working title — change it / FR : titre de travail — à changer
+  codename: "CENTURY TEMPS"
+  languages: [fr, en]                 # EN: game + website languages / FR : langues du jeu et du site
+  communication_language: auto        # auto = reply in the user's language / répondre dans la langue de l'utilisateur
+  platforms: [windows]                # windows, steamdeck (later), macos (optional)
+
+autonomy:
+  # guided     : ask before each phase and at every gate
+  #              demande avant chaque phase et à chaque porte
+  # autonomous : (default) decide with the defaults below, log every decision in DECISIONS.md,
+  #              ask ONLY at hard stops ; questions are batched in QUESTIONS.md
+  #              (défaut) décide avec les valeurs ci-dessous, note chaque décision dans DECISIONS.md,
+  #              ne demande QU'aux arrêts obligatoires ; les questions sont regroupées dans QUESTIONS.md
+  # full       : like autonomous, and also runs installers without asking (hard stops still apply)
+  #              comme autonomous, et lance aussi les installations sans demander (arrêts obligatoires maintenus)
+  level: autonomous
+  max_questions_per_session: 3        # EN: batch questions, never more / FR : questions regroupées, jamais plus
+  playtest_gates: non_blocking        # blocking | non_blocking  (bots + self-review continue, human playtest queued)
+  continue_after_hard_stop: true      # EN: keep working on other tracks while waiting / FR : avancer sur les autres chantiers en attendant
+
+# EN: Hard stops cannot be disabled: the AI prepares everything, the human acts.
+# FR : Arrêts obligatoires non désactivables : l'IA prépare tout, l'humain agit.
+hard_stops:
+  - create_accounts            # Epic Games, Steamworks, GitHub, stores
+  - install_unreal_engine      # requires Epic login in the launcher
+  - purchases                  # Fab assets, Steam Direct fee, freelancers, ads
+  - legal_signature            # contracts, trademark filing, company creation
+  - public_release             # GitHub public push, Steam page/build, website, social media
+  - publish_unapproved_media   # every game image/video must be approved in media/APPROVALS.md
+  - choose_price
+
+defaults:                      # EN: used by the AI in autonomous mode / FR : utilisées en mode autonome
+  team_scenario: solo_ai       # solo_ai | small_studio | small_team  (docs/guides/03_TEMPS_ET_COUTS.md)
+  monthly_asset_budget_eur: 0  # EN: 0 = only free Epic/Fab content until a human sets a budget
+  art_direction: realistic_warm_cinematic
+  landing_mode: auto           # typographic until approved renders exist, then cinematic automatically
+  telemetry: off               # never on by default (GDPR)
+  multiplayer_backend: steam
+  repository_content: private  # game/Content/ always in a private repo
+
+# EN: Free-form instructions appended to the AI's task (any language).
+# FR : Instructions libres ajoutées à la mission de l'IA (n'importe quelle langue).
+extra_instructions: |
+  # Example / Exemple :
+  # - Remplace le titre par "Mon Jeu" et passe à 6 joueurs.
+  # - Focus first on the landing page and the trailer, then the game.

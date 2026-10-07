@@ -1,6 +1,14 @@
 # Journal des modifications
 Format : Keep a Changelog · Versionnage sémantique.
 
+## [0.4.0] — 2026-10-07
+### Added / Ajouté
+- **Bilingual, autonomous studio**: `studio.config.yaml` (autonomy `guided`/`autonomous`/`full`, hard stops, defaults, `extra_instructions`), `DECISIONS.md`, `QUESTIONS.md`; precedence user message > config > defaults, safety contract above all.
+- All 8 skills rewritten in English with a French summary; replies in the user's language.
+- `README.md` (EN) + `README.fr.md`; bilingual `CLAUDE.md` / `AGENTS.md`; `GEMINI.md`; `.github/copilot-instructions.md`; English guides in `docs/guides/en/`; PDF guide in FR and EN (`--lang`).
+- Cinematic landing: spec `docs/design/34_LANDING_CINEMATIQUE.md`, shots L00–L04, components `CinematicHero` and `EraSequence` (scroll-scrubbed, Framer Motion), automatic switch from typographic mode once renders are approved; `tools/check_media_approvals.py` in CI.
+- `.claude/settings.json`: Epic Unreal plugin and `frontend-design` pre-declared in `enabledPlugins`.
+
 ## [0.3.0] — 2026-10-07
 ### Modifié
 - Bascule vers **Unreal Engine 5.8** et une direction artistique **réaliste** (ADR 0012) : TDD, bible artistique, playbook et skills réécrits.

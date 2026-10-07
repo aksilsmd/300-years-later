@@ -18,6 +18,8 @@ jobs:
         run: python3 tools/privacy_scan.py
       - name: Licences
         run: python3 tools/license_audit.py
+      - name: Médias de la landing validés (media/APPROVALS.md)
+        run: python3 tools/check_media_approvals.py
       - name: Aucun contenu Unreal sous licence dans le dépôt public
         run: |
           if git ls-files | grep -Ei '\.(uasset|umap|pak)$|^game/Content/'; then echo "Contenu binaire Unreal interdit dans le dépôt public"; exit 1; fi
