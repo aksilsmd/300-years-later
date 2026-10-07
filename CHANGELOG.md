@@ -61,6 +61,10 @@ public API. Dates are ISO 8601.
   and an explicit statement that the kit stays on `0.y.z` until there is a shippable game.
 
 ### Security
+- `.gitleaks.toml`: the default rule set is kept in full (`useDefault = true`) and extended with a single
+  documented allowlist — the Chronicle template identifiers (`"key": "CHR_…"`), which the generic-api-key
+  rule reads as credential assignments. Scoped to one file and one exact pattern; verified locally that a real
+  token is still detected.
 - `tools/repo_audit.py` now also refuses: untrusted `${{ github.event.* }}` interpolation inside a workflow
   step, `pull_request_target` combined with a checkout, and any workflow without a top-level `permissions:`
   block.

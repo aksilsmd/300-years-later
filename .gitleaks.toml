@@ -1,0 +1,18 @@
+# EN — gitleaks configuration. We extend the default rules, we never weaken them: the only entries below
+#      are documented false positives, scoped to one file and one exact pattern.
+# FR — Configuration gitleaks. On étend les règles par défaut, on ne les affaiblit jamais : les entrées
+#      ci-dessous sont des faux positifs documentés, limités à un fichier et à un motif exact.
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = """
+Chronicle template identifiers. data/phrases/chronicle_fr_en.json maps a template key such as
+CHR_DISASTER_01 to its French and English sentence variants; the generic-api-key rule reads the
+JSON member "key" as a credential assignment. These are public content identifiers, referenced by
+data/recipes/*.json and checked by tools/validate_data.py. No secret can live in this file: it is
+validated against a fixed set of placeholders.
+"""
+paths = ['''data/phrases/chronicle_fr_en\.json''']
+regexes = ['''"key"\s*:\s*"(CHR|STREAM|CAFE|RATE|PARADOX|BRK|MH)_[A-Z0-9_]+"''']
+regexTarget = "line"
