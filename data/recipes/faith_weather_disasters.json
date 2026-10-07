@@ -1,0 +1,646 @@
+[
+  {
+    "id": "figure_birth",
+    "description": "Trace fervente + Porte-Voix proche → Figure locale puis majeure (13 §2)",
+    "input": {
+      "type": "*",
+      "tags_any": [
+        "symbolic",
+        "crafted",
+        "living"
+      ],
+      "with": {
+        "type": "voice_bearer",
+        "radius": 4
+      }
+    },
+    "conditions": [
+      {
+        "fn": "faith_min",
+        "value": 30
+      }
+    ],
+    "priority": 40,
+    "faith": 10,
+    "outputs": {
+      "1": [
+        {
+          "type": "figure_local",
+          "weight": 100,
+          "size": [
+            1,
+            1
+          ],
+          "tags_add": [
+            "symbolic",
+            "protected_soft"
+          ]
+        }
+      ],
+      "2": [
+        {
+          "type": "figure_major",
+          "weight": 100,
+          "size": [
+            1,
+            1
+          ],
+          "tags_add": [
+            "symbolic"
+          ],
+          "props": {
+            "fanclub": 20
+          }
+        }
+      ],
+      "3": [
+        {
+          "type": "figure_major",
+          "weight": 100,
+          "size": [
+            1,
+            1
+          ],
+          "tags_add": [
+            "symbolic"
+          ],
+          "props": {
+            "fanclub": 40
+          }
+        }
+      ]
+    },
+    "chronicle": "CHR_FIGURE_01"
+  },
+  {
+    "id": "seed_near_statue",
+    "description": "Graine plantée au pied d'une statue → bosquet gardé → bois de la Figure",
+    "input": {
+      "type": "seed",
+      "with": {
+        "type": "statue",
+        "radius": 3
+      }
+    },
+    "conditions": [],
+    "priority": 30,
+    "faith": 8,
+    "outputs": {
+      "1": [
+        {
+          "type": "guarded_grove",
+          "weight": 100,
+          "size": [
+            3,
+            3
+          ],
+          "tags_add": [
+            "organic",
+            "symbolic"
+          ]
+        }
+      ],
+      "2": [
+        {
+          "type": "figure_wood",
+          "weight": 100,
+          "size": [
+            5,
+            5
+          ],
+          "tags_add": [
+            "organic",
+            "symbolic"
+          ],
+          "props": {
+            "fanclub": 8
+          }
+        }
+      ],
+      "3": [
+        {
+          "type": "sacred_wood",
+          "weight": 100,
+          "size": [
+            7,
+            7
+          ],
+          "tags_add": [
+            "organic",
+            "symbolic"
+          ],
+          "props": {
+            "fanclub": 20
+          }
+        }
+      ]
+    },
+    "chronicle": "CHR_FIGURE_01"
+  },
+  {
+    "id": "fire_near_water_forge",
+    "description": "Feu entretenu au bord de l'eau → forge → atelier → Figure de la Chaleur",
+    "input": {
+      "type": "fire",
+      "with": {
+        "type": "*",
+        "tags_any": [
+          "metal"
+        ],
+        "radius": 2,
+        "consumes": true
+      }
+    },
+    "conditions": [
+      {
+        "fn": "near_water",
+        "radius": 2
+      }
+    ],
+    "priority": 35,
+    "faith": 5,
+    "outputs": {
+      "1": [
+        {
+          "type": "forge",
+          "weight": 100,
+          "size": [
+            1,
+            1
+          ],
+          "tags_add": [
+            "crafted",
+            "fire"
+          ]
+        }
+      ],
+      "2": [
+        {
+          "type": "workshop",
+          "weight": 100,
+          "size": [
+            3,
+            3
+          ],
+          "tags_add": [
+            "crafted"
+          ]
+        }
+      ],
+      "3": [
+        {
+          "type": "figure_warmth",
+          "weight": 100,
+          "size": [
+            3,
+            3
+          ],
+          "tags_add": [
+            "symbolic"
+          ],
+          "props": {
+            "fanclub": 12
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "cairn_near_grave",
+    "description": "Cairn à côté d'une trace de Mémoire → nécropole → site protégé",
+    "input": {
+      "type": "cairn",
+      "with": {
+        "type": "*",
+        "tags_any": [
+          "symbolic"
+        ],
+        "radius": 4
+      }
+    },
+    "conditions": [],
+    "priority": 32,
+    "faith": 6,
+    "outputs": {
+      "1": [
+        {
+          "type": "memory_row",
+          "weight": 100,
+          "size": [
+            3,
+            1
+          ],
+          "tags_add": [
+            "mineral",
+            "symbolic"
+          ]
+        }
+      ],
+      "2": [
+        {
+          "type": "necropolis",
+          "weight": 100,
+          "size": [
+            5,
+            5
+          ],
+          "tags_add": [
+            "symbolic"
+          ],
+          "props": {
+            "fanclub": 10
+          }
+        }
+      ],
+      "3": [
+        {
+          "type": "protected_site",
+          "weight": 100,
+          "size": [
+            7,
+            7
+          ],
+          "tags_add": [
+            "symbolic",
+            "protected"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "tree_after_fire",
+    "description": "Arbre ayant survécu à un incendie : la vallée s'en souvient",
+    "input": {
+      "type": "*",
+      "tags_any": [
+        "organic"
+      ]
+    },
+    "conditions": [
+      {
+        "fn": "after_disaster",
+        "value": "fire"
+      }
+    ],
+    "priority": 25,
+    "faith": 15,
+    "outputs": {
+      "1": [
+        {
+          "type": "survivor_tree",
+          "weight": 100,
+          "size": [
+            1,
+            1
+          ],
+          "tags_add": [
+            "organic",
+            "symbolic"
+          ]
+        }
+      ],
+      "2": [
+        {
+          "type": "figure_local",
+          "weight": 100,
+          "size": [
+            1,
+            1
+          ],
+          "tags_add": [
+            "symbolic"
+          ],
+          "props": {
+            "fanclub": 8
+          }
+        }
+      ],
+      "3": [
+        {
+          "type": "figure_major",
+          "weight": 100,
+          "size": [
+            1,
+            1
+          ],
+          "tags_add": [
+            "symbolic"
+          ],
+          "props": {
+            "fanclub": 25
+          }
+        }
+      ]
+    },
+    "chronicle": "CHR_DISASTER_01"
+  },
+  {
+    "id": "drought_mark",
+    "description": "Sol nu sous canicule durable → terre craquelée → steppe",
+    "input": {
+      "type": "*",
+      "tags_any": [
+        "organic"
+      ]
+    },
+    "conditions": [
+      {
+        "fn": "weather_is",
+        "value": "heatwave"
+      },
+      {
+        "fn": "near_water",
+        "radius": 3,
+        "negate": true
+      }
+    ],
+    "priority": 28,
+    "outputs": {
+      "1": [
+        {
+          "type": "dry_ground",
+          "weight": 100,
+          "size": [
+            1,
+            1
+          ],
+          "tags_add": [
+            "mineral"
+          ]
+        }
+      ],
+      "2": [
+        {
+          "type": "steppe",
+          "weight": 100,
+          "size": [
+            3,
+            3
+          ],
+          "tags_add": [
+            "mineral"
+          ]
+        }
+      ],
+      "3": [
+        {
+          "type": "dry_climate",
+          "weight": 100,
+          "size": [
+            3,
+            3
+          ],
+          "tags_add": [
+            "mineral"
+          ]
+        }
+      ]
+    },
+    "chronicle": "CHR_CLIMATE_01"
+  },
+  {
+    "id": "flood_deposit",
+    "description": "Objet léger emporté par la crue et redéposé plus loin",
+    "input": {
+      "type": "*",
+      "tags_any": [
+        "crafted"
+      ]
+    },
+    "conditions": [
+      {
+        "fn": "after_disaster",
+        "value": "flood"
+      }
+    ],
+    "priority": 27,
+    "outputs": {
+      "1": [
+        {
+          "type": "flood_mark",
+          "weight": 100,
+          "size": [
+            1,
+            1
+          ],
+          "tags_add": [
+            "crafted"
+          ]
+        }
+      ],
+      "2": [
+        {
+          "type": "silt_find",
+          "weight": 100,
+          "size": [
+            1,
+            1
+          ],
+          "tags_add": [
+            "crafted"
+          ]
+        }
+      ],
+      "3": [
+        {
+          "type": "museum_artifact",
+          "weight": 100,
+          "size": [
+            1,
+            1
+          ],
+          "tags_add": [
+            "symbolic"
+          ]
+        }
+      ]
+    },
+    "chronicle": "CHR_DISASTER_01"
+  },
+  {
+    "id": "frozen_intact",
+    "description": "Trace organique prise par le Grand Gel : conservée intacte 900 ans",
+    "input": {
+      "type": "*",
+      "tags_any": [
+        "organic"
+      ]
+    },
+    "conditions": [
+      {
+        "fn": "after_disaster",
+        "value": "great_frost"
+      }
+    ],
+    "priority": 26,
+    "faith": 5,
+    "outputs": {
+      "1": [
+        {
+          "type": "frost_layer",
+          "weight": 100,
+          "size": [
+            1,
+            1
+          ],
+          "tags_add": [
+            "organic",
+            "protected"
+          ]
+        }
+      ],
+      "2": [
+        {
+          "type": "frost_layer",
+          "weight": 100,
+          "size": [
+            1,
+            1
+          ],
+          "tags_add": [
+            "organic",
+            "protected"
+          ]
+        }
+      ],
+      "3": [
+        {
+          "type": "miracle_find",
+          "weight": 100,
+          "size": [
+            1,
+            1
+          ],
+          "tags_add": [
+            "symbolic"
+          ],
+          "props": {
+            "fanclub": 15
+          }
+        }
+      ]
+    },
+    "chronicle": "CHR_DISASTER_01"
+  },
+  {
+    "id": "meteor_relic",
+    "description": "Ce qui se trouvait au point d'impact devient artefact céleste",
+    "input": {
+      "type": "*"
+    },
+    "conditions": [
+      {
+        "fn": "after_disaster",
+        "value": "meteor"
+      }
+    ],
+    "priority": 45,
+    "faith": 40,
+    "outputs": {
+      "1": [
+        {
+          "type": "sky_artifact",
+          "weight": 100,
+          "size": [
+            1,
+            1
+          ],
+          "tags_add": [
+            "symbolic",
+            "anachronism"
+          ]
+        }
+      ],
+      "2": [
+        {
+          "type": "figure_major",
+          "weight": 100,
+          "size": [
+            1,
+            1
+          ],
+          "tags_add": [
+            "symbolic"
+          ],
+          "props": {
+            "fanclub": 30
+          }
+        }
+      ],
+      "3": [
+        {
+          "type": "figure_major",
+          "weight": 100,
+          "size": [
+            3,
+            3
+          ],
+          "tags_add": [
+            "symbolic"
+          ],
+          "props": {
+            "fanclub": 50
+          }
+        }
+      ]
+    },
+    "chronicle": "CHR_FIGURE_01"
+  },
+  {
+    "id": "landslide_fossil",
+    "description": "Trace enfouie par un glissement : retrouvée en fouille",
+    "input": {
+      "type": "*"
+    },
+    "conditions": [
+      {
+        "fn": "after_disaster",
+        "value": "landslide"
+      }
+    ],
+    "priority": 24,
+    "outputs": {
+      "1": [
+        {
+          "type": "landslide_layer",
+          "weight": 100,
+          "size": [
+            1,
+            1
+          ],
+          "tags_add": [
+            "protected"
+          ]
+        }
+      ],
+      "2": [
+        {
+          "type": "buried_find",
+          "weight": 100,
+          "size": [
+            1,
+            1
+          ],
+          "tags_add": [
+            "mineral"
+          ]
+        }
+      ],
+      "3": [
+        {
+          "type": "archaeological_dig",
+          "weight": 100,
+          "size": [
+            3,
+            3
+          ],
+          "tags_add": [
+            "symbolic"
+          ]
+        }
+      ]
+    },
+    "chronicle": "CHR_DISASTER_01"
+  }
+]

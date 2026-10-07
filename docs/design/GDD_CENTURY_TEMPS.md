@@ -21,6 +21,14 @@
 4. Le jeu **fabrique lui-même ses clips** : statues de tes poses, musée final qui raconte ta partie de façon absurde, carte-récap partageable.
 5. Réalisable par **une petite équipe pilotée par l'IA** (Claude Code + plugin officiel Unreal) : rendu réaliste Unreal Engine 5.8, monde procédural (PCG), logique pilotée par données ; les éléments artistiques organiques (créatures, capture de jeu d'acteur, musique) sont confiés à des professionnels.
 
+> **Écart assumé avec l'étude §1.2.** Les succès analysés partagent deux traits que ce projet ne retient pas :
+> un prix ≤ 10 € et des graphismes modestes. Le choix du photoréalisme (ADR 0012) est fait en connaissance de
+> cause : il achète la lisibilité du vieillissement (un chêne de 300 ans doit *se voir*), la crédibilité des
+> quatre époques et des captures qui vendent ; il coûte un budget multiplié par cinq à dix, des délais plus
+> longs et une dépendance à des artistes. Le prix de 19,99 € en découle, sur le modèle de Schedule I (≈ 20 €,
+> dev solo, 8 M de ventes) plutôt que sur celui des party-games à 5 €. Ce pari est réévalué à la porte G3,
+> wishlists en main (§7.3).
+
 **Positionnement :** coop 1-4 joueurs, **3D réaliste**, PC Windows (Steam Deck « jouable » visé), Steam d'abord, prix indicatif **19,99 €** (à valider), Early Access, démo pour un Steam Next Fest.
 
 ---
@@ -96,12 +104,20 @@ L'agence **Temporis Intérim** envoie des intérimaires sous-payés réparer (ou
 | E2 — An 600 | **La Vapeur** | industriel, rails, cheminées | le smog et les machines déréglées |
 | E3 — An 900 | **Le Néon** | futur pastel, drones, musées | les drones de nettoyage effacent les « anachronismes » |
 
+> **Les époques ne sont pas figées.** Le peuple qui habite chaque époque **bifurque** selon ce que les joueurs
+> lui laissent — eau, vivres, abri, ferveur, rancune — ce qui donne neuf vallées d'arrivée possibles en l'an 900.
+> Les habitants se donnent leurs propres **Figures** à partir des objets abandonnés, le ciel change avec le
+> couvert forestier, et des catastrophes annoncées redistribuent les traces. Tout cela est spécifié dans
+> **`13_PEUPLES_DIEUX_ET_PHENOMENES.md`**.
+
 ### 2.3 Les 5 piliers de design
 1. **Cause → conséquence visible** : toute action importante doit produire un effet lisible dans une époque ultérieure.
 2. **Lisible en 3 secondes** : silhouettes fortes, couleurs par époque, effets exagérés.
 3. **Le chaos est une récompense** : un échec doit être drôle avant d'être punitif.
 4. **On a besoin des autres, et ils nous gênent** : interdépendance obligatoire entre époques.
 5. **Partageable par défaut** : chaque partie produit au moins un moment montrable (statue, musée, carte-récap).
+6. **On finit par tenir à quelque chose** : la vallée transforme une de vos traces en Figure, lui donne un nom
+   et des fidèles. À partir de là, les catastrophes ont un enjeu : ce n'est plus un objet, c'est *le vôtre*.
 
 ### 2.4 Boucles de jeu
 | Échelle | Boucle |
@@ -119,7 +135,7 @@ L'agence **Temporis Intérim** envoie des intérimaires sous-payés réparer (ou
 ### 3.1 Joueurs et modes
 | Mode | Joueurs | Description |
 |---|---|---|
-| **Coop Contrat** (cœur) | 2-4 | 1 joueur par époque (2 joueurs = 2 époques, etc.) |
+| **Coop Contrat** (cœur) | 1-4 | 1 joueur par époque (2 joueurs = 2 époques, etc.) |
 | **Saboteur du Temps** | 4 | Un joueur secret veut créer un paradoxe total ; vote à la pause café |
 | **Solo Relais** | 1 | Tu joues E0, puis E1 sur tes propres conséquences, etc. (naturellement solo) |
 | **Capsule asynchrone** | 1 + 1 | Tu joues une époque, tu génères un **code capsule** ; un ami le charge plus tard et joue l'époque suivante |
@@ -194,6 +210,14 @@ Comportements simples, lisibles, drôles (machines à états) : mammouth glouton
 ### 3.10 Progression et économie
 - Monnaie in-game (« Chronos ») gagnée par contrat → outils, cosmétiques (chapeaux, couleurs, emotes), biomes.
 - **Aucune microtransaction, aucune loot box** au lancement. DLC cosmétiques éventuels plus tard, achats directs uniquement.
+
+### 3.10bis Peuples, Figures, météo et catastrophes
+Couche vivante du bac à sable, entièrement déterministe et calculée à partir des traces :
+**Peuples** qui bifurquent d'une époque à l'autre (9 civilisations d'arrivée), **Figures** nées des objets des
+joueurs avec leurs Bienfaits et leurs Serments, **Porte-Voix** (4 personnages), **météo** issue du couvert
+forestier et de la pollution, **catastrophes** annoncées et jamais létales, **phénomènes** dont *la Résonance*
+(20 s où les quatre époques se superposent). Spécification normative : `13_PEUPLES_DIEUX_ET_PHENOMENES.md`.
+Garde-fous de ton et de sensibilité : `13` §0 — fiction intégrale, satire des institutions, PEGI 7-12.
 
 ### 3.11 Contrôles, caméra, prise en main
 - Vue 3e personne, caméra libre. Clavier/souris + manette (Steam Deck « jouable » visé).

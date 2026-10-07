@@ -1,0 +1,153 @@
+[
+  {
+    "id": "C13_make_it_rain",
+    "chapter": 2,
+    "main": {
+      "type_any": [
+        "pond",
+        "lake"
+      ],
+      "era": 1,
+      "zone": "marsh",
+      "radius": 12,
+      "weather_required": "rain"
+    },
+    "bonus": [
+      {
+        "type_any": [
+          "guarded_grove",
+          "figure_wood"
+        ],
+        "era": 2,
+        "near": "main",
+        "radius": 10
+      },
+      {
+        "forest_cover_min": 40,
+        "era": 2
+      }
+    ],
+    "absurd_pool": [
+      "rain_during_evaluation",
+      "no_umbrella_visible",
+      "color_blue"
+    ],
+    "tools_required": [
+      "shovel"
+    ],
+    "text": {
+      "result": "CONTRACT_C13_RESULT",
+      "place": "PLACE_MARSH"
+    }
+  },
+  {
+    "id": "C14_a_discreet_god",
+    "chapter": 3,
+    "main": {
+      "type_any": [
+        "figure_major"
+      ],
+      "era": 3,
+      "faith_min": 70,
+      "radius": 20
+    },
+    "bonus": [
+      {
+        "oath_kept": true
+      },
+      {
+        "type_any": [
+          "voice_bearer"
+        ],
+        "era": 2,
+        "near": "main",
+        "radius": 15
+      }
+    ],
+    "absurd_pool": [
+      "figure_must_be_small",
+      "figure_faces_west",
+      "nobody_may_see_it"
+    ],
+    "tools_required": [
+      "statue_base",
+      "time_anchor"
+    ],
+    "text": {
+      "result": "CONTRACT_C14_RESULT",
+      "place": "PLACE_MOUNT"
+    }
+  },
+  {
+    "id": "C15_survive_the_valley",
+    "chapter": 4,
+    "main": {
+      "disaster_survived_any": [
+        "flood",
+        "fire",
+        "landslide",
+        "great_frost"
+      ],
+      "traces_kept_min": 8,
+      "era": 2
+    },
+    "bonus": [
+      {
+        "type_any": [
+          "survivor_tree",
+          "figure_local"
+        ],
+        "era": 3
+      },
+      {
+        "people_not": "empty_museum",
+        "era": 3
+      }
+    ],
+    "absurd_pool": [
+      "nothing_may_be_rebuilt",
+      "one_trace_must_move_itself"
+    ],
+    "tools_required": [
+      "shovel",
+      "horn"
+    ],
+    "text": {
+      "result": "CONTRACT_C15_RESULT",
+      "place": "PLACE_VALLEY"
+    }
+  },
+  {
+    "id": "C16_a_people_of_your_own",
+    "chapter": 4,
+    "main": {
+      "people_is_any": [
+        "garden_commune",
+        "free_workshops",
+        "guardians"
+      ],
+      "era": 3
+    },
+    "bonus": [
+      {
+        "gauge_min": {
+          "faith": 60
+        },
+        "era": 2
+      },
+      {
+        "pollution_max": 30,
+        "era": 2
+      }
+    ],
+    "absurd_pool": [
+      "their_flag_must_show_a_duck",
+      "they_must_hate_spoons"
+    ],
+    "tools_required": [],
+    "text": {
+      "result": "CONTRACT_C16_RESULT",
+      "place": "PLACE_VALLEY"
+    }
+  }
+]

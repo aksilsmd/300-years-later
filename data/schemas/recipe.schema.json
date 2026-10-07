@@ -2,38 +2,141 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "century-temps/recipe.schema.json",
   "title": "Recette temporelle",
-  "description": "Règle déterministe : état d'une trace + environnement → état après 1, 2 ou 3 sauts d'époque. Voir docs/40_TECHNICAL_DESIGN.md §2.4 et docs/20_GAME_DESIGN_PARAMETERS.md §4.",
+  "description": "Règle déterministe : état d'une trace (+ éventuellement une seconde trace proche) + environnement → état après 1, 2 ou 3 sauts d'époque. Voir docs/design/40_TECHNICAL_DESIGN.md §2.4, 20_GAME_DESIGN_PARAMETERS.md §4 et 13_PEUPLES_DIEUX_ET_PHENOMENES.md §2.",
   "type": "object",
-  "required": ["id", "input", "conditions", "outputs"],
+  "required": [
+    "id",
+    "input",
+    "conditions",
+    "outputs"
+  ],
   "additionalProperties": false,
   "properties": {
-    "id": { "type": "string", "pattern": "^[a-z0-9_]{2,40}$" },
-    "description": { "type": "string", "maxLength": 200 },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]{2,40}$"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 200
+    },
     "input": {
       "type": "object",
-      "required": ["type"],
+      "required": [
+        "type"
+      ],
       "additionalProperties": false,
       "properties": {
-        "type": { "type": "string", "description": "type_id de la trace d'entrée, ou \"*\" pour tout type" },
-        "tags_any": { "type": "array", "items": { "type": "string" } },
-        "tags_all": { "type": "array", "items": { "type": "string" } },
-        "min_count": { "type": "integer", "minimum": 1, "description": "nombre minimal d'entités identiques dans la cellule (pile de pierres ≥ 3)" }
+        "type": {
+          "type": "string",
+          "description": "type_id de la trace d'entrée, ou \"*\" pour tout type"
+        },
+        "tags_any": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tags_all": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "min_count": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "nombre minimal d'entités identiques dans la cellule (pile de pierres ≥ 3)"
+        },
+        "with": {
+          "type": "object",
+          "description": "Recette CROISÉE : une seconde trace doit se trouver à proximité. C'est ce qui permet « graine + statue → bosquet gardé ».",
+          "required": [
+            "type",
+            "radius"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "type_id de la trace compagne, ou \"*\" pour tout type"
+            },
+            "tags_any": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "radius": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10,
+              "description": "rayon de recherche en cellules de 2 m"
+            },
+            "consumes": {
+              "type": "boolean",
+              "default": false,
+              "description": "true : la trace compagne disparaît, absorbée par le résultat"
+            }
+          }
+        }
       }
     },
     "conditions": {
       "type": "array",
-      "description": "Toutes doivent être vraies. priority = nombre de conditions.",
+      "description": "Toutes doivent être vraies. Si « priority » est absent, priority = nombre de conditions (+2 si input.with est présent).",
       "items": {
         "type": "object",
-        "required": ["fn"],
+        "required": [
+          "fn"
+        ],
         "additionalProperties": false,
         "properties": {
-          "fn": { "type": "string", "enum": ["near_water", "in_cave", "in_marsh", "on_plateau", "altitude_min", "altitude_max", "count_tag_min", "has_path_wear", "near_rail", "near_museum", "sunlight", "era_is", "era_before_origin", "depth_min", "public_zone", "prop_equals"] },
-          "radius": { "type": "integer", "minimum": 0, "maximum": 6 },
-          "tag": { "type": "string" },
-          "value": { "type": ["integer", "string"] },
-          "key": { "type": "string" },
-          "negate": { "type": "boolean" }
+          "fn": {
+            "type": "string",
+            "enum": [
+              "near_water",
+              "in_cave",
+              "in_marsh",
+              "on_plateau",
+              "altitude_min",
+              "altitude_max",
+              "count_tag_min",
+              "has_path_wear",
+              "near_rail",
+              "near_museum",
+              "sunlight",
+              "era_is",
+              "era_before_origin",
+              "depth_min",
+              "public_zone",
+              "prop_equals",
+              "faith_min",
+              "weather_is",
+              "people_is",
+              "after_disaster"
+            ]
+          },
+          "radius": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 6
+          },
+          "tag": {
+            "type": "string"
+          },
+          "value": {
+            "type": [
+              "integer",
+              "string"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "negate": {
+            "type": "boolean"
+          }
         }
       }
     },
@@ -42,15 +145,47 @@
       "description": "Clés \"1\", \"2\", \"3\" = nombre de sauts depuis l'époque d'origine. Une clé absente = la trace reste inchangée à ce saut.",
       "additionalProperties": false,
       "properties": {
-        "1": { "$ref": "#/$defs/variants" },
-        "2": { "$ref": "#/$defs/variants" },
-        "3": { "$ref": "#/$defs/variants" }
+        "1": {
+          "$ref": "#/$defs/variants"
+        },
+        "2": {
+          "$ref": "#/$defs/variants"
+        },
+        "3": {
+          "$ref": "#/$defs/variants"
+        }
       }
     },
-    "paradox_weight": { "type": "integer", "minimum": 0, "maximum": 25, "description": "points ajoutés à la jauge si la trace aval est revendiquée puis contredite" },
-    "chronicle": { "type": "string", "pattern": "^CHR_[A-Z0-9_]+$" },
-    "sfx": { "type": "string" },
-    "chapter_min": { "type": "integer", "minimum": 1, "maximum": 5 }
+    "paradox_weight": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 25,
+      "description": "points ajoutés à la jauge si la trace aval est revendiquée puis contredite"
+    },
+    "chronicle": {
+      "type": "string",
+      "pattern": "^CHR_[A-Z0-9_]+$"
+    },
+    "sfx": {
+      "type": "string"
+    },
+    "chapter_min": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "priority": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 999,
+      "description": "Départage explicite quand plusieurs recettes s'appliquent. La plus haute gagne ; à égalité, l'id alphabétique. Ne jamais départager par l'ordre du fichier."
+    },
+    "faith": {
+      "type": "integer",
+      "minimum": -100,
+      "maximum": 100,
+      "description": "Ferveur ajoutée (ou retirée) à la trace produite, voir 13 §2.1."
+    }
   },
   "$defs": {
     "variants": {
@@ -58,18 +193,57 @@
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["type", "weight"],
+        "required": [
+          "type",
+          "weight"
+        ],
         "additionalProperties": false,
         "properties": {
-          "type": { "type": "string" },
-          "weight": { "type": "integer", "minimum": 1, "maximum": 1000 },
-          "size": { "type": "array", "items": { "type": "integer", "minimum": 1, "maximum": 9 }, "minItems": 2, "maxItems": 2 },
-          "tags_add": { "type": "array", "items": { "type": "string" } },
-          "tags_remove": { "type": "array", "items": { "type": "string" } },
-          "props": { "type": "object" },
-          "blocks": { "type": "boolean" },
-          "score": { "type": "integer", "minimum": 0, "maximum": 10 },
-          "contrary": { "type": "string", "description": "type produit si l'emplacement aval est occupé" }
+          "type": {
+            "type": "string"
+          },
+          "weight": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000
+          },
+          "size": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9
+            },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "tags_add": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "tags_remove": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "props": {
+            "type": "object"
+          },
+          "blocks": {
+            "type": "boolean"
+          },
+          "score": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10
+          },
+          "contrary": {
+            "type": "string",
+            "description": "type produit si l'emplacement aval est occupé"
+          }
         }
       }
     }

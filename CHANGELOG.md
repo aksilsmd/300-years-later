@@ -9,6 +9,22 @@ public API. Dates are ISO 8601.
 ## [Unreleased]
 
 ### Added
+- **La couche vivante du jeu** — nouveau document normatif
+  [`docs/design/13_PEUPLES_DIEUX_ET_PHENOMENES.md`](docs/design/13_PEUPLES_DIEUX_ET_PHENOMENES.md) :
+  **Peuples** qui bifurquent d'une époque à l'autre selon l'eau, les vivres, l'abri, la ferveur et la rancune
+  (neuf civilisations d'arrivée possibles en l'an 900) ; **Figures** nées des objets abandonnés par les joueurs,
+  avec leur domaine, leur Bienfait et leur Serment ; quatre **Porte-Voix** (Petit Moss, Dame Orielle,
+  Contremaître Bouilly, Vé-7) ; **météo** dérivée du couvert forestier et de la pollution ; sept
+  **catastrophes** annoncées, jamais létales, qui transforment les traces au lieu de les détruire ; cinq
+  **phénomènes** dont *la Résonance* (20 s où les quatre époques se superposent) ; et la révélation qui tient
+  l'arc narratif — le Synchro fonctionne à la Ferveur — avec trois fins possibles au Vernissage.
+  Garde-fous en §0 : fiction intégrale, vocabulaire inventé, satire des institutions jamais des croyants,
+  aucune violence de croyance, PEGI 7-12, photosensibilité.
+- Données : schéma de recette **v2** (`input.with` pour les recettes croisées, `priority` explicite, `faith`),
+  10 recettes croisées et événementielles (35 au total), 4 contrats (16 au total), 5 modèles de Chronique,
+  et les blocs `peoples`, `faith`, `weather`, `disasters`, `phenomena` dans `data/tuning.json`.
+- Scénario de référence « La Cuillère et la Sécheresse » (`12` §4bis) et tests de déterminisme,
+  d'accessibilité et de sensibilité pour ces systèmes (`51`).
 - **Discoverability**: `llms.txt` at the repository root and served by both landings (a compact map for
   language models, including the facts a model must not get wrong about this project); canonical, Open Graph,
   `hreflang`, `robots.txt`, `sitemap.xml` and JSON-LD `VideoGame` structured data on both landings — all
@@ -33,6 +49,9 @@ public API. Dates are ISO 8601.
   issue forms so the chooser order is deliberate.
 
 ### Changed
+- `GDD` : encadré assumant l'écart avec l'étude de marché (photoréalisme et 19,99 € contre « ≤ 10 € et
+  graphismes modestes »), sixième pilier de design, mode principal corrigé en 1-4 joueurs.
+- Départage des recettes par `priority` puis identifiant alphabétique — plus jamais par l'ordre du fichier.
 - **`AGENTS.md` is now the single contract** for every agent — the open standard other tools read — and
   `CLAUDE.md` is a short pointer that imports it, following the convention in ruff, next.js, rust and node.
   No more drift between two near-identical files.

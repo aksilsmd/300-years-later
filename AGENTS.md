@@ -99,7 +99,7 @@ python3 tools/check_media_approvals.py # no unapproved media referenced
 
 ## 7. Documents, in reading order
 `docs/design/00_README_INDEX.md` → `GDD_CENTURY_TEMPS.md` → `40_TECHNICAL_DESIGN.md` (**normative**) →
-`20_GAME_DESIGN_PARAMETERS.md` → `21_WORLD_LEVEL_DESIGN.md` → `data/` → `10`/`11`/`12` →
+`20_GAME_DESIGN_PARAMETERS.md` → `21_WORLD_LEVEL_DESIGN.md` → `data/` → `10`/`11`/`12`/`13` →
 `30`/`31`/`32`/`33`/`34` → `50`/`51`/`52` → `60` → `70`/`71` → `80`.
 On conflict: technical design (40) > parameters (20) > GDD > everything else.
 

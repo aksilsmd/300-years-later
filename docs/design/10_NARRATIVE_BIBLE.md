@@ -75,9 +75,18 @@ La vallée est un **personnage** : elle réagit (chemins qui s'usent, rivières 
 | **Les Automates** | Machines d'E2 | Bips et sifflements | Boîtes en cuivre sur rails, bras pinces |
 | **La Brigade Propreté** | Drones d'E3 | Jingle joyeux : « Nettoyage ! » | Drones pastel avec balai |
 | **Les Chronomites** | Créatures du paradoxe | Grignotements | Gris, six pattes, grands yeux, clignotent |
+| **Petit Moss** | Enfant d'E0, premier Porte-Voix. A « vu la Figure bouger » | Phrases courtes, s'emballe, se contredit, finit par « …je crois » | Barbouillé, trop grand manteau de fourrure |
+| **Dame Orielle** | Chroniqueuse du bourg (E1), registre rival de celui de Fiscalin | Précieuse, ironique, parle en listes, adore les détails inutiles | Plume derrière l'oreille, rouleaux sous le bras |
+| **Contremaître Bouilly** | E2. A décrété que la Grande Bouilloire est vivante | Bourru et tendre, tutoie les machines, s'inquiète pour elles | Bleu de travail, chiffon, lunettes relevées |
+| **Vé-7** | Drone déserteur de la Brigade (E3), amoureux d'une statue | Jingle de la Brigade joué trop lentement, jargon d'entreprise mal recyclé | Drone pastel au balai cassé, autocollant arraché |
 | **Les Intérimaires** | Les joueurs | Jamais de dialogue écrit : leur voix est celle du joueur | Gélules colorées, chapeaux, grands yeux |
 
 **Secret de Mamie Horloge (chapitre 5) :** elle est la toute première intérimaire envoyée dans la vallée, il y a 900 ans de « temps synchro ». Elle a refusé le rapatriement pour veiller sur les traces. C'est elle qui a planté le premier arbre du Mont Têtu.
+
+> Les **Peuples** de la vallée, les **Figures** qu'ils se donnent, les **Porte-Voix**, la météo, les
+> catastrophes et les phénomènes sont décrits dans **`13_PEUPLES_DIEUX_ET_PHENOMENES.md`** (normatif pour ces
+> systèmes). Les sociétés décrites en §4 ci-dessus sont les **branches par défaut** : selon ce que les joueurs
+> laissent, l'époque suivante peut être habitée par un autre peuple.
 
 ## 7. Arc narratif — Saison 0 « Période d'essai »
 L'arc est **optionnel** (le jeu reste un bac à sable) mais structure la progression : chaque chapitre = une chaîne de 3 à 4 contrats, un outil débloqué, une cinématique courte (panneaux illustrés, 20 s max).
@@ -103,7 +112,11 @@ Temporis Intérim → Temporis Temps · Compagnie du Lendemain → Tomorrow Comp
 
 ## 10. Sensibilité et localisation
 - Aucune culture, nation, religion ou période historique réelle n'est représentée : tout est fictif et stylisé.
-- Les « cultes d'objets » sont des **fan-clubs** (vocabulaire de fan-club, jamais religieux).
+- Les croyances de la vallée sont **entièrement inventées et nées des objets laissés par les joueurs**.
+  Vocabulaire propre à la vallée (Figure, Ferveur, Porte-Voix, Serment, Veillée) ; jamais le nom d'une
+  divinité, d'une fonction, d'un texte, d'un symbole ou d'une fête réels. Règle complète et garde-fous :
+  `13_PEUPLES_DIEUX_ET_PHENOMENES.md` §0. Aucune violence de croyance : les conflits de Figures sont des
+  querelles d'affluence et de paperasse.
 - La satire vise les institutions ; les habitants sont tendres et ridicules, pas méprisés.
 - Les textes à traduire évitent les jeux de mots intraduisibles ; chaque clé a une note de contexte (voir `11_SCRIPTS_DIALOGUES.md`).
 

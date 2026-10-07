@@ -77,3 +77,9 @@ Chaque cellule compte les passages de joueurs (toutes époques). Seuils : 40 →
 - [ ] Les fantômes d'autres époques sont identifiables (couleur + icône d'époque au-dessus).
 - [ ] Toute trace vieillie est **différente de silhouette** de l'objet d'origine (graine ≠ arbre ≠ forêt).
 - [ ] Le smog n'empêche jamais de voir le HUD ni les pings.
+
+## Habitants et ciel
+Les sociétés qui occupent la vallée à chaque époque ne sont pas fixes : elles **bifurquent** selon l'état que
+les joueurs laissent (eau, vivres, abri, ferveur, rancune). La météo et les catastrophes découlent du couvert
+forestier, de l'eau et de la pollution. Spécification : `13_PEUPLES_DIEUX_ET_PHENOMENES.md`. Les cinq repères
+permanents (bible narrative §3) ne changent jamais, quelle que soit la bifurcation.

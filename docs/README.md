@@ -23,7 +23,7 @@ Read in this order; in a conflict, the technical design wins (see [`CLAUDE.md`](
 | 00 | [Index](design/00_README_INDEX.md) | gates, reading order, vocabulary |
 | 01 | [Market audit](design/01_AUDIT_V1.md) | why this game, against what |
 | — | [GDD](design/GDD_CENTURY_TEMPS.md) | the game as a whole |
-| 10–12 | [Narrative bible](design/10_NARRATIVE_BIBLE.md) · [Scripts](design/11_SCRIPTS_DIALOGUES.md) · [Scenarios](design/12_SCENARIOS.md) | story, voice, situations |
+| 10–13 | [Narrative bible](design/10_NARRATIVE_BIBLE.md) · [Scripts](design/11_SCRIPTS_DIALOGUES.md) · [Scenarios](design/12_SCENARIOS.md) · [Peoples, Figures, weather and disasters](design/13_PEUPLES_DIEUX_ET_PHENOMENES.md) | story, voice, situations, the living layer |
 | 20–21 | [Parameters](design/20_GAME_DESIGN_PARAMETERS.md) · [World](design/21_WORLD_LEVEL_DESIGN.md) | numbers, the valley, landmarks |
 | 30–34 | [Art bible](design/30_ART_BIBLE.md) · [Audio](design/31_AUDIO_DESIGN.md) · [UX/UI](design/32_UX_UI_SPEC.md) · [Visual targets](design/33_VISUAL_TARGETS.md) · [Cinematic landing](design/34_LANDING_CINEMATIQUE.md) | how it looks, sounds and reads |
 | 40 | [Technical design](design/40_TECHNICAL_DESIGN.md) | **normative**: determinism, networking, data |

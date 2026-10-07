@@ -142,3 +142,14 @@ Fonctionnalité: Confidentialité
 ## 10. Rapports
 - Rapport de campagne (fin de phase) : périmètre, exécutés/réussis/échoués/bloqués, anomalies par sévérité, risques résiduels, recommandation go/no-go.
 - Tableau de bord QA dans `docs/qa/` (un fichier par gate).
+
+## Peuples, Figures, météo et catastrophes (`13_PEUPLES_DIEUX_ET_PHENOMENES.md`)
+| Test | Attendu |
+|---|---|
+| Déterminisme étendu : même graine + même journal d'actions, 2 machines | peuples, Figures, météos, catastrophes et phénomènes **identiques** (inclus dans le hash de monde) |
+| Couverture des bifurcations | un harnais de graines atteint au moins 6 des 9 civilisations d'arrivée |
+| Catastrophes | aucune ne retire plus de 20 % des traces d'une époque ; aucune trace protégée par une Figure de Mémoire n'est retirée ; aucun PNJ blessé |
+| Serments | rompre un Serment inverse le Bienfait exactement 1 manche et ajoute +10 au paradoxe |
+| Photosensibilité | orage, météore et Résonance : aucun flash > 3 Hz, y compris hors mode « réduire les clignotements » |
+| Lisibilité | après une partie, 4 testeurs sur 5 savent dire pourquoi leur Figure est née et pourquoi le peuple a bifurqué |
+| Sensibilité | revue humaine : aucun nom, symbole ou rite renvoyant à une religion réelle |

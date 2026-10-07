@@ -71,7 +71,7 @@ Propriétaire : Product Owner · v1.0 · Toutes les valeurs sont des **valeurs i
 | anachronism | Objet d'une époque future | `era < origin` | Fan-club (5) | Religion techno → **fan-club géant** | Paradoxe latent (+10 jauge) |
 | protected | Tout objet avec ancre | — | Inchangé | Inchangé | Inchangé |
 
-Règle de **combinaison** : si plusieurs recettes s'appliquent, la plus spécifique (plus de conditions) gagne ; égalité → ordre du fichier. Chaque résultat peut avoir des **variantes pondérées** (ex. arbre : chêne 50 %, pin 30 %, arbre-canard 20 %) tirées au `SeededRng(seed, entity_id, hop)`.
+Règle de **combinaison** : si plusieurs recettes s'appliquent, celle dont la `priority` est la plus haute gagne (`priority` explicite dans le schéma ; par défaut = nombre de conditions, +2 si la recette est croisée via `input.with`). À égalité, l'**identifiant alphabétique** tranche — jamais l'ordre du fichier, qui dépendrait de l'ordre des contributions. Chaque résultat peut avoir des **variantes pondérées** (ex. arbre : chêne 50 %, pin 30 %, arbre-canard 20 %) tirées au `SeededRng(seed, entity_id, hop)`.
 
 ### 4.4 Vitesse d'apparition
 La propagation est calculée instantanément ; **l'apparition visuelle** dans l'époque aval prend 0,4 s (animation « pousse ») pour la lisibilité, avec un son dédié.
@@ -156,5 +156,18 @@ Cosmétiques : 24 chapeaux, 12 couleurs, 8 emotes, 6 poses supplémentaires à l
 - Pas de niveaux de difficulté ; **modificateurs de lobby** : durée de manche (3/5/7 min), dangers (0,5×/1×/1,5×), paradoxe (lent/normal/rapide), rotation on/off.
 - Mode « Détente » : jauge de paradoxe désactivée, dangers 0,5×, pas de classement.
 
+## 12bis. Peuples, Ferveur, météo et catastrophes
+Système décrit dans **`13_PEUPLES_DIEUX_ET_PHENOMENES.md`** ; toutes les valeurs sont dans `data/tuning.json`
+(clés `peoples`, `faith`, `weather`, `disasters`, `phenomena`).
+
+| Bloc | Valeurs initiales |
+|---|---|
+| Jauges d'un Peuple | 0-100 ; bifurcations : eau < 30, vivres ≥ 40, ferveur ≥ 60, rancune ≥ 50, pollution ≥ 60, effondrement si vivres < 20 ou abri < 15 |
+| Ferveur | Figure locale ≥ 30, Figure majeure ≥ 70 ; +3 PNJ à 3 m, +5 catastrophe survécue, +8 plus haute de la zone, +10 citée par un contrat ; −5 rivale, −15 reconstruite ailleurs |
+| Serment rompu | Bienfait inversé 1 manche, +10 jauge de paradoxe, PNJ boudeurs |
+| Météo | 7 états, 1 changement par manche maximum, annonce 15 s ; pluie pousse ×2, vent érosion ×2, canicule incendie ×3, pluie acide 1 cran de rouille/manche |
+| Catastrophes | jamais létales, ≤ 20 % des traces d'une époque, signes 45 s ; crue 3 barrages, sécheresse forêt < 20 %, glissement 2 cellules creusées, gel abri < 30, météore 1/8, tempête pollution ≥ 70 |
+| Phénomènes | Résonance 20 s à la 2e pause café ; Brume Remontante ferveur ≥ 50 ; Silence 1 partie sur 50 |
+
 ## 13. Télémétrie (opt-in uniquement) — événements
-`session_start{mode,players}`, `round_end{round,traces,paradox_max}`, `contract_result{stars,score,contract_id}`, `tool_used{tool}`, `recipe_fired{recipe_id,hop}`, `collapse{}`, `museum_shared{}`, `settings_accessibility{flags}`. Aucun identifiant de joueur, aucune position fine, aucun texte libre.
+`session_start{mode,players}`, `round_end{round,traces,paradox_max}`, `contract_result{stars,score,contract_id}`, `tool_used{tool}`, `recipe_fired{recipe_id,hop}`, `collapse{}`, `museum_shared{}`, `settings_accessibility{flags}`, `people_branch{era,people_id}`, `figure_born{domain}`, `oath_broken{domain}`, `disaster{type,era}`, `weather{state,era}`. Aucun identifiant de joueur, aucune position fine, aucun texte libre.

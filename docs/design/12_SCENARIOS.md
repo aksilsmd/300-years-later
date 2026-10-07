@@ -65,6 +65,31 @@ Chaque contrat est décrit en données (`data/contracts/`) par : résultat atten
 | Capsule d'une version plus ancienne | Migration si possible, sinon CAPSULE_INVALID |
 | Contrat impossible après le chaos | Le Client accepte une **solution alternative** : tout résultat du même type dans un rayon de 30 m donne 60 % des points |
 
+## 4bis. Séance « La Cuillère et la Sécheresse » (4 joueurs, 20 min) — peuples, Figure, catastrophe
+
+Joueurs : Alex (E0), Noa (E1), Kim (E2), Lou (E3). Contrat C14 *« Le client veut une Figure discrète en l'an
+900, vénérée sans que personne ne l'ait jamais vue. Exigence absolue : elle doit regarder vers l'ouest. »*
+
+| Temps | Ce qui se passe | Pourquoi c'est intéressant |
+|---|---|---|
+| 0:30 | Alex (E0) déboise autour du Mont pour dégager un socle. Noa (E1) trouve une cuillère brillante et la pose « juste deux secondes » près du marché | Deux actions anodines qui vont tout décider |
+| 1:40 | Fiscalin confisque la cuillère **devant Dame Orielle** : Rancune du bourg +15. Orielle inscrit l'incident à son registre | Le PNJ transforme une injustice en récit |
+| 2:30 | En E2, Kim voit apparaître « Le Trésor du Baron » — la cuillère, dans une vitrine. Ferveur 34 : **Figure locale**, plaque « La Cuillère Qui Ne Sert Plus » | La trace a un nom. Les joueurs rient, puis s'y attachent |
+| 3:10 | Avertissement météo : nuage orange, cigales. **Canicule** en E1 et E2 (forêt < 20 % à cause du déboisement d'Alex) | La météo n'est pas décor : elle vient d'une action vue 3 minutes plus tôt |
+| 5:00 | **Pause café.** Sécheresse déclenchée : l'eau recule de 2 cellules, Vivres −20. La frise des peuples affiche : « Eau 28 → **Les Nomades du Plateau** » en E1 | La civilisation entière a bifurqué à cause d'une tranchée |
+| 5:30 | **Rotation.** Alex arrive en E1 chez des nomades qui n'ont pas de marché. Son plan ne marche plus | La rotation fait payer son propre chaos, mais autrement |
+| 7:00 | Petit Moss (E0, chez Lou) répète partout que « la Cuillère a bougé, je crois ». Ferveur +2/pause, mais le domaine est mal transmis : la Figure devient une Figure **d'Éclat** au lieu de Mémoire | Un quiproquo d'enfant change un Bienfait. Personne ne l'a scripté |
+| 9:30 | Ferveur 71 : **Figure majeure**. Bienfait d'Éclat : Fiscalin et la Brigade ignorent la zone. Serment : « y laisser un objet brillant à chaque manche » | Première fois que l'équipe *protège* quelque chose |
+| 10:30 | Pause café 2 : **La Résonance**. 20 secondes où les quatre époques se superposent ; tout le monde voit la cuillère à ses quatre âges en même temps | Le plan signature, et le meilleur clip de la partie |
+| 12:00 | Kim oublie le Serment pour aller éteindre la Bouilloire. La Figure **boude** : la Brigade redevient active en E3, et Vé-7 doit improviser | Une erreur humaine, une conséquence lisible, zéro punition sèche |
+| 14:00 | Lou (E3) cache la cuillère dans la Grotte Qui Ronfle : « vénérée sans que personne ne l'ait jamais vue » ✅, face à l'ouest ✅ | L'exigence absurde devient le cœur du plan |
+| 16:00 | Évaluation : contrat ✅, Serment rompu une fois (−), peuple « Nomades » (bonus C16 manqué) → **4 étoiles** | On perd un peu, et on sait exactement pourquoi |
+| 17:00 | Musée : salle des Figures, CHR_FIGURE_01 sur la cuillère, CHR_PEOPLE_BRANCH sur les Nomades, CHR_DISASTER_01 sur la sécheresse | Trois récits générés par trois systèmes différents |
+
+**Ce que ce scénario exige :** jauges de peuple calculées à la pause café, bifurcation lisible, ferveur portée
+par la trace, Porte-Voix mobile avec transmission faillible, météo dérivée du couvert forestier, sécheresse
+avec signes, Résonance, Serment et bouderie, salle des Figures au musée.
+
 ## 5. Scénario streaming (mode Streamer activé)
 1. Le streamer active « Spectateurs du Temps » (lecture anonyme du chat, aucune connexion requise) et rend son lobby public avec code masqué.
 2. Pendant chaque manche, le chat **nomme** la prochaine statue (`!nom Jean-Mammouth`) ; filtre de mots + longueur ≤ 16.
