@@ -5,8 +5,8 @@ type Props = { lang: Lang; setLang: (l: Lang) => void; t: Content };
 export function Header({ lang, setLang, t }: Props) {
   return (
     <header className="top">
-      <a className="wordmark" href="#" aria-label="300 Years Later">
-        <span className="wm-num">300</span> <span className="wm-txt">Years Later</span>
+      <a className="wordmark" href="#" aria-label="Afterloom">
+        Afterloom
       </a>
       <nav aria-label="Langue / Language" className="lang">
         {(["fr", "en"] as const).map((l) => (

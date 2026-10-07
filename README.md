@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="docs/assets/banner.png" alt="300 Years Later — an open-source AI game studio kit" width="820">
+<img src="docs/assets/banner.png" alt="Afterloom — an open-source AI game studio kit: four eras, four discs, and the one command that starts it" width="820">
 
-<h1>300 Years Later</h1>
+<h1>Afterloom</h1>
 
 **Hand this repository to your coding agent. It runs a game studio.**
 
@@ -156,6 +156,8 @@ If the idea is useful to you, **a star helps other people find it.** ⭐
 ## 📄 Licences
 
 Code [MIT](LICENSE) · design, data, diagrams and guides [CC BY 4.0](LICENSE-CONTENT.md) — credit
-"The 300 Years Later contributors". "300 Years Later" is a working title: pick and register your own before
-selling anything. Unreal Engine, Fab, Megascans and MetaHuman stay under Epic's licences
+"The 300 Years Later contributors" — the project's attribution name, which the rename to *Afterloom* left
+alone on purpose. **Afterloom** is the public title, adopted in
+[ADR 0021](docs/adr/0021-titre-public-afterloom.md); the trademark search is still to be done before any sale,
+and `python3 tools/apply_public_title.py --to "Your Title"` renames it if you want your own. Unreal Engine, Fab, Megascans and MetaHuman stay under Epic's licences
 ([`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md)). Everything in `legal/` is a draft for a professional to review.

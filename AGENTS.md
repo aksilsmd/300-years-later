@@ -4,7 +4,7 @@
 > Lisez ce fichier en entier, puis `.claude/skills/game-studio/SKILL.md`. Travaillez en autonomie de A à Z et
 > ne sollicitez l'humain qu'aux arrêts obligatoires. **Répondez toujours dans la langue de l'utilisateur.**
 
-This repository is an **AI-driven game studio** for *300 Years Later*: a realistic 3D co-op game in Unreal
+This repository is an **AI-driven game studio** for *Afterloom*: a realistic 3D co-op game in Unreal
 Engine 5.8 where up to four players each live in a different century of the same valley, and everything left
 behind ages in real time in someone else's game.
 

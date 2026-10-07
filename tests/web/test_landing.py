@@ -35,7 +35,7 @@ def open_page(browser, **ctx):
 
 def test_titre_et_cta(browser):
     page, external, errors = open_page(browser)
-    assert "300 Years Later" in page.title()
+    assert "Afterloom" in page.title()
     assert page.locator(".hero .btn").inner_text() == "Ajouter à ma liste de souhaits"
     assert external == [] and errors == []
 

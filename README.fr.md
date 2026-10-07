@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="docs/assets/banner.png" alt="300 Years Later — kit open source de studio de jeu vidéo piloté par IA" width="820">
+<img src="docs/assets/social-card.png" alt="Afterloom — kit open source de studio de jeu vidéo piloté par IA : quatre époques, quatre disques, et la commande qui lance tout" width="820">
 
-<h1>300 Years Later</h1>
+<h1>Afterloom</h1>
 
 **Donnez ce dépôt à votre IA de code. Elle fait tourner un studio de jeu vidéo.**
 
@@ -159,6 +159,8 @@ Si l'idée vous sert, **une étoile aide les autres à la trouver.** ⭐
 ## 📄 Licences
 
 Code [MIT](LICENSE) · conception, données, schémas et guides [CC BY 4.0](LICENSE-CONTENT.md) — créditez
-« The 300 Years Later contributors ». « 300 Years Later » est un titre de travail : choisissez et déposez le vôtre
-avant toute vente. Unreal Engine, Fab, Megascans et MetaHuman restent sous les licences d'Epic
+« The 300 Years Later contributors » — le nom d'attribution du projet, que le renommage en *Afterloom* a
+volontairement laissé intact. **Afterloom** est le titre public, adopté par
+l'[ADR 0021](docs/adr/0021-titre-public-afterloom.md) ; la recherche d'antériorité reste à faire avant toute
+vente, et `python3 tools/apply_public_title.py --to "Votre Titre"` le renomme si vous voulez le vôtre. Unreal Engine, Fab, Megascans et MetaHuman restent sous les licences d'Epic
 ([`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md)). Tout ce qui est dans `legal/` est un brouillon à faire relire par un professionnel.

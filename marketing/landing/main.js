@@ -1,4 +1,4 @@
-// 300 Years Later — landing de référence. Aucun appel réseau, aucun stockage, aucun traceur.
+// Afterloom — landing de référence. Aucun appel réseau, aucun stockage, aucun traceur.
 (() => {
   const root = document.documentElement;
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

@@ -1,7 +1,9 @@
 # ADR 0021 — Titre public : AFTERLOOM
 
-- **Statut :** proposé (attend la décision de l'humain et la recherche d'antériorité)
-- **Date :** 2026-10-07
+- **Statut :** **accepté** le 8 octobre 2026 par le Product Owner. Appliqué au dépôt le même jour
+  (`tools/apply_public_title.py --to "Afterloom" --apply`, 56 occurrences, 40 fichiers). La recherche
+  d'antériorité reste à faire : c'est un arrêt humain **avant toute annonce publique**, pas avant le renommage.
+- **Date :** proposé le 2026-10-07, accepté le 2026-10-08
 - **Décideurs :** Product Owner · **Remplace :** le titre de travail « 300 Years Later » (GDD §6.6)
 
 ## Contexte
@@ -54,7 +56,7 @@ Le reste de l'onomastique ne bouge pas : nom de code **CENTURY TEMPS**, agence *
 **Immédiat, sans risque :** les nouveaux artefacts portent le titre — marque, favicon, logotype, carte
 sociale, charte graphique (`35_DESIGN_SYSTEM.md`), `docs/assets/`.
 
-**Après votre accord**, une seule commande, qui existe déjà et qui ne touche que ce qui est public :
+**Fait.** La commande utilisée, qui ne touche que ce qui est public :
 
 ```bash
 python3 tools/apply_public_title.py --to "Afterloom"           # aperçu, ne modifie rien

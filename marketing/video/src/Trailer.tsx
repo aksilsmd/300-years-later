@@ -19,7 +19,7 @@ function Title({ lang }: { lang: "fr" | "en" }) {
   const o = interpolate(frame, [0, 18], [0, 1], { extrapolateRight: "clamp" });
   return (
     <AbsoluteFill style={{ background: "#0d1030", color: "#e9e6ff", justifyContent: "center", alignItems: "center", fontFamily: "Georgia, serif", opacity: o }}>
-      <div style={{ fontSize: 150, fontWeight: 800, letterSpacing: -4 }}>300 Years Later</div>
+      <div style={{ fontSize: 150, fontWeight: 800, letterSpacing: -4 }}>Afterloom</div>
       <div style={{ fontSize: 44, marginTop: 24 }}>{lang === "fr" ? "Ajoutez-le à votre liste de souhaits" : "Wishlist it now"}</div>
     </AbsoluteFill>
   );

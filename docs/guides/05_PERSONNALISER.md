@@ -10,7 +10,7 @@ Tout est conçu pour être modifié. Licence : code MIT, contenus CC BY 4.0 (cr�
 
 ## 1. Changer le titre
 1. Choisissez un titre et faites la recherche de marque (`legal/21_marque-pi.md`).
-2. Demandez à l'IA : « Remplace le titre public "300 Years Later" par "<NOUVEAU TITRE>" partout où il est public (README, landing, Remotion, docs/design/70), sans toucher au nom de code CENTURY TEMPS ni aux identifiants techniques. »
+2. Demandez à l'IA : « Remplace le titre public "Afterloom" par "<NOUVEAU TITRE>" partout où il est public (README, landing, Remotion, docs/design/70), sans toucher au nom de code CENTURY TEMPS ni aux identifiants techniques. »
 3. Vérifiez : `python3 tools/privacy_scan.py` et les tests de la landing.
 
 ## 2. Modifier le jeu sans coder
@@ -25,7 +25,7 @@ Tout est conçu pour être modifié. Licence : code MIT, contenus CC BY 4.0 (cr�
 ## 2 bis. Changer le titre public du jeu
 
 Le projet porte trois noms distincts et c'est volontaire : le **nom de code** (CENTURY TEMPS), le **titre
-public** (« 300 Years Later » aujourd'hui) et l'**identifiant du dépôt** (`300-years-later`, qui apparaît dans
+public** (« Afterloom » aujourd'hui) et l'**identifiant du dépôt** (`300-years-later`, qui apparaît dans
 toutes les URL). Pour ne changer que le deuxième :
 
 ```bash

@@ -23,7 +23,7 @@ export default function () {
   check(res, {
     "statut 200": (r) => r.status === 200,
     "aucun cookie déposé": (r) => !r.headers["Set-Cookie"],
-    "titre présent": (r) => r.body.includes("300 Years Later"),
+    "titre présent": (r) => r.body.includes("Afterloom"),
   });
   sleep(1);
 }

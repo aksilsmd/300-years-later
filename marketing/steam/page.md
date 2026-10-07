@@ -1,6 +1,6 @@
 # Page Steam — brouillon (à valider par l'humain)
 
-**Titre :** 300 Years Later *(titre de travail)*
+**Titre :** Afterloom *(marque non encore déposée — recherche d'antériorité à faire avant publication)*
 **Description courte (≤ 300 caractères) :**
 Jusqu'à 4 amis, 4 siècles, une seule vallée. Plantez une graine en l'an 0 : votre ami la voit pousser en l'an 300. Creusez, empilez, posez pour une statue… et découvrez au musée de l'an 900 ce que l'Histoire a fait de vos bêtises.
 

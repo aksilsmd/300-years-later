@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| Jeu | 300 Years Later (titre de travail) |
+| Jeu | Afterloom *(marque non encore déposée)* |
 | Genre | coopératif 1-4 joueurs, bac à sable, comédie |
 | Moteur | Unreal Engine 5.8 |
 | Plateformes | PC (Steam) ; Steam Deck visé |

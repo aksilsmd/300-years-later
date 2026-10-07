@@ -11,10 +11,10 @@
 # topics as `  - slug` lines. GitHub limits: description 350 characters, 20 topics, slugs in
 # [a-z0-9-] of 50 characters or less.
 
-description: Give this repo to Claude Code, Gemini or Codex and it runs a game studio — it installs the toolchain, writes an Unreal Engine 5.8 co-op game where four friends each live in a different century of the same valley, tests it, keeps it GDPR-compliant, renders the trailer and builds the landing page. 8 agent skills, FR/EN, MIT.
+description: Afterloom — give this repo to Claude Code, Gemini or Codex and it runs a game studio: it installs the toolchain, writes an Unreal Engine 5.8 co-op game where four friends each live in a different century of the same valley, tests it, keeps it GDPR-compliant, renders the trailer and builds the landing page. 8 agent skills, FR/EN, MIT.
 
 # Short variant, for the places that truncate at 160 characters (search results, link previews).
-description_short: Give this repo to your coding agent and it runs a game studio — Unreal Engine 5.8, tests, GDPR, trailer, landing page. 8 skills, FR/EN, MIT.
+description_short: Afterloom — give this repo to your coding agent and it runs a game studio: Unreal Engine 5.8, tests, GDPR, trailer, landing page. 8 skills, FR/EN, MIT.
 
 # `auto` = the README of this repository, until GitHub Pages is live. Then: the Pages URL.
 homepage: auto

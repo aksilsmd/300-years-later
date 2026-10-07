@@ -3,7 +3,7 @@
 🇬🇧 [English version](en/00_QUICK_START.md)
 
 ## Ce que vous obtenez
-Un **studio de jeu vidéo piloté par IA** : la conception complète d'un jeu coop 3D réaliste (*300 Years Later*), un corpus juridique, une landing page cinématique, des tests, et surtout des **skills** qui permettent à Claude Code (ou à une autre IA) de construire le jeu dans Unreal Engine 5.8, en autonomie de A à Z, en ne vous sollicitant qu'aux décisions qui vous reviennent.
+Un **studio de jeu vidéo piloté par IA** : la conception complète d'un jeu coop 3D réaliste (*Afterloom*), un corpus juridique, une landing page cinématique, des tests, et surtout des **skills** qui permettent à Claude Code (ou à une autre IA) de construire le jeu dans Unreal Engine 5.8, en autonomie de A à Z, en ne vous sollicitant qu'aux décisions qui vous reviennent.
 
 ## Ce dont vous avez besoin
 - Un PC Windows 10/11 avec une carte graphique récente (RTX 3070/4070 ou mieux), 32 Go de RAM, 300 Go libres — détails dans [02_INSTALLATION.md](02_INSTALLATION.md).

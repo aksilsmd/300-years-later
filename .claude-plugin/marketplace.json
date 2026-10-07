@@ -1,6 +1,6 @@
 {
   "name": "300-years-later",
-  "description": "The eight skills that run the 300 Years Later game studio, installable in one command.",
+  "description": "The eight skills that run the Afterloom game studio, installable in one command.",
   "owner": { "name": "The 300 Years Later contributors", "url": "https://github.com/aksilsmd/300-years-later" },
   "plugins": [
     {

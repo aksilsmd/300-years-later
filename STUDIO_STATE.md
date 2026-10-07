@@ -49,7 +49,7 @@ systems:
 ```
 
 ## Human context / Contexte humain
-- Public title / Titre public : 300 Years Later (working title — to confirm) · codename CENTURY TEMPS
+- Public title / Titre public : Afterloom (working title — to confirm) · codename CENTURY TEMPS
 - Engine / Moteur : Unreal Engine 5.8 (ADR 0012)
 - Autonomy / Autonomie : see `studio.config.yaml` · decisions: `DECISIONS.md` · open questions: `QUESTIONS.md`
 - Last session / Dernière session : 2026-10-07 — founding novel (`14`), design system and brand assets (`35`, `design-system/`), specification pack (`docs/specs/`), master prompt (`PROMPT.md`), public title proposed (ADR 0021)

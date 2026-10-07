@@ -1,4 +1,4 @@
-# 300 Years Later
+# Afterloom
 
 > An open-source kit that lets an autonomous coding agent run a game studio: environment setup, Unreal
 > Engine 5.8 development, testing, GDPR and platform compliance, in-engine media, and a cinematic landing
@@ -52,4 +52,4 @@ progress, and every claim in it names a file that proves it.
 - Budget: ≈ €40k–80k solo with an AI, up to €1.2M with a small team. 18 to 48 months. Not "a weekend project".
 - The kit never buys, publishes, signs or creates accounts; those are hard stops reserved for a human.
 - No game image exists outside Unreal Engine, and no AI-generated art is presented as the game.
-- "300 Years Later" is a working title; the codename is CENTURY TEMPS.
+- "Afterloom" is a working title; the codename is CENTURY TEMPS.

@@ -13,7 +13,7 @@ ${URL}            file://${CURDIR}/../../marketing/landing/index.html
 *** Test Cases ***
 Le titre et l'appel à l'action sont visibles
     New Page    ${URL}
-    Get Title    contains    300 Years Later
+    Get Title    contains    Afterloom
     Get Element States    css=.hero .btn    contains    visible
     Get Text    css=.hero .btn    ==    Ajouter à ma liste de souhaits
 

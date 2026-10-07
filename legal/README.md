@@ -1,4 +1,4 @@
-# Corpus juridique et conformité — 300 Years Later
+# Corpus juridique et conformité — Afterloom
 
 > ⚠️ **BROUILLONS DE TRAVAIL — NE PAS PUBLIER SANS RELECTURE PAR UN PROFESSIONNEL DU DROIT.**
 > Ces documents sont des modèles structurés pour gagner du temps. Ils ne constituent pas un avis juridique. Les champs `[ENTRE CROCHETS]` doivent être complétés par l'éditeur. Droit de référence : droit français et droit de l'Union européenne ; les obligations d'autres pays sont signalées mais doivent être vérifiées localement.

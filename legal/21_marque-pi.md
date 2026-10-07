@@ -2,7 +2,7 @@
 > Procédure — les recherches et le dépôt sont faits par l'humain.
 
 ## 1. Choix du titre
-« 300 Years Later » est un **titre de travail**. Critères : distinctif (pas descriptif), prononçable en français et en anglais, sans confusion avec un jeu ou une marque existants, nom de domaine et pseudonymes de réseaux disponibles.
+« Afterloom » est un **titre de travail**. Critères : distinctif (pas descriptif), prononçable en français et en anglais, sans confusion avec un jeu ou une marque existants, nom de domaine et pseudonymes de réseaux disponibles.
 
 ## 2. Recherche d'antériorité (à consigner dans `legal/trademark-check.md`, non versionné si sensible)
 - INPI (base des marques françaises), EUIPO / TMview (UE et offices nationaux), WIPO Global Brand Database, USPTO (États-Unis).

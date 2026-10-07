@@ -2,7 +2,7 @@
 ### Étude de marché · Concept · Game design · Architecture · Conformité · Plan de réalisation pour Claude Code
 
 > Titre de travail : **CENTURY TEMPS** (FR : « Intérim Temporel »). Jeu de pun anglais : *temps* = intérimaires.
-> Version du document : **2.0 — 7 octobre 2026**. Titre public de travail : **300 Years Later** (à valider juridiquement, §6.6).
+> Version du document : **2.0 — 7 octobre 2026**. Titre public de travail : **Afterloom** (à valider juridiquement, §6.6).
 > **v2 :** moteur **Unreal Engine 5.8** et direction artistique **réaliste** (ADR 0012). Les détails normatifs sont dans `30_ART_BIBLE.md`, `33_VISUAL_TARGETS.md`, `40_TECHNICAL_DESIGN.md`, `80_CLAUDE_CODE_PLAYBOOK.md` et `docs/guides/03_TEMPS_ET_COUTS.md`.
 
 ---

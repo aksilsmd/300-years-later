@@ -1,6 +1,6 @@
 ---
 name: game-studio
-description: Studio director. Runs the creation of the realistic 3D co-op game "300 Years Later" (Unreal Engine 5.8) end to end and autonomously — setup, phased C++ development, tests, compliance, in-engine media, cinematic landing page, launch — delegating to the other skills and asking the human only at hard stops. Use for "start the studio", "build the game", "continue", "status", "lance le studio", "crée le jeu", "continue le projet", "où en est-on".
+description: Studio director. Runs the creation of the realistic 3D co-op game "Afterloom" (Unreal Engine 5.8) end to end and autonomously — setup, phased C++ development, tests, compliance, in-engine media, cinematic landing page, launch — delegating to the other skills and asking the human only at hard stops. Use for "start the studio", "build the game", "continue", "status", "lance le studio", "crée le jeu", "continue le projet", "où en est-on".
 ---
 
 # Skill: game-studio (studio director)

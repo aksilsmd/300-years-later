@@ -22,3 +22,13 @@ Les agents notent ici toute proposition hors périmètre ou toute modification s
 | 2026-10-07 | spécification | C15 et C16 existent dans `data/contracts/` mais dans aucun document de conception ; `12` §2 et `71` §2 annoncent 12 contrats, il y en a 16 | 12, 13, 71 | à corriger |
 | 2026-10-07 | spécification | `13` §11 affirme « la Ferveur n'est récompensée que dans 2 cas sur 14 » : les données en comptent 4 sur 16 | 13 | à corriger |
 | 2026-10-07 | spécification | Chemins référencés mais absents : `docs/originalite.md` (GDD §1.4), `docs/DEPENDENCIES.md` (40 §13), `docs/privacy/registre.md` (GDD §6.1), `docs/store/presskit.md` (70 §5) | GDD, 40, 70 | à corriger |
+
+## Suite du renommage Afterloom (ADR 0021, 2026-10-08)
+Propositions pour `docs/design/`, que l'agent ne modifie pas lui-même (AGENTS.md §5.8) :
+- `35_DESIGN_SYSTEM.md` §5 : la ligne « Bannière historique — conservée, remplacée par la carte sociale »
+  n'est plus exacte. `docs/assets/banner.png` est désormais la carte sociale **anglaise**, rendue par
+  `tools/render_brand_assets.py` depuis les jetons, comme `social-card.png` (française).
+- `35_DESIGN_SYSTEM.md` §10 : le critère « la carte sociale mesure 1280×640 » est à lire comme l'asset 2× :
+  les fichiers font 2560×1280 pour les écrans à haute densité.
+- `GDD_CENTURY_TEMPS.md` §6.6 et en-tête : « titre public de travail » peut devenir « titre public », la
+  réserve juridique (« à valider ») restant vraie tant que la recherche d'antériorité n'est pas faite.

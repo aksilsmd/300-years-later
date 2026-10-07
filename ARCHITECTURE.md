@@ -88,7 +88,7 @@ when the repository is in a state that must not be published:
 
 | Script | Refuses |
 |---|---|
-| `repo_audit.py` | missing required files, broken internal links, an action not pinned to a SHA, a floating `latest` |
+| `repo_audit.py` | missing required files, broken internal links, an action not pinned to a SHA, a floating `latest`, a GitHub About box past GitHub's own limits |
 | `validate_skills.py` | a skill that breaks the Agent Skills specification or this project's bilingual rule |
 | `validate_state.py` | a system claimed `implemented` or beyond without an evidence file that exists |
 | `validate_data.py` | data that does not match its schema |
@@ -97,7 +97,9 @@ when the repository is in a state that must not be published:
 | `check_media_approvals.py` | a media file used before a human approved it |
 | `doctor.py` | nothing — it reports the environment (`--strict` makes optional tools fatal) |
 | `build_guide_pdf.py` | — builds the FR and EN PDF guides from real captures |
-| `setup_repo.sh`, `publish.sh` | — the human-only GitHub operations |
+| `render_brand_assets.py` | — renders `docs/assets/*.png` from `design-system/tokens.json`; `--check` refuses an image that no longer matches the tokens or the title |
+| `apply_public_title.py` | — renames the public title across git-tracked files, never the repository slug, the codename or the licence attribution entity |
+| `setup_repo.sh`, `publish.sh` | — the human-only GitHub operations, driven by `.github/about.yml` |
 
 **Architecture Invariant:** a gate never phones home, never reads outside the repository, and never writes
 outside it. `privacy_scan.py` reads the deny-list from `~/.config/300yl/denylist.txt` precisely so that the

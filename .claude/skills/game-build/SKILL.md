@@ -1,6 +1,6 @@
 ---
 name: game-build
-description: Develops "300 Years Later" in Unreal Engine 5.8 (C++, Blueprints, editor Python, driven through Epic's official MCP plugin) phase by phase (P0 → P8), tests first, following the normative technical design docs/design/40 and data/tuning.json. Use for any game development task in game/ ("code", "implement", "phase", "développe", "code la phase").
+description: Develops "Afterloom" in Unreal Engine 5.8 (C++, Blueprints, editor Python, driven through Epic's official MCP plugin) phase by phase (P0 → P8), tests first, following the normative technical design docs/design/40 and data/tuning.json. Use for any game development task in game/ ("code", "implement", "phase", "développe", "code la phase").
 ---
 
 # Skill: game-build

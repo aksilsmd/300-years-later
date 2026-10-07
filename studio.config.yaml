@@ -7,7 +7,7 @@
 # ─────────────────────────────────────────────────────────────────────────────
 
 project:
-  public_title: "300 Years Later"     # EN: working title — change it / FR : titre de travail — à changer
+  public_title: "Afterloom"     # ADR 0021. Rename: tools/apply_public_title.py / Renommer : idem
   codename: "CENTURY TEMPS"
   languages: [fr, en]                 # EN: game + website languages / FR : langues du jeu et du site
   communication_language: auto        # auto = reply in the user's language / répondre dans la langue de l'utilisateur

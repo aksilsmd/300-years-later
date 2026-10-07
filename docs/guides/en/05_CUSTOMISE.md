@@ -10,7 +10,7 @@ Everything is designed to be changed. Licence: MIT code, CC BY 4.0 content (cred
 
 ## 2. Change the title
 The project carries three names on purpose: the **codename** (CENTURY TEMPS), the **public title**
-("300 Years Later" today) and the **repository slug** (`300-years-later`, which every URL is built from).
+("Afterloom" today) and the **repository slug** (`300-years-later`, which every URL is built from).
 To change only the second:
 
 1. Choose a title and run a trademark search (`legal/21_marque-pi.md`) — that is a human step.

@@ -15,7 +15,7 @@ réaliste** pour PC Windows, distribué sur Steam en Early Access : jusqu'à qua
 simultanément quatre siècles (an 0, an 300, an 600, an 900) d'une même vallée fictive, et tout ce qu'un
 joueur laisse dans son époque **vieillit de façon déterministe** et réapparaît transformé chez les autres.
 
-Nom de code **CENTURY TEMPS**, titre public de travail **300 Years Later** (à valider juridiquement).
+Nom de code **CENTURY TEMPS**, titre public de travail **Afterloom** (à valider juridiquement).
 *Source :* `docs/design/00_README_INDEX.md`, `GDD_CENTURY_TEMPS.md` §0.
 
 ### 1.2 Contexte de marché, en une ligne

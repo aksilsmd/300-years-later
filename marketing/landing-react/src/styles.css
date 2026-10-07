@@ -1,4 +1,4 @@
-/* 300 Years Later — landing de référence, sans dépendance ni ressource externe.
+/* Afterloom — landing de référence, sans dépendance ni ressource externe.
    Polices : si les fichiers OFL Fraunces / Bricolage Grotesque sont ajoutés dans fonts/
    (avec leur licence), ils sont utilisés ; sinon, repli sur les polices système. */
 
@@ -46,10 +46,9 @@ a { color: inherit; }
 
 /* En-tête */
 .top { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 1.5rem; padding: 1rem clamp(1rem, 4vw, 3rem); background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); transition: var(--transition); }
-.wordmark { font-family: var(--serif); font-size: 1.25rem; text-decoration: none; margin-right: auto; white-space: nowrap; }
+.wordmark { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.035em; text-decoration: none; margin-right: auto; white-space: nowrap; }
 .btn-small { white-space: nowrap; }
-.wm-num { font-weight: 800; font-variant-numeric: lining-nums; }
-.wm-txt { font-style: italic; font-weight: 400; }
+
 .lang { display: flex; gap: .25rem; }
 .lang button { font: 600 var(--step--1) var(--sans); background: none; color: inherit; border: 1px solid transparent; border-radius: .4rem; padding: .3rem .55rem; cursor: pointer; }
 .lang button[aria-pressed="true"] { border-color: currentColor; }

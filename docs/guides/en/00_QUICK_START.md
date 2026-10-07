@@ -3,7 +3,7 @@
 🇫🇷 [Version française](../00_DEMARRAGE_RAPIDE.md)
 
 ## What you get
-An **AI-driven game studio**: the complete design of a realistic 3D co-op game (*300 Years Later*), a legal pack, a cinematic landing page, tests, and above all **skills** that let Claude Code (or another AI) build the game in Unreal Engine 5.8 autonomously from A to Z, only coming to you for the decisions that are yours.
+An **AI-driven game studio**: the complete design of a realistic 3D co-op game (*Afterloom*), a legal pack, a cinematic landing page, tests, and above all **skills** that let Claude Code (or another AI) build the game in Unreal Engine 5.8 autonomously from A to Z, only coming to you for the decisions that are yours.
 
 ## What you need
 - A Windows 10/11 PC with a recent GPU (RTX 3070/4070 or better), 32 GB RAM, 300 GB free — details in [02_INSTALLATION.md](02_INSTALLATION.md).
