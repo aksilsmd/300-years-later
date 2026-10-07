@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="fr" data-era="0">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>300 Years Later — un jeu coopératif à travers les siècles</title>
+<meta name="description" content="Jusqu'à 4 amis, chacun dans un siècle différent de la même vallée. Ce que tu fais aujourd'hui, ton ami le retrouve 300 ans plus tard.">
+<meta property="og:title" content="300 Years Later">
+<meta property="og:description" content="4 amis. 4 siècles. 1 vallée. Un jeu coopératif où le passé vieillit en direct chez tes amis.">
+<meta property="og:type" content="website">
+<meta name="color-scheme" content="light dark">
+<!-- Polices auto-hébergées (OFL) : décommentez après avoir ajouté les fichiers dans fonts/ -->
+<!-- <link rel="stylesheet" href="fonts/fonts.css"> -->
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#contenu" data-i18n="skip">Aller au contenu</a>
+
+<header class="top">
+  <a class="wordmark" href="#" aria-label="300 Years Later, accueil"><span class="wm-num">300</span> <span class="wm-txt">Years Later</span></a>
+  <nav aria-label="Langue" class="lang">
+    <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+  </nav>
+  <a class="btn btn-small" href="#steam" data-i18n="ctaShort">Liste de souhaits</a>
+</header>
+
+<main id="contenu">
+  <!-- Héros : le compteur d'années est l'élément mémorable de la page -->
+  <section class="hero" aria-labelledby="hero-title">
+    <p class="hero-era" aria-live="polite"><span id="era-name">L'Aube</span></p>
+    <h1 id="hero-title" class="year" aria-label="An 0 à an 900">
+      <span class="year-prefix" data-i18n="yearPrefix">an</span>
+      <span class="year-num" id="year-num">0</span>
+    </h1>
+    <p class="hero-line" data-i18n="heroLine">Tu plantes une graine. Ton ami la retrouve trois cents ans plus tard, devenue chêne.</p>
+    <p class="hero-sub" data-i18n="heroSub">Un jeu coopératif pour 1 à 4 joueurs. Chacun vit dans un siècle différent de la même vallée, et tout ce que vous laissez derrière vous vieillit sous les yeux des autres.</p>
+    <div class="hero-actions">
+      <a class="btn" id="steam" href="#steam-soon" data-i18n="cta">Ajouter à ma liste de souhaits</a>
+      <a class="link" href="#regle" data-i18n="howLink">Comment ça marche</a>
+    </div>
+  </section>
+
+  <!-- La règle : une même parcelle à travers les quatre époques (vraie séquence) -->
+  <section class="strata" id="regle" aria-labelledby="strata-title">
+    <h2 id="strata-title" data-i18n="strataTitle">La règle tient en une phrase : tout ce que tu laisses vieillit.</h2>
+    <ol class="layers">
+      <li class="layer" data-era="0">
+        <p class="layer-year">an 0</p>
+        <h3 data-i18n="l0t">L'Aube</h3>
+        <p data-i18n="l0p">Tu creuses, tu plantes une graine au bord de la rivière. Un mammouth curieux la renifle.</p>
+      </li>
+      <li class="layer" data-era="1">
+        <p class="layer-year">an 300</p>
+        <h3 data-i18n="l1t">Les Bannières</h3>
+        <p data-i18n="l1p">Ta graine est un chêne. Le bourg a construit son marché dessous. Ton amie y attache une balançoire.</p>
+      </li>
+      <li class="layer" data-era="2">
+        <p class="layer-year">an 600</p>
+        <h3 data-i18n="l2t">La Vapeur</h3>
+        <p data-i18n="l2p">Le chêne est géant. L'usine voisine l'a épargné, on ne sait pas pourquoi. Les ouvriers déjeunent à son ombre.</p>
+      </li>
+      <li class="layer" data-era="3">
+        <p class="layer-year">an 900</p>
+        <h3 data-i18n="l3t">Le Néon</h3>
+        <p data-i18n="l3p">C'est l'Arbre millénaire, couvert de lanternes. Le musée raconte, très sérieusement, que tu l'as planté « pour faire de l'ombre à personne ».</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="coop" aria-labelledby="coop-title">
+    <h2 id="coop-title" data-i18n="coopTitle">Quatre amis, quatre siècles, une vallée</h2>
+    <div class="coop-text">
+      <p data-i18n="coop1">Vous jouez au même endroit, mais pas à la même époque. Tu vois tes amis comme des silhouettes translucides et tu les entends de plus en plus étouffés à mesure que vous vous éloignez.</p>
+      <p data-i18n="coop2">Un client exigeant du futur vous confie un contrat : un pont rouge au-dessus d'un canyon qui n'existe pas encore, une statue de canard vénérée, un troupeau légendaire. À vous de vous organiser à travers le temps.</p>
+      <p data-i18n="coop3">Entre deux manches, les siècles défilent et chacun avance d'une époque. Tu hérites de ce que les autres t'ont laissé. Bonne chance.</p>
+    </div>
+  </section>
+
+  <!-- Le grand livre des conséquences : contenu réel issu de data/recipes -->
+  <section class="ledger" aria-labelledby="ledger-title">
+    <h2 id="ledger-title" data-i18n="ledgerTitle">Ce que le temps fait de vos bêtises</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-labelledby="ledger-title">
+      <table>
+        <thead>
+          <tr><th scope="col" data-i18n="colAction">Tu laisses…</th><th scope="col">+300 ans</th><th scope="col">+600 ans</th><th scope="col">+900 ans</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row" data-i18n="r1a">trois pierres empilées</th><td data-i18n="r1b">un cairn</td><td data-i18n="r1c">un monument vénéré</td><td data-i18n="r1d">un site touristique avec boutique</td></tr>
+          <tr><th scope="row" data-i18n="r2a">une tranchée près de l'eau</th><td data-i18n="r2b">un ruisseau</td><td data-i18n="r2c">une rivière</td><td data-i18n="r2d">un canyon</td></tr>
+          <tr><th scope="row" data-i18n="r3a">un barrage de branches</th><td data-i18n="r3b">un étang</td><td data-i18n="r3c">un lac</td><td data-i18n="r3d">une station balnéaire</td></tr>
+          <tr><th scope="row" data-i18n="r4a">ta pose sur un socle</th><td data-i18n="r4b">ta statue</td><td data-i18n="r4c">une légende locale</td><td data-i18n="r4d">ta statue géante, en néon</td></tr>
+          <tr><th scope="row" data-i18n="r5a">deux mammouths ensemble</th><td data-i18n="r5b">un troupeau</td><td data-i18n="r5c">une race domestiquée</td><td data-i18n="r5d">la mascotte de la ville</td></tr>
+          <tr><th scope="row" data-i18n="r6a">un objet venu du futur</th><td data-i18n="r6b">un fan-club</td><td data-i18n="r6c">un fan-club géant</td><td data-i18n="r6d">un paradoxe</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note" data-i18n="ledgerNote">Si le futur contredit le passé, le temps se fissure et les Chronomites arrivent. Elles ont faim.</p>
+  </section>
+
+  <section class="museum" aria-labelledby="museum-title">
+    <h2 id="museum-title" class="visually-hidden" data-i18n="museumTitle">Le musée de fin de partie</h2>
+    <blockquote>
+      <p data-i18n="museumQuote">« La Statue du Canard. Datée de l'an 0. Les historiens s'accordent : Lou faisait ça tout le temps. »</p>
+      <footer data-i18n="museumBy">ARCHIVE, guide du Musée de Tout, à la fin de chaque partie</footer>
+    </blockquote>
+    <p class="museum-text" data-i18n="museumText">Chaque partie se termine par la visite d'un musée construit à partir de ce que vous avez fait. Il est toujours faux, et c'est le meilleur moment de la soirée.</p>
+  </section>
+
+  <section class="modes" aria-labelledby="modes-title">
+    <h2 id="modes-title" data-i18n="modesTitle">Façons de jouer</h2>
+    <dl>
+      <div><dt data-i18n="m1t">Contrat, de 2 à 4 joueurs</dt><dd data-i18n="m1d">Le cœur du jeu : trois manches, une rotation des époques, un musée.</dd></div>
+      <div><dt data-i18n="m2t">Relais, en solo</dt><dd data-i18n="m2d">Tu joues l'an 0, puis tu hérites de toi-même en l'an 300. « Pourquoi j'ai mis ça là ? »</dd></div>
+      <div><dt data-i18n="m3t">Capsule, en différé</dt><dd data-i18n="m3d">Tu joues le passé, tu envoies un code, ton ami joue le futur quand il veut.</dd></div>
+      <div><dt data-i18n="m4t">Saboteur du temps</dt><dd data-i18n="m4d">L'un de vous veut faire s'effondrer l'histoire. Démasquez-le à la pause café.</dd></div>
+      <div><dt data-i18n="m5t">Spectateurs du temps</dt><dd data-i18n="m5d">En stream, le chat vote les catastrophes et baptise les statues.</dd></div>
+    </dl>
+  </section>
+
+  <section class="faq" aria-labelledby="faq-title">
+    <h2 id="faq-title" data-i18n="faqTitle">Questions fréquentes</h2>
+    <details><summary data-i18n="q1">Quand sort le jeu ?</summary><p data-i18n="a1">Il est en développement. Ajoute-le à ta liste de souhaits pour être prévenu de la démo.</p></details>
+    <details><summary data-i18n="q2">Faut-il un micro ?</summary><p data-i18n="a2">Non. Les pings, les emotes et les phrases rapides suffisent pour jouer ensemble.</p></details>
+    <details><summary data-i18n="q3">Y a-t-il des achats dans le jeu ?</summary><p data-i18n="a3">Non : pas de loot box, pas de monnaie payante, pas de publicité.</p></details>
+    <details><summary data-i18n="q4">Puis-je streamer et monétiser mes vidéos ?</summary><p data-i18n="a4">Oui, librement. La musique est sans réclamation de droits d'auteur.</p></details>
+    <details><summary data-i18n="q5">Où sont les images du jeu ?</summary><p data-i18n="a5">Elles arriveront avec la démo. Nous ne montrerons que des images réellement issues du jeu.</p></details>
+  </section>
+
+  <section class="final" id="steam-soon" aria-labelledby="final-title">
+    <h2 id="final-title" data-i18n="finalTitle">Rendez-vous dans trois cents ans. Ou à la démo.</h2>
+    <a class="btn" href="#steam-soon" data-i18n="cta" aria-describedby="steam-note">Ajouter à ma liste de souhaits</a>
+    <p id="steam-note" class="note" data-i18n="steamNote">Le lien vers la page Steam sera ajouté à son ouverture.</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <p data-i18n="foot1">Aucun cookie, aucun traceur sur ce site.</p>
+  <nav aria-label="Informations légales">
+    <a href="legal/mentions-legales.html" data-i18n="fl1">Mentions légales</a>
+    <a href="legal/confidentialite.html" data-i18n="fl2">Confidentialité</a>
+    <a href="legal/presse.html" data-i18n="fl3">Presse et créateurs</a>
+  </nav>
+  <p class="small" data-i18n="foot2">Titre de travail. Unreal est une marque d'Epic Games, Inc. Steam est une marque de Valve Corporation.</p>
+</footer>
+<script src="main.js" defer></script>
+</body>
+</html>

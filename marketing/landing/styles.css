@@ -1,0 +1,135 @@
+/* 300 Years Later — landing de référence, sans dépendance ni ressource externe.
+   Polices : si les fichiers OFL Fraunces / Bricolage Grotesque sont ajoutés dans fonts/
+   (avec leur licence), ils sont utilisés ; sinon, repli sur les polices système. */
+
+:root {
+  /* Une palette par époque ; la page entière change d'époque */
+  --dawn-bg: #f3d9b1; --dawn-ink: #2a1a0e; --dawn-accent: #b5541c;
+  --banner-bg: #e8eef0; --banner-ink: #1d2733; --banner-accent: #9d7a12;
+  --steam-bg: #3b2a22; --steam-ink: #f1dccb; --steam-accent: #e08a4f;
+  --neon-bg: #0d1030; --neon-ink: #e9e6ff; --neon-accent: #6cf2c2;
+
+  --bg: var(--dawn-bg); --ink: var(--dawn-ink); --accent: var(--dawn-accent);
+  --serif: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans: "Bricolage Grotesque", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --measure: 34rem;
+  --step--1: clamp(.875rem, .85rem + .1vw, .95rem);
+  --step-0: clamp(1.0625rem, 1rem + .25vw, 1.1875rem);
+  --step-1: clamp(1.33rem, 1.2rem + .6vw, 1.6rem);
+  --step-2: clamp(1.8rem, 1.5rem + 1.5vw, 2.6rem);
+  --step-3: clamp(2.4rem, 1.8rem + 3vw, 4.2rem);
+  --space: clamp(4rem, 3rem + 6vw, 9rem);
+  --transition: background-color 900ms ease, color 900ms ease;
+}
+html[data-era="1"] { --bg: var(--banner-bg); --ink: var(--banner-ink); --accent: var(--banner-accent); }
+html[data-era="2"] { --bg: var(--steam-bg); --ink: var(--steam-ink); --accent: var(--steam-accent); }
+html[data-era="3"] { --bg: var(--neon-bg); --ink: var(--neon-ink); --accent: var(--neon-accent); }
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 400 var(--step-0)/1.55 var(--sans);
+  transition: var(--transition);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.08; margin: 0; letter-spacing: -.01em; }
+h2 { font-size: var(--step-3); max-width: 18ch; }
+h3 { font-size: var(--step-1); }
+p { margin: 0; max-width: var(--measure); }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+.skip { position: absolute; left: -999px; top: 0; padding: .6rem 1rem; background: var(--ink); color: var(--bg); z-index: 10; }
+.skip:focus { left: 1rem; top: 1rem; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* En-tête */
+.top { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 1.5rem; padding: 1rem clamp(1rem, 4vw, 3rem); background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); transition: var(--transition); }
+.wordmark { font-family: var(--serif); font-size: 1.25rem; text-decoration: none; margin-right: auto; white-space: nowrap; }
+.btn-small { white-space: nowrap; }
+.wm-num { font-weight: 800; font-variant-numeric: lining-nums; }
+.wm-txt { font-style: italic; font-weight: 400; }
+.lang { display: flex; gap: .25rem; }
+.lang button { font: 600 var(--step--1) var(--sans); background: none; color: inherit; border: 1px solid transparent; border-radius: .4rem; padding: .3rem .55rem; cursor: pointer; }
+.lang button[aria-pressed="true"] { border-color: currentColor; }
+
+/* Boutons */
+.btn { display: inline-block; font: 650 var(--step-0) var(--sans); text-decoration: none; background: var(--ink); color: var(--bg); padding: .95rem 1.5rem; border-radius: 999px; transition: transform 160ms ease, var(--transition); }
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
+.btn-small { padding: .55rem 1rem; font-size: var(--step--1); }
+.link { font-weight: 600; text-underline-offset: .25em; }
+
+/* Héros */
+.hero { min-height: calc(100svh - 4.5rem); display: grid; align-content: end; gap: 1.5rem 4rem; padding: 1rem clamp(1rem, 6vw, 6rem) 4rem;
+  grid-template-columns: 1fr; grid-template-areas: "era" "year" "line" "sub" "actions"; }
+.hero-era { grid-area: era; } .year { grid-area: year; } .hero-line { grid-area: line; } .hero-sub { grid-area: sub; } .hero-actions { grid-area: actions; }
+@media (min-width: 64rem) {
+  .hero { grid-template-columns: 1.1fr 1fr; grid-template-areas: "era era" "year year" "line sub" "line actions"; }
+  .hero-sub { align-self: end; }
+}
+.hero-era { font-family: var(--serif); font-style: italic; font-size: var(--step-1); color: var(--accent); transition: color 900ms ease; }
+.year { display: flex; align-items: baseline; gap: .12em; font-size: clamp(7rem, 2rem + 27vw, 30rem); font-weight: 800; line-height: .82; letter-spacing: -.045em; font-variation-settings: "SOFT" 100, "WONK" 1; }
+.year-prefix { font-size: .2em; font-weight: 400; font-style: italic; letter-spacing: 0; }
+.year-num { font-variant-numeric: tabular-nums lining-nums; min-width: 3ch; }
+.hero-line { font-family: var(--serif); font-size: var(--step-2); line-height: 1.2; max-width: 22ch; }
+.hero-sub { max-width: 38rem; }
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; margin-top: .5rem; }
+
+/* Strates : une même parcelle, quatre époques */
+.strata { padding: var(--space) clamp(1rem, 6vw, 6rem); display: grid; gap: 3rem; }
+.layers { list-style: none; margin: 0; padding: 0; display: grid; }
+.layer { display: grid; grid-template-columns: minmax(6rem, 12rem) 1fr; gap: .4rem 2rem; padding: 2.2rem 0; border-top: 2px solid currentColor; }
+.layer:last-child { border-bottom: 2px solid currentColor; }
+.layer-year { grid-row: span 2; font-family: var(--serif); font-size: var(--step-2); font-weight: 800; color: var(--accent); }
+.layer p:not(.layer-year) { max-width: 40rem; }
+
+/* Coopération */
+.coop { padding: var(--space) clamp(1rem, 6vw, 6rem); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 2.5rem 5rem; align-items: start; }
+.coop-text { display: grid; gap: 1.2rem; }
+
+/* Grand livre */
+.ledger { padding: var(--space) clamp(1rem, 6vw, 6rem); display: grid; gap: 2rem; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; min-width: 44rem; border-collapse: collapse; font-size: var(--step-0); }
+th, td { text-align: left; padding: .9rem 1rem .9rem 0; border-bottom: 1px solid color-mix(in srgb, currentColor 30%, transparent); vertical-align: top; }
+thead th { font-family: var(--serif); font-weight: 700; color: var(--accent); }
+tbody th { font-weight: 650; }
+.note { font-style: italic; }
+
+/* Musée */
+.museum { padding: var(--space) clamp(1rem, 6vw, 6rem); display: grid; gap: 2rem; }
+blockquote { margin: 0; }
+blockquote p { font-family: var(--serif); font-size: var(--step-3); line-height: 1.1; max-width: 22ch; font-style: italic; }
+blockquote footer { margin-top: 1rem; font-size: var(--step--1); }
+
+/* Modes */
+.modes { padding: var(--space) clamp(1rem, 6vw, 6rem); display: grid; gap: 2.5rem; }
+dl { margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: 2rem 3rem; }
+dt { font-family: var(--serif); font-size: var(--step-1); font-weight: 700; margin-bottom: .4rem; }
+dd { margin: 0; }
+
+/* FAQ */
+.faq { padding: var(--space) clamp(1rem, 6vw, 6rem); display: grid; gap: 1rem; max-width: 60rem; }
+.faq h2 { margin-bottom: 1.5rem; }
+details { border-top: 1px solid color-mix(in srgb, currentColor 35%, transparent); padding: 1rem 0; }
+summary { cursor: pointer; font-weight: 650; font-size: var(--step-1); font-family: var(--serif); }
+details p { margin-top: .8rem; }
+
+/* Fin */
+.final { padding: var(--space) clamp(1rem, 6vw, 6rem); display: grid; gap: 1.5rem; justify-items: start; }
+.foot { padding: 3rem clamp(1rem, 6vw, 6rem); display: grid; gap: .8rem; border-top: 2px solid currentColor; font-size: var(--step--1); }
+.foot nav { display: flex; flex-wrap: wrap; gap: 1.2rem; }
+.small { opacity: .8; }
+
+@media (max-width: 40rem) {
+  .layer { grid-template-columns: 1fr; }
+  .layer-year { grid-row: auto; }
+  .top { gap: .6rem; }
+  .wordmark { font-size: 1.05rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}

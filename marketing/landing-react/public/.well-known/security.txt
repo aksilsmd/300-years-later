@@ -1,0 +1,5 @@
+# À compléter avant mise en ligne (RFC 9116)
+Contact: [ADRESSE E-MAIL SÉCURITÉ DU PROJET]
+Expires: 2027-10-07T00:00:00.000Z
+Preferred-Languages: fr, en
+Policy: [URL DE LA POLITIQUE DE DIVULGATION]

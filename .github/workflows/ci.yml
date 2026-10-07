@@ -1,0 +1,57 @@
+name: CI — données, confidentialité, landing
+on:
+  push: { branches: [main] }
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install jsonschema pytest playwright robotframework robotframework-browser
+      - name: Données de jeu
+        run: python3 tools/validate_data.py
+      - name: Confidentialité (données personnelles, secrets, traceurs)
+        run: python3 tools/privacy_scan.py
+      - name: Licences
+        run: python3 tools/license_audit.py
+      - name: Aucun contenu Unreal sous licence dans le dépôt public
+        run: |
+          if git ls-files | grep -Ei '\.(uasset|umap|pak)$|^game/Content/'; then echo "Contenu binaire Unreal interdit dans le dépôt public"; exit 1; fi
+      - name: Tests Playwright de la landing de référence
+        run: |
+          python -m playwright install --with-deps chromium
+          python -m pytest tests/web -q
+      - name: Tests Robot Framework
+        run: |
+          rfbrowser init chromium
+          robot --outputdir results tests/robot
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: robot-results, path: results }
+
+  landing-react:
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: marketing/landing-react } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: if [ -f package-lock.json ]; then npm ci; else npm install; fi
+      - run: npm run build
+      - run: npm audit --audit-level=high
+      - uses: actions/upload-artifact@v4
+        with: { name: landing-dist, path: marketing/landing-react/dist }
+
+  video-typecheck:
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: marketing/video } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: if [ -f package-lock.json ]; then npm ci; else npm install; fi
+      - run: npx tsc --noEmit

@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+# Activez avec : git config core.hooksPath .githooks
+set -e
+python3 tools/privacy_scan.py --staged
+python3 tools/validate_data.py

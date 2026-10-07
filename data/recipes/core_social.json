@@ -1,0 +1,146 @@
+[
+  {
+    "id": "pose",
+    "description": "Pose sur socle → statue → statue érodée + légende → statue géante néon",
+    "input": { "type": "pose_capture" },
+    "conditions": [],
+    "outputs": {
+      "1": [ { "type": "statue", "weight": 100, "size": [1,1], "tags_add": ["symbolic", "mineral"], "props": { "pose_from_input": 1 } } ],
+      "2": [ { "type": "eroded_statue", "weight": 100, "size": [1,1], "tags_add": ["symbolic"], "props": { "legend": 1 } } ],
+      "3": [ { "type": "neon_statue", "weight": 100, "size": [3,3], "tags_add": ["symbolic"], "score": 5 } ]
+    },
+    "paradox_weight": 15,
+    "chronicle": "CHR_STATUE_01",
+    "sfx": "statue_gong",
+    "chapter_min": 1
+  },
+  {
+    "id": "pose_duck",
+    "description": "Pose canard → statue canard → fan-club du Canard → mascotte",
+    "input": { "type": "pose_capture" },
+    "conditions": [ { "fn": "prop_equals", "key": "pose_id", "value": "duck" } ],
+    "outputs": {
+      "1": [ { "type": "duck_statue", "weight": 100, "size": [1,1], "tags_add": ["symbolic", "mineral"] } ],
+      "2": [ { "type": "duck_fanclub", "weight": 100, "size": [3,3], "tags_add": ["symbolic"], "props": { "fanclub": 10 } } ],
+      "3": [ { "type": "mascot_duck", "weight": 100, "size": [3,3], "tags_add": ["symbolic"], "score": 7 } ]
+    },
+    "paradox_weight": 15,
+    "chronicle": "CHR_STATUE_01",
+    "sfx": "statue_gong",
+    "chapter_min": 1
+  },
+  {
+    "id": "shiny_public",
+    "description": "Objet brillant en zone publique (E1) → confisqué → Trésor du Baron → collection privée",
+    "input": { "type": "*", "tags_all": ["shiny"] },
+    "conditions": [ { "fn": "era_is", "value": 1 }, { "fn": "public_zone" } ],
+    "outputs": {
+      "1": [ { "type": "confiscated_object", "weight": 100, "size": [1,1], "props": { "in_treasury": 1 } } ],
+      "2": [ { "type": "baron_treasure", "weight": 100, "size": [1,1], "tags_add": ["symbolic", "metal"] } ],
+      "3": [ { "type": "private_collection", "weight": 100, "size": [1,1], "tags_add": ["symbolic"], "score": 3 } ]
+    },
+    "paradox_weight": 10,
+    "chronicle": "CHR_TREASURE_01",
+    "sfx": "tax_stamp",
+    "chapter_min": 2
+  },
+  {
+    "id": "animals_pair",
+    "description": "Deux animaux d'une espèce ensemble → troupeau → race domestiquée → mascotte de la ville",
+    "input": { "type": "*", "tags_all": ["living"], "min_count": 2 },
+    "conditions": [ { "fn": "count_tag_min", "tag": "living", "radius": 2, "value": 2 } ],
+    "outputs": {
+      "1": [ { "type": "herd", "weight": 100, "size": [3,3], "tags_add": ["living"], "props": { "count": 6 } } ],
+      "2": [ { "type": "domestic_breed", "weight": 100, "size": [3,3], "tags_add": ["living"], "props": { "count": 10 } } ],
+      "3": [ { "type": "town_mascot", "weight": 100, "size": [3,3], "tags_add": ["living", "symbolic"], "score": 6 } ]
+    },
+    "paradox_weight": 20,
+    "chronicle": "CHR_HERD_01",
+    "sfx": "herd",
+    "chapter_min": 2
+  },
+  {
+    "id": "graffiti",
+    "description": "Gravure → inscription ancienne → texte sacré mal traduit → plaque officielle",
+    "input": { "type": "engraving" },
+    "conditions": [],
+    "outputs": {
+      "1": [ { "type": "ancient_inscription", "weight": 100, "size": [1,1], "tags_add": ["symbolic"] } ],
+      "2": [ { "type": "sacred_text", "weight": 100, "size": [1,1], "tags_add": ["symbolic"], "props": { "fanclub": 3 } } ],
+      "3": [ { "type": "official_plaque", "weight": 100, "size": [1,1], "tags_add": ["symbolic"], "score": 2 } ]
+    },
+    "paradox_weight": 10,
+    "chronicle": "CHR_CULT_01",
+    "sfx": "chisel",
+    "chapter_min": 1
+  },
+  {
+    "id": "trash",
+    "description": "≥ 5 déchets → décharge → couche fossile → mine",
+    "input": { "type": "trash", "min_count": 5 },
+    "conditions": [],
+    "outputs": {
+      "1": [ { "type": "dump", "weight": 100, "size": [3,3] } ],
+      "2": [ { "type": "fossil_layer", "weight": 100, "size": [3,3] } ],
+      "3": [ { "type": "mine", "weight": 100, "size": [3,3], "tags_add": ["mineral"], "props": { "resources": 20 }, "score": 2 } ]
+    },
+    "paradox_weight": 5,
+    "chronicle": "CHR_CULT_01",
+    "sfx": "dump",
+    "chapter_min": 2
+  },
+  {
+    "id": "anachronism",
+    "description": "Objet venu d'une époque future → fan-club → fan-club géant → paradoxe latent",
+    "input": { "type": "*", "tags_all": ["anachronism"] },
+    "conditions": [ { "fn": "era_before_origin" } ],
+    "outputs": {
+      "1": [ { "type": "object_fanclub", "weight": 100, "size": [3,3], "tags_add": ["symbolic"], "props": { "fanclub": 5 } } ],
+      "2": [ { "type": "giant_fanclub", "weight": 100, "size": [5,5], "tags_add": ["symbolic"], "props": { "fanclub": 25 }, "score": 4 } ],
+      "3": [ { "type": "latent_paradox", "weight": 100, "size": [1,1], "props": { "paradox_add": 10 } } ]
+    },
+    "paradox_weight": 25,
+    "chronicle": "CHR_ANACHRO_01",
+    "sfx": "glitch",
+    "chapter_min": 2
+  },
+  {
+    "id": "logs_rail",
+    "description": "Troncs près des rails (E2) → planches immédiates ; pont si au-dessus d'un ruisseau/canyon",
+    "input": { "type": "log" },
+    "conditions": [ { "fn": "era_is", "value": 2 }, { "fn": "near_rail", "radius": 2 } ],
+    "outputs": {
+      "1": [ { "type": "planks", "weight": 100, "size": [1,1], "tags_add": ["crafted"], "props": { "bridge_if_over_water": 1 } } ]
+    },
+    "paradox_weight": 10,
+    "chronicle": "CHR_PATH_01",
+    "sfx": "automaton_process",
+    "chapter_min": 2
+  },
+  {
+    "id": "pigment",
+    "description": "Pigment appliqué → délavé 50 % → couleur traditionnelle → couleur protégée",
+    "input": { "type": "*", "tags_all": ["painted"] },
+    "conditions": [],
+    "outputs": {
+      "1": [ { "type": "*", "weight": 100, "props": { "paint_alpha": 50 } } ],
+      "2": [ { "type": "*", "weight": 100, "props": { "paint_alpha": 50, "traditional": 1 }, "score": 1 } ],
+      "3": [ { "type": "*", "weight": 100, "props": { "paint_alpha": 100, "protected_color": 1 } } ]
+    },
+    "paradox_weight": 5,
+    "chronicle": "CHR_CULT_01",
+    "sfx": "paint",
+    "chapter_min": 1
+  },
+  {
+    "id": "protected",
+    "description": "Toute trace ancrée ou en grotte reste inchangée",
+    "input": { "type": "*", "tags_all": ["protected"] },
+    "conditions": [],
+    "outputs": {},
+    "paradox_weight": 0,
+    "chronicle": "CHR_NOTHING_01",
+    "sfx": "anchor",
+    "chapter_min": 3
+  }
+]

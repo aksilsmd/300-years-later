@@ -1,0 +1,92 @@
+[
+  {
+    "id": "seed",
+    "description": "Graine → arbre → grand arbre → arbre millénaire",
+    "input": { "type": "seed" },
+    "conditions": [ { "fn": "sunlight" } ],
+    "outputs": {
+      "1": [ { "type": "tree", "weight": 50, "size": [1,1], "blocks": true, "props": { "variant": "oak" } },
+             { "type": "tree", "weight": 30, "size": [1,1], "blocks": true, "props": { "variant": "pine" } },
+             { "type": "tree", "weight": 20, "size": [1,1], "blocks": true, "props": { "variant": "duck_tree" } } ],
+      "2": [ { "type": "big_tree", "weight": 100, "size": [1,1], "blocks": true, "contrary": "courtyard_tree" } ],
+      "3": [ { "type": "ancient_tree", "weight": 100, "size": [1,1], "blocks": true, "tags_add": ["symbolic"], "score": 3 } ]
+    },
+    "paradox_weight": 15,
+    "chronicle": "CHR_TREE_01",
+    "sfx": "grow_tree",
+    "chapter_min": 1
+  },
+  {
+    "id": "seed_water",
+    "description": "Graine près de l'eau → bosquet → forêt → réserve naturelle",
+    "input": { "type": "seed" },
+    "conditions": [ { "fn": "sunlight" }, { "fn": "near_water", "radius": 2 } ],
+    "outputs": {
+      "1": [ { "type": "grove", "weight": 100, "size": [3,3], "blocks": true } ],
+      "2": [ { "type": "forest", "weight": 100, "size": [5,5], "blocks": true, "contrary": "flooded_park" } ],
+      "3": [ { "type": "nature_reserve", "weight": 100, "size": [5,5], "tags_add": ["protected", "symbolic"], "score": 4 } ]
+    },
+    "paradox_weight": 20,
+    "chronicle": "CHR_TREE_01",
+    "sfx": "grow_forest",
+    "chapter_min": 1
+  },
+  {
+    "id": "seed_marsh",
+    "description": "Graine dans le marais → forêt → jungle → marais sacré",
+    "input": { "type": "seed" },
+    "conditions": [ { "fn": "sunlight" }, { "fn": "in_marsh" } ],
+    "outputs": {
+      "1": [ { "type": "forest", "weight": 100, "size": [5,5], "blocks": true } ],
+      "2": [ { "type": "jungle", "weight": 100, "size": [7,7], "blocks": true } ],
+      "3": [ { "type": "sacred_marsh", "weight": 100, "size": [7,7], "tags_add": ["protected", "symbolic"], "score": 5 } ]
+    },
+    "paradox_weight": 20,
+    "chronicle": "CHR_TREE_01",
+    "sfx": "grow_forest",
+    "chapter_min": 1
+  },
+  {
+    "id": "seed_cave",
+    "description": "Graine dans la grotte : rien ne pousse, elle devient fossile",
+    "input": { "type": "seed" },
+    "conditions": [ { "fn": "in_cave" } ],
+    "outputs": {
+      "3": [ { "type": "fossil_seed", "weight": 100, "size": [1,1], "tags_add": ["symbolic"], "score": 2 } ]
+    },
+    "paradox_weight": 5,
+    "chronicle": "CHR_NOTHING_01",
+    "sfx": "fossil",
+    "chapter_min": 1
+  },
+  {
+    "id": "fire",
+    "description": "Feu laissé → zone brûlée → sol fertile → champ",
+    "input": { "type": "campfire" },
+    "conditions": [],
+    "outputs": {
+      "1": [ { "type": "burnt_ground", "weight": 100, "size": [5,5] } ],
+      "2": [ { "type": "fertile_soil", "weight": 100, "size": [5,5], "props": { "growth_mult": 2 } } ],
+      "3": [ { "type": "field", "weight": 100, "size": [5,5], "score": 2 } ]
+    },
+    "paradox_weight": 10,
+    "chronicle": "CHR_FIRE_01",
+    "sfx": "fire_crackle",
+    "chapter_min": 1
+  },
+  {
+    "id": "fire_near_hut",
+    "description": "Feu près d'une construction → hutte brûlée + rancune → ruine → ruine romantique",
+    "input": { "type": "campfire" },
+    "conditions": [ { "fn": "count_tag_min", "tag": "crafted", "radius": 3, "value": 1 } ],
+    "outputs": {
+      "1": [ { "type": "burnt_hut", "weight": 100, "size": [3,3], "props": { "grudge": 1 } } ],
+      "2": [ { "type": "ruin", "weight": 100, "size": [3,3] } ],
+      "3": [ { "type": "romantic_ruin", "weight": 100, "size": [3,3], "tags_add": ["symbolic"], "score": 3 } ]
+    },
+    "paradox_weight": 15,
+    "chronicle": "CHR_FIRE_01",
+    "sfx": "fire_crackle",
+    "chapter_min": 1
+  }
+]

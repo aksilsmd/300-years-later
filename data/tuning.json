@@ -1,0 +1,38 @@
+{
+  "_doc": "Valeurs initiales de docs/20_GAME_DESIGN_PARAMETERS.md. Aucune valeur de gameplay en dur dans le code : tout se lit ici.",
+  "version": 1,
+  "match": { "rounds": 3, "rounds_solo": 4, "round_seconds": 300, "round_seconds_solo": 240, "warn_seconds": [60, 10], "coffee_break_seconds": 30, "museum_max_seconds": 120, "rotation": true },
+  "player": { "walk_speed": 4.5, "run_speed": 7.5, "stamina_seconds": 6, "stamina_regen_seconds": 4, "jump_height": 1.2, "interact_radius": 2.5, "interact_cone_deg": 90, "inventory_small_slots": 3, "carry_heavy_speed_mult": 0.7, "carry_duo_speed_mult": 0.5, "drag_solo_speed_mult": 0.3, "dig_seconds_per_cell": 1.5, "dig_max_depth": 3, "plant_seconds": 0.5, "fall_stun_height": 6, "fall_stun_seconds": 1.5, "hazard_stun_seconds": 2 },
+  "world": { "size_m": 400, "cell_m": 2, "grid": 200, "max_walkable_slope_deg": 35, "water_tick_hz": 4, "trace_budget_per_era": 2000, "poi_min": 6, "poi_max": 10, "poi_min_distance_m": 35 },
+  "aging": { "appear_anim_seconds": 0.4, "max_hops": 3, "path_wear_thresholds": [40, 120, 300] },
+  "paradox": { "max": 100, "minor": 15, "major": 25, "anachronism_per_break": 5, "decay_per_second": 1, "chronomites_thresholds": { "50": 3, "75": 6 }, "chronomite_bite_seconds": 20, "collapse_chronos_mult": 0.5, "saboteur_key_add": 20, "saboteur_key_cooldown": 60, "saboteur_key_charges": 3, "wrong_vote_add": 10 },
+  "score": { "main": 60, "alternative": 36, "alternative_radius_m": 30, "bonus": 15, "absurd": 10, "richness_max": 20, "paradox_penalty_mult": 0.2, "collapse_cap": 40, "stars": [90, 75, 55, 35], "chronos_per_star": 20, "chronos_per_richness": 2, "daily_first_five_star_mult": 2 },
+  "tools": {
+    "shovel": { "price": 0, "chapter": 1 },
+    "seed_gun": { "price": 0, "chapter": 1, "range_m": 15, "cooldown": 0.8, "ammo_per_round": 20 },
+    "plinth": { "price": 0, "chapter": 1, "per_round": 1, "capture_seconds": 2 },
+    "pigments": { "price": 50, "chapter": 1, "uses": 10 },
+    "horn": { "price": 150, "chapter": 2, "radius_m": 20, "cooldown": 10 },
+    "time_booth": { "price": 300, "chapter": 2, "per_round": 1 },
+    "anchor": { "price": 250, "chapter": 3, "charges_per_match": 2 },
+    "hourglass": { "price": 200, "chapter": 3, "preview_seconds": 5, "cooldown": 20 },
+    "fake_certificate": { "price": 100, "chapter": 3 }
+  },
+  "hazards": {
+    "bouloche": { "era": 0, "detect_m": 25, "eat_seconds": 3, "eat_interval": 12, "speed": 3, "apples_follow": 3, "follow_seconds": 60, "apples_tame": 10 },
+    "fiscalin": { "era": 1, "idle_seconds_before_tax": 10, "teleport_m": 20, "speed": 3.5 },
+    "automaton": { "era": 2, "rail_radius_m": 4, "process_seconds": 2, "speed": 4 },
+    "smog": { "era": 2, "kettle_threshold": 80, "visibility_m": 15, "duration": 40, "valves": 2, "valve_seconds": 3 },
+    "brigade": { "era": 3, "scan_seconds": 5, "speed": 6 },
+    "chronomite": { "speed": 2 },
+    "tourists": { "era": 3, "per_richness": 3, "speed": 2 },
+    "empty_era_sim": { "bouloche_eat_ratio": 0.3, "fiscalin_confiscate_ratio": 0.5, "automaton_radius_m": 4, "brigade_recycle_ratio": 1.0 },
+    "solo_hazard_mult": 0.7
+  },
+  "voice": { "clear_m": 8, "muffled_m": 25, "lowpass_hz": 1200, "muffled_db": -9, "radio_band_hz": [400, 2500], "radio_db": -15, "same_era_range_m": 30, "vad_threshold_dbfs": -45, "music_duck_db": -6 },
+  "ping": { "kinds": ["here", "danger", "object", "water", "help", "bravo"], "duration_seconds": 8, "rate_per_second": 2 },
+  "net": { "tick_hz": 20, "interp_hz": 60, "hash_check_seconds": 5, "max_rpc_bytes": 128, "action_rate_per_second": 10, "kick_rejects_per_minute": 20, "max_dynamic_bodies": 64, "afk_seconds": 90 },
+  "camera": { "distance": 4.5, "zoom_min": 2.5, "zoom_max": 7, "height": 1.8, "fov": 70, "fov_min": 60, "fov_max": 100 },
+  "progression": { "ranks": [0, 200, 800, 2000, 5000] },
+  "lobby_modifiers": { "round_seconds": [180, 300, 420], "hazard_mult": [0.5, 1.0, 1.5], "paradox_speed": ["slow", "normal", "fast"] }
+}

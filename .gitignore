@@ -1,0 +1,54 @@
+# Données privées — ne jamais versionner
+.env
+.env.*
+*.pem
+*.key
+*.p12
+steam_appid.txt
+denylist.txt
+.privacy-denylist
+secrets/
+
+# Unreal Engine (code public, contenu privé)
+game/Binaries/
+game/Intermediate/
+game/Saved/
+game/DerivedDataCache/
+game/.vs/
+game/*.sln
+# Contenu binaire : dépôt privé (Git LFS / Perforce) — licences Fab, MetaHuman
+game/Content/
+game/Plugins/*/Binaries/
+game/Plugins/*/Intermediate/
+build/
+*.pak
+*.uasset
+*.umap
+
+# Node / web
+node_modules/
+dist/
+out/
+.vite/
+coverage/
+*.log
+
+# Python
+__pycache__/
+.venv/
+*.pyc
+
+# Robot Framework / tests
+results/
+output.xml
+log.html
+report.html
+playwright-report/
+
+# Médias lourds régénérables
+media/video/frames/
+*.blend1
+
+# OS
+.DS_Store
+Thumbs.db

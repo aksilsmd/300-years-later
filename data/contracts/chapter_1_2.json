@@ -1,0 +1,56 @@
+[
+  {
+    "id": "C01_shade_tree", "chapter": 1,
+    "main": { "type_any": ["tree", "big_tree"], "era": 1, "zone": "market", "radius": 8 },
+    "bonus": [ { "type_any": ["statue"], "era": 1, "near": "main", "radius": 10 },
+               { "type_any": ["trail", "paved_road"], "era": 1, "near": "main", "radius": 6 } ],
+    "absurd_pool": ["swing_on_tree", "face_west", "color_blue"],
+    "tools_required": ["shovel", "seed_gun"],
+    "text": { "result": "CONTRACT_C01_RESULT", "place": "PLACE_MARKET" }
+  },
+  {
+    "id": "C02_monument", "chapter": 1,
+    "main": { "type_any": ["monument", "great_monument"], "era": 2, "zone": "mount_summit", "radius": 15 },
+    "bonus": [ { "fanclub_min": 10, "era": 2, "near": "main", "radius": 15 },
+               { "type_any": ["statue", "eroded_statue"], "era": 2, "near": "main", "radius": 15 } ],
+    "absurd_pool": ["slightly_tilted", "color_red", "name_player"],
+    "tools_required": ["shovel"],
+    "text": { "result": "CONTRACT_C02_RESULT", "place": "PLACE_MOUNT" }
+  },
+  {
+    "id": "C03_baron_treasure", "chapter": 2,
+    "main": { "type_any": ["private_collection", "dig_site"], "era": 3, "zone": "any", "radius": 400 },
+    "bonus": [ { "type_any": ["museum_artifact", "miracle_artifact"], "era": 3 },
+               { "type_any": ["treasure_with_map"], "era": 2 } ],
+    "absurd_pool": ["contains_spoon", "name_player"],
+    "tools_required": ["shovel"],
+    "text": { "result": "CONTRACT_C03_RESULT", "place": "PLACE_ANY" }
+  },
+  {
+    "id": "C04_river_port", "chapter": 2,
+    "main": { "type_any": ["lake", "river"], "era": 2, "zone": "built_area", "radius": 30 },
+    "bonus": [ { "type_any": ["planks"], "era": 2, "near": "main", "radius": 10 },
+               { "no_type": ["flooded_district"], "era": 2 } ],
+    "absurd_pool": ["name_player", "color_red"],
+    "tools_required": ["shovel"],
+    "text": { "result": "CONTRACT_C04_RESULT", "place": "PLACE_TOWN" }
+  },
+  {
+    "id": "C05_legendary_herd", "chapter": 2,
+    "main": { "type_any": ["domestic_breed", "town_mascot"], "era": 2, "zone": "any", "radius": 400 },
+    "bonus": [ { "type_any": ["herd"], "era": 1 },
+               { "type_any": ["town_mascot"], "era": 3 } ],
+    "absurd_pool": ["wearing_hats", "color_blue"],
+    "tools_required": ["horn"],
+    "text": { "result": "CONTRACT_C05_RESULT", "place": "PLACE_ANY" }
+  },
+  {
+    "id": "C08_red_bridge", "chapter": 2,
+    "main": { "type_any": ["bridge"], "era": 3, "zone": "river_any", "radius": 30 },
+    "bonus": [ { "type_any": ["statue", "eroded_statue", "neon_statue"], "era": 3, "near": "main", "radius": 10 },
+               { "type_any": ["herd", "domestic_breed", "town_mascot"], "era": 3, "near": "main", "radius": 40 } ],
+    "absurd_pool": ["color_red"],
+    "tools_required": ["shovel", "seed_gun"],
+    "text": { "result": "CONTRACT_C08_RESULT", "place": "PLACE_RIVER" }
+  }
+]

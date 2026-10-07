@@ -1,0 +1,55 @@
+[
+  {
+    "id": "C06_forest_factory", "chapter": 3,
+    "main": { "type_any": ["forest", "nature_reserve", "jungle"], "era": 3, "zone": "built_area", "radius": 25 },
+    "bonus": [ { "no_type": ["latent_paradox"], "era": 3 },
+               { "type_any": ["ancient_tree"], "era": 3, "near": "main", "radius": 20 } ],
+    "absurd_pool": ["hide_chimney"],
+    "tools_required": ["seed_gun", "anchor"],
+    "text": { "result": "CONTRACT_C06_RESULT", "place": "PLACE_FACTORY" }
+  },
+  {
+    "id": "C07_duck_statue", "chapter": 3,
+    "main": { "type_any": ["mascot_duck"], "era": 3, "zone": "any", "radius": 400 },
+    "bonus": [ { "type_any": ["duck_fanclub"], "era": 2 },
+               { "tourists_min": 6, "era": 3, "near": "main", "radius": 15 } ],
+    "absurd_pool": ["face_west"],
+    "tools_required": ["plinth"],
+    "text": { "result": "CONTRACT_C07_RESULT", "place": "PLACE_ANY" }
+  },
+  {
+    "id": "C09_apple_field", "chapter": 3,
+    "main": { "type_any": ["field", "fertile_soil"], "era": 1, "zone": "any", "radius": 400 },
+    "bonus": [ { "type_any": ["grove", "tree"], "era": 1, "near": "main", "radius": 8 },
+               { "no_type": ["burnt_hut"], "era": 1 } ],
+    "absurd_pool": ["color_blue"],
+    "tools_required": ["seed_gun"],
+    "text": { "result": "CONTRACT_C09_RESULT", "place": "PLACE_ANY" }
+  },
+  {
+    "id": "C10_future_mayor", "chapter": 3,
+    "main": { "type_any": ["object_fanclub"], "era": 1, "zone": "any", "radius": 400 },
+    "bonus": [ { "fanclub_min": 10, "era": 1 },
+               { "paradox_max_below": 60 } ],
+    "absurd_pool": ["elected_mayor"],
+    "tools_required": ["time_booth", "fake_certificate"],
+    "text": { "result": "CONTRACT_C10_RESULT", "place": "PLACE_ANY" }
+  },
+  {
+    "id": "C11_clean_valley", "chapter": 4, "refusable": true,
+    "main": { "symbolic_max": 0, "era": 3, "zone": "museum", "radius": 60 },
+    "bonus": [ { "type_any_absent": ["ancient_tree"], "era": 3, "zone": "museum", "radius": 60 } ],
+    "absurd_pool": ["no_tree_visible"],
+    "tools_required": [],
+    "sabotage_reward": "SECRET_EMPLOYEE_OF_YEAR_ZERO",
+    "text": { "result": "CONTRACT_C11_RESULT", "place": "PLACE_MUSEUM" }
+  },
+  {
+    "id": "C12_vernissage", "chapter": 5,
+    "main": { "distinct_traces_min_per_era": 12, "distinct_types_min": 3 },
+    "bonus": [ { "richness_min": 20 }, { "paradox_max_below": 50 } ],
+    "absurd_pool": ["museum_overflows"],
+    "tools_required": [],
+    "text": { "result": "CONTRACT_C12_RESULT", "place": "PLACE_VALLEY" }
+  }
+]
