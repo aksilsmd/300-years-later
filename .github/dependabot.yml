@@ -1,3 +1,4 @@
+# EN — A 7-day cooldown lets a malicious or broken release be caught before we pull it in.
 # EN — Keeps GitHub Actions and the web projects up to date, grouped into one PR per ecosystem.
 # FR — Tient à jour les actions GitHub et les projets web, en une seule PR par écosystème.
 version: 2
@@ -5,15 +6,18 @@ updates:
   - package-ecosystem: github-actions
     directory: "/"
     schedule: { interval: monthly }
+    cooldown: { default-days: 7 }
     groups:
       actions: { patterns: ["*"] }
   - package-ecosystem: npm
     directory: "/marketing/landing-react"
     schedule: { interval: monthly }
+    cooldown: { default-days: 7 }
     groups:
       landing: { patterns: ["*"] }
   - package-ecosystem: npm
     directory: "/marketing/video"
     schedule: { interval: monthly }
+    cooldown: { default-days: 7 }
     groups:
       video: { patterns: ["*"] }
