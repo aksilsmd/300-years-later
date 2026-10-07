@@ -52,3 +52,7 @@ media/video/frames/
 # OS
 .DS_Store
 Thumbs.db
+
+# Réglages locaux de Claude Code (propres à une machine, jamais partagés)
+# Claude Code per-machine settings — never shared
+.claude/settings.local.json
