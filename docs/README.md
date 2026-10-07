@@ -23,14 +23,21 @@ Read in this order; in a conflict, the technical design wins (see [`CLAUDE.md`](
 | 00 | [Index](design/00_README_INDEX.md) | gates, reading order, vocabulary |
 | 01 | [Market audit](design/01_AUDIT_V1.md) | why this game, against what |
 | — | [GDD](design/GDD_CENTURY_TEMPS.md) | the game as a whole |
+| 14 | [The founding novel](design/14_ROMAN_LIVRE_DES_TRACES.md) | five parts, forty chapters, and how each one becomes game content |
 | 10–13 | [Narrative bible](design/10_NARRATIVE_BIBLE.md) · [Scripts](design/11_SCRIPTS_DIALOGUES.md) · [Scenarios](design/12_SCENARIOS.md) · [Peoples, Figures, weather and disasters](design/13_PEUPLES_DIEUX_ET_PHENOMENES.md) | story, voice, situations, the living layer |
 | 20–21 | [Parameters](design/20_GAME_DESIGN_PARAMETERS.md) · [World](design/21_WORLD_LEVEL_DESIGN.md) | numbers, the valley, landmarks |
-| 30–34 | [Art bible](design/30_ART_BIBLE.md) · [Audio](design/31_AUDIO_DESIGN.md) · [UX/UI](design/32_UX_UI_SPEC.md) · [Visual targets](design/33_VISUAL_TARGETS.md) · [Cinematic landing](design/34_LANDING_CINEMATIQUE.md) | how it looks, sounds and reads |
+| 30–35 | [Art bible](design/30_ART_BIBLE.md) · [Audio](design/31_AUDIO_DESIGN.md) · [UX/UI](design/32_UX_UI_SPEC.md) · [Visual targets](design/33_VISUAL_TARGETS.md) · [Cinematic landing](design/34_LANDING_CINEMATIQUE.md) · [Design system](design/35_DESIGN_SYSTEM.md) | how it looks, sounds and reads |
 | 40 | [Technical design](design/40_TECHNICAL_DESIGN.md) | **normative**: determinism, networking, data |
 | 50–52 | [Production plan](design/50_PRODUCTION_PLAN.md) · [QA plan](design/51_QA_TEST_PLAN.md) · [Risks](design/52_RISK_REGISTER.md) | how it gets built and verified |
 | 60 | [Legal and compliance](design/60_LEGAL_COMPLIANCE.md) | obligations matrix |
 | 70–71 | [Marketing](design/70_MARKETING_GTM.md) · [Live ops](design/71_LIVE_OPS.md) | launch and after |
 | 80 | [Agent playbook](design/80_CLAUDE_CODE_PLAYBOOK.md) | the prompts, phase by phase |
+
+## Specification pack
+Contractual and testable view of the design: [`specs/`](specs/) — [cahier des charges](specs/00_CAHIER_DES_CHARGES.md),
+[functional specification](specs/10_SPEC_FONCTIONNELLE.md) (179 numbered requirements),
+[non-functional requirements](specs/20_SPEC_TECHNIQUE_COMPLEMENTAIRE.md),
+[traceability matrix](specs/30_MATRICE_EXIGENCES.md). The design dossier stays normative for design.
 
 ## Decisions and diagrams
 - [`adr/`](adr/) — architecture decision records. Start with [ADR 0012](adr/0012-unreal-engine-5-realiste.md) (Unreal Engine 5.8 and realism) and [ADR 0002](adr/0002-event-sourcing.md) (event sourcing).

@@ -108,6 +108,16 @@ Markdown procedures any agent can follow. Claude Code loads them natively; every
 | ✅ **Tests and CI** | Playwright, Robot Framework, k6, gitleaks, semgrep, OWASP ZAP, data validation, privacy scan, media-approval gate |
 | 📘 **Guides in two languages** | quick start, A→Z, installation, [time and cost](docs/guides/en/03_TIME_AND_COST.md), security, customisation, other AIs, FAQ — and a generated PDF |
 
+## 📖 Deeper in
+
+| | |
+|---|---|
+| [**The prompt**](PROMPT.md) | the exact text to paste into your agent — short version, long version, and what to do at each hard stop |
+| [**The founding novel**](docs/design/14_ROMAN_LIVRE_DES_TRACES.md) | five parts, forty chapters, braided points of view, and the table that turns every chapter into game content |
+| [**Peoples and Figures**](docs/design/13_PEUPLES_DIEUX_ET_PHENOMENES.md) | civilisations that branch, gods made from the objects players abandon, weather, disasters, phenomena |
+| [**Design system**](docs/design/35_DESIGN_SYSTEM.md) | the brand, the tokens in [`design-system/`](design-system/), and the rule that no game image exists outside the engine |
+| [**Specification pack**](docs/specs/) | cahier des charges, 179 functional requirements, non-functional requirements, traceability matrix |
+
 ## 🧭 Honesty first
 
 - **No game images anywhere in this repository**, on purpose. Every visual is specified in [`33_VISUAL_TARGETS.md`](docs/design/33_VISUAL_TARGETS.md) and must be rendered in Unreal, then approved by a human in [`media/APPROVALS.md`](media/APPROVALS.md). CI fails if an unapproved file is referenced. No AI-generated concept art pretending to be the game.

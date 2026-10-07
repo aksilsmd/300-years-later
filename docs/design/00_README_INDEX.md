@@ -20,7 +20,7 @@ Un grand studio ne « code pas un jeu » : il traverse des **portes de décision
 ## 2. Ordre de lecture
 **Pour l'humain (Product Owner)** : `01_AUDIT_V1.md` → `GDD` → `10_NARRATIVE_BIBLE.md` → `12_SCENARIOS.md` → `50_PRODUCTION_PLAN.md` → `60_LEGAL_COMPLIANCE.md` → `80_CLAUDE_CODE_PLAYBOOK.md`.
 
-**Pour Claude Code** (ordre imposé dans `CLAUDE.md`) : `CLAUDE.md` → `GDD` → `40_TECHNICAL_DESIGN.md` → `20_GAME_DESIGN_PARAMETERS.md` → `21_WORLD_LEVEL_DESIGN.md` → `data/` → `10`/`11`/`12` → `10`/`11`/`12`/`13` → `30`/`33`/`34`/`31`/`32` → `50`/`51` → `80`.
+**Pour Claude Code** (ordre imposé dans `CLAUDE.md`) : `CLAUDE.md` → `GDD` → `40_TECHNICAL_DESIGN.md` → `20_GAME_DESIGN_PARAMETERS.md` → `21_WORLD_LEVEL_DESIGN.md` → `data/` → `10`/`11`/`12` → `10`/`11`/`12`/`13`/`14` → `30`/`33`/`34`/`35`/`31`/`32` → `50`/`51` → `80`.
 
 **Guides humains :** `../guides/` · **Juridique :** `../../legal/` · **Décisions :** `../adr/` (dont ADR 0012 : Unreal Engine 5.8 et réalisme).
 

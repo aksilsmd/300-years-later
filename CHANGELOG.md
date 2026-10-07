@@ -9,6 +9,25 @@ public API. Dates are ISO 8601.
 ## [Unreleased]
 
 ### Added
+- **Le roman fondateur** — [`docs/design/14_ROMAN_LIVRE_DES_TRACES.md`](docs/design/14_ROMAN_LIVRE_DES_TRACES.md) :
+  un plan de livre complet écrit avec la méthode du roman long — prémisse, thème posé en question, structure
+  en cinq parties et quarante chapitres avec synopsis, quatre points de vue tressés plus une voix-cadre, arcs
+  de personnages (défaut, désir, mensonge, rupture), géographie et écologie des quatre époques, plantations et
+  récoltes vérifiables, et le tableau qui adapte chaque chapitre en contenu de jeu. Environ 95 000 mots visés,
+  plan de production du texte en cinq lots.
+- **Charte graphique et design system** — [`docs/design/35_DESIGN_SYSTEM.md`](docs/design/35_DESIGN_SYSTEM.md)
+  et `design-system/tokens.css` + `tokens.json` (45 jetons) : parti pris du relevé géologique, palette de
+  strates, typographie à trois rôles, grille, composants documentaires, mouvement, plancher d'accessibilité.
+  Nouveaux assets de marque : logo, favicon, logotype, carte sociale 1280×640, planche de charte.
+- **Pack de spécifications** — [`docs/specs/`](docs/specs/) : cahier des charges général, spécification
+  fonctionnelle (179 exigences numérotées, MoSCoW, 12 points à trancher), exigences non fonctionnelles (93),
+  matrice de traçabilité (272 lignes) qui relie chaque exigence à une famille de tests ou à un outil réel, et
+  liste honnête des 37 exigences sans vérification.
+- **[`PROMPT.md`](PROMPT.md)** : le prompt à coller dans n'importe quelle IA de code, version courte et
+  version longue autonome, variantes selon la situation, et le tableau de ce que l'humain fait à chaque arrêt
+  obligatoire.
+- **[ADR 0021](docs/adr/0021-titre-public-afterloom.md)** : titre public proposé **Afterloom**, avec les
+  alternatives étudiées, les conséquences du renommage et les textes prêts à coller pour GitHub.
 - **La couche vivante du jeu** — nouveau document normatif
   [`docs/design/13_PEUPLES_DIEUX_ET_PHENOMENES.md`](docs/design/13_PEUPLES_DIEUX_ET_PHENOMENES.md) :
   **Peuples** qui bifurquent d'une époque à l'autre selon l'eau, les vivres, l'abri, la ferveur et la rancune
@@ -47,6 +66,12 @@ public API. Dates are ISO 8601.
   `run_trigger_eval.sh`, so a change to a skill's description can be measured instead of guessed.
 - `.editorconfig`, `.github/release.yml` (categorised release notes with no third-party action), numbered
   issue forms so the chooser order is deliberate.
+
+### Fixed
+- Affirmations périmées corrigées dans `docs/backlog.md` : 4 recettes croisées sur 35, pas 10. Sept défauts
+  trouvés pendant la rédaction du cahier des charges y sont ajoutés (contradiction Steam Deck entre `40`,
+  `50` et `51`, script de test réseau inexistant, absence de famille de tests audio, contrats C15/C16 absents
+  des documents de conception, chemins référencés mais absents).
 
 ### Changed
 - `GDD` : encadré assumant l'écart avec l'étude de marché (photoréalisme et 19,99 € contre « ≤ 10 € et

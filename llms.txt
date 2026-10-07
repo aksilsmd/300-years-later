@@ -36,7 +36,13 @@ progress, and every claim in it names a file that proves it.
 - [Technical design](docs/design/40_TECHNICAL_DESIGN.md): normative — event sourcing, determinism, networking
 - [Parameters](docs/design/20_GAME_DESIGN_PARAMETERS.md): every tunable number, mirrored in data/tuning.json
 - [Narrative bible](docs/design/10_NARRATIVE_BIBLE.md), [Scenarios](docs/design/12_SCENARIOS.md), [World](docs/design/21_WORLD_LEVEL_DESIGN.md)
-- [Visual targets](docs/design/33_VISUAL_TARGETS.md) and [cinematic landing](docs/design/34_LANDING_CINEMATIQUE.md)
+- [Visual targets](docs/design/33_VISUAL_TARGETS.md), [cinematic landing](docs/design/34_LANDING_CINEMATIQUE.md), [design system](docs/design/35_DESIGN_SYSTEM.md)
+- [Peoples, Figures, weather and disasters](docs/design/13_PEUPLES_DIEUX_ET_PHENOMENES.md): the living layer, all computed from player traces
+- [The founding novel](docs/design/14_ROMAN_LIVRE_DES_TRACES.md): five parts, forty chapters, and the table that turns each chapter into game content
+
+## Specification
+- [Cahier des charges](docs/specs/00_CAHIER_DES_CHARGES.md), [functional spec](docs/specs/10_SPEC_FONCTIONNELLE.md), [non-functional](docs/specs/20_SPEC_TECHNIQUE_COMPLEMENTAIRE.md), [traceability](docs/specs/30_MATRICE_EXIGENCES.md)
+- [The prompt](PROMPT.md): the exact text to give a coding agent, short and long versions
 
 ## Guides for humans
 - English: [quick start](docs/guides/en/00_QUICK_START.md), [A→Z](docs/guides/en/01_A_TO_Z.md), [installation](docs/guides/en/02_INSTALLATION.md), [time and cost](docs/guides/en/03_TIME_AND_COST.md), [security and privacy](docs/guides/en/04_SECURITY_AND_PRIVACY.md), [customise](docs/guides/en/05_CUSTOMISE.md), [other AIs](docs/guides/en/06_OTHER_AIS.md), [FAQ](docs/guides/en/07_FAQ_TROUBLESHOOTING.md)
@@ -52,4 +58,5 @@ progress, and every claim in it names a file that proves it.
 - Budget: ≈ €40k–80k solo with an AI, up to €1.2M with a small team. 18 to 48 months. Not "a weekend project".
 - The kit never buys, publishes, signs or creates accounts; those are hard stops reserved for a human.
 - No game image exists outside Unreal Engine, and no AI-generated art is presented as the game.
-- "300 Years Later" is a working title; the codename is CENTURY TEMPS.
+- "300 Years Later" is the current working title. ADR 0021 proposes **Afterloom** as the public title; the
+  codename is CENTURY TEMPS and the valley is Brumecombe. The repository slug has not been renamed.

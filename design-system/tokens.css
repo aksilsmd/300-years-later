@@ -1,0 +1,88 @@
+/*! Afterloom — design tokens
+ *  EN — The single source of truth for colour, type, space and motion. Import it; never hard-code a value.
+ *  FR — Source unique des couleurs, de la typographie, des espacements et du mouvement. À importer ;
+ *       aucune valeur en dur ailleurs. Charte : docs/design/35_DESIGN_SYSTEM.md
+ *  Licence : CC BY 4.0 (contenus) · aucune police distante, aucune ressource externe.
+ */
+:root {
+  /* ── Support et encres ─────────────────────────────────────────── */
+  --af-paper:        #E9E7E0;   /* fond de page */
+  --af-paper-sunk:   #E3E1D9;   /* panneaux, encarts, champs */
+  --af-ink:          #15191A;   /* texte principal */
+  --af-ink-soft:     #6E7169;   /* annotations, légendes, métadonnées */
+  --af-rule:         rgba(21, 25, 26, .28);  /* filets de relevé */
+  --af-rule-faint:   rgba(21, 25, 26, .12);
+
+  /* ── Strates : une encre par époque ────────────────────────────── */
+  --af-era-0:        #76875A;   /* lichen      · an 0   · L'Aube */
+  --af-era-1:        #8A6B1E;   /* ocre        · an 300 · Les Bannières */
+  --af-era-2:        #4E5257;   /* suie        · an 600 · La Vapeur */
+  --af-era-3:        #1C6F62;   /* vert-de-gris· an 900 · Le Néon */
+
+  /* ── Sédiments : fonds de bande ────────────────────────────────── */
+  --af-bed-0:        #DFE2D2;
+  --af-bed-1:        #E3DCC4;
+  --af-bed-2:        #D9DADB;
+  --af-bed-3:        #CFDED9;
+
+  /* ── Signal : uniquement ce qui alerte ─────────────────────────── */
+  --af-signal:       #8C2F22;   /* erreur, arrêt obligatoire, perte de données */
+
+  /* ── Typographie ───────────────────────────────────────────────── */
+  --af-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --af-mono: ui-monospace, "SF Mono", "DejaVu Sans Mono", Menlo, Consolas, monospace;
+  --af-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; /* voix in-world seulement */
+
+  --af-step--1: clamp(.8125rem, .8rem + .08vw, .875rem);
+  --af-step-0:  clamp(1rem, .96rem + .2vw, 1.125rem);
+  --af-step-1:  clamp(1.25rem, 1.15rem + .5vw, 1.5rem);
+  --af-step-2:  clamp(1.75rem, 1.5rem + 1.2vw, 2.5rem);
+  --af-step-3:  clamp(2.5rem, 1.9rem + 3vw, 4.5rem);
+  --af-step-4:  clamp(3.5rem, 2.2rem + 6vw, 7rem);
+
+  --af-tracking-display: -.035em;
+  --af-leading-body: 1.55;   /* sans */
+  --af-leading-serif: 1.65;  /* serif : plus d'interligne */
+  --af-measure: 68ch;        /* < 80 caractères */
+
+  /* ── Espacement : échelle de relevé, pas de valeurs libres ─────── */
+  --af-space-1: .25rem;  --af-space-2: .5rem;   --af-space-3: .75rem;
+  --af-space-4: 1rem;    --af-space-5: 1.5rem;  --af-space-6: 2rem;
+  --af-space-7: 3rem;    --af-space-8: 4.5rem;  --af-space-9: 7rem;
+
+  /* ── Traits et formes ──────────────────────────────────────────── */
+  --af-hairline: 1px;
+  --af-radius-0: 0;      /* champs de relevé : angles vifs */
+  --af-radius-1: 4px;    /* marque, favicon */
+  --af-radius-pill: 999px;
+
+  /* ── Mouvement : un seul moment orchestré par écran ────────────── */
+  --af-ease: cubic-bezier(.22, 1, .36, 1);
+  --af-dur-fast: 160ms;
+  --af-dur-base: 600ms;
+  --af-dur-slow: 900ms;   /* transition d'époque */
+}
+
+/* Thème sombre : le relevé passe en négatif, les strates gardent leur teinte. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --af-paper: #121413; --af-paper-sunk: #191C1A; --af-ink: #E7E6DF; --af-ink-soft: #9A9D94;
+    --af-rule: rgba(231, 230, 223, .24); --af-rule-faint: rgba(231, 230, 223, .10);
+    --af-bed-0: #1C211A; --af-bed-1: #221E15; --af-bed-2: #1B1D1F; --af-bed-3: #16211F;
+  }
+}
+:root[data-theme="dark"] {
+  --af-paper: #121413; --af-paper-sunk: #191C1A; --af-ink: #E7E6DF; --af-ink-soft: #9A9D94;
+  --af-rule: rgba(231, 230, 223, .24); --af-rule-faint: rgba(231, 230, 223, .10);
+  --af-bed-0: #1C211A; --af-bed-1: #221E15; --af-bed-2: #1B1D1F; --af-bed-3: #16211F;
+}
+
+/* L'époque courante pilote la page entière : html[data-era="0..3"] */
+html[data-era="0"] { --af-era: var(--af-era-0); --af-bed: var(--af-bed-0); }
+html[data-era="1"] { --af-era: var(--af-era-1); --af-bed: var(--af-bed-1); }
+html[data-era="2"] { --af-era: var(--af-era-2); --af-bed: var(--af-bed-2); }
+html[data-era="3"] { --af-era: var(--af-era-3); --af-bed: var(--af-bed-3); }
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --af-dur-fast: 0ms; --af-dur-base: 0ms; --af-dur-slow: 0ms; }
+}

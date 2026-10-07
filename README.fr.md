@@ -111,6 +111,16 @@ les autres lisent [`AGENTS.md`](AGENTS.md).
 | ✅ **Des tests et une CI** | Playwright, Robot Framework, k6, gitleaks, semgrep, OWASP ZAP, validation des données, scan de confidentialité, contrôle des médias |
 | 📘 **Des guides dans deux langues** | démarrage, A→Z, installation, [temps et coûts](docs/guides/03_TEMPS_ET_COUTS.md), sécurité, personnalisation, autres IA, FAQ — et un PDF généré |
 
+## 📖 Pour aller plus loin
+
+| | |
+|---|---|
+| [**Le prompt**](PROMPT.md) | le texte exact à coller dans votre IA — version courte, version longue, et quoi faire à chaque arrêt obligatoire |
+| [**Le roman fondateur**](docs/design/14_ROMAN_LIVRE_DES_TRACES.md) | cinq parties, quarante chapitres, points de vue tressés, et le tableau qui transforme chaque chapitre en contenu de jeu |
+| [**Peuples et Figures**](docs/design/13_PEUPLES_DIEUX_ET_PHENOMENES.md) | des civilisations qui bifurquent, des dieux nés des objets abandonnés, la météo, les catastrophes, les phénomènes |
+| [**Design system**](docs/design/35_DESIGN_SYSTEM.md) | la marque, les jetons dans [`design-system/`](design-system/), et la règle qui interdit toute image de jeu hors du moteur |
+| [**Cahier des charges**](docs/specs/) | périmètre, 179 exigences fonctionnelles, exigences non fonctionnelles, matrice de traçabilité |
+
 ## 🧭 L'honnêteté d'abord
 
 - **Aucune image du jeu dans ce dépôt**, volontairement. Chaque visuel est décrit dans [`33_VISUAL_TARGETS.md`](docs/design/33_VISUAL_TARGETS.md), doit être rendu dans Unreal, puis validé par un humain dans [`media/APPROVALS.md`](media/APPROVALS.md). La CI échoue si un fichier non validé est utilisé. Aucune image générée par IA ne se fait passer pour le jeu.

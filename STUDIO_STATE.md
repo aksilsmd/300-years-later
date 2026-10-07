@@ -41,6 +41,9 @@ systems:
   media_pipeline:   { status: specified, evidence: data/shotlist.json }
   peoples_and_faith: { status: specified, evidence: docs/design/13_PEUPLES_DIEUX_ET_PHENOMENES.md }
   weather_disasters: { status: specified, evidence: data/tuning.json }
+  narrative_novel:  { status: specified, evidence: docs/design/14_ROMAN_LIVRE_DES_TRACES.md }
+  design_system:    { status: specified, evidence: design-system/tokens.css }
+  requirements:     { status: specified, evidence: docs/specs/10_SPEC_FONCTIONNELLE.md }
   landing_page:     { status: tested,    evidence: tests/web/test_landing.py }
   kit_tooling:      { status: tested,    evidence: .github/workflows/ci.yml }
 ```
@@ -49,7 +52,7 @@ systems:
 - Public title / Titre public : 300 Years Later (working title — to confirm) · codename CENTURY TEMPS
 - Engine / Moteur : Unreal Engine 5.8 (ADR 0012)
 - Autonomy / Autonomie : see `studio.config.yaml` · decisions: `DECISIONS.md` · open questions: `QUESTIONS.md`
-- Last session / Dernière session : 2026-10-07 — peoples, Figures, weather, disasters and phenomena specified (`docs/design/13`); recipe schema v2 with cross-recipes
+- Last session / Dernière session : 2026-10-07 — founding novel (`14`), design system and brand assets (`35`, `design-system/`), specification pack (`docs/specs/`), master prompt (`PROMPT.md`), public title proposed (ADR 0021)
 - Waiting on the human / En attente de l'humain : public title; team scenario and budget
   (`docs/guides/en/03_TIME_AND_COST.md`); Epic and Steamworks accounts; private repository for `game/Content/`;
   GitHub description, topics and release (`bash tools/setup_repo.sh`)
